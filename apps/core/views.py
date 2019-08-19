@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-# Two example views. Change or delete as necessary.
+
 def home(request):
 
     context = {
@@ -9,9 +9,16 @@ def home(request):
 
     return render(request, 'pages/home.html', context)
 
+
 def about(request):
     context = {
     }
 
     return render(request, 'pages/about.html', context)
 
+
+def form(request):
+    context = {
+    }
+
+    return render(request, 'pages/form.html', context)

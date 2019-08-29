@@ -13,7 +13,7 @@ def log_in(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return redirect('home')
+            return redirect('dashboard')
     else:
         form = AuthenticationForm()
 
@@ -32,7 +32,7 @@ def sign_up(request):
             # Log-in the user right away
             messages.success(request, 'Account created successfully. Welcome!')
             login(request, user)
-            return redirect('home')
+            return redirect('dashboard')
     else:
         form = SignupForm()
 

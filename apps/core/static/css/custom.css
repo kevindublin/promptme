@@ -13,3 +13,21 @@
     margin-top: -10px;
     margin-bottom: -10px;
 }
+
+.bottom-dock {
+
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-between;
+
+}
+
+.prompt-card {
+
+  height: 56.25%;
+  width: 100%;
+  background:url('https://picsum.photos/1280/720/') center center no-repeat;
+  min-height: 300px;
+
+}

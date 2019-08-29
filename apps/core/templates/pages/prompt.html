@@ -6,6 +6,33 @@
 
 {% block content %}
 
+<div class="header px-3 py-3 pt-5 pb-5 mx-auto text-center">
+  <h1 class="display-4">Prompt Me</h1>
+</div>
 
+<div class="container">
+  <div class="card-deck mb-5 text-center">
+    <div class="card mb-6 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Write about the last smell you remember.</h4>
+      </div>
+      <div class="prompt-card">
 
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+  <!-- DOCK -->
+<footer class="bottom-dock">
+  <a href="{% url 'dashboard' %}"><button type="button" class="btn btn-lg btn-light">
+  Exit
+  </button></a>
+  <button type="button" class="btn btn-lg btn-light">
+  Prompt Me
+  </button>
+  <button type="button" class="btn btn-lg btn-light">
+  Write
+  </button>
+</footer>
 {% endblock content %}

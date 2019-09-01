@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Prompt Me - Write
+{% endblock title %}
+
+{% block content %}
+
+<div class="header px-3 py-3 pt-5 pb-2 mx-auto text-center">
+  <h1 class="display-4">Prompt Me</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-header">
+                <h4 class="my-0 font-weight-normal"> {{ new_prompt }}</h4>
+                </div>
+                <div id="prompt-card" style="background:url('{{ random_image }}') center center no-repeat">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card-deck mb-3 text-center">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-header">
+                    <h4 class="my-0 font-weight-normal"><span id="timer">10:00</span></h4>
+                    </div>
+                    <div class="write-box">
+                      <textarea class="form-control" id="userWrite"
+                          rows="12" onkeyup="countChars('userWrite','charcount');"
+                          onkeydown="countChars('userWrite','charcount');"
+                          onmouseout="countChars('userWrite','charcount');">
+                      </textarea>
+                    </div>
+                </div>
+            </div>
+            <p id="charLength"> 1100 | 1100</p>
+    </div>
+  </div>
+
+      <hr class="featurette-divider">
+
+  <!-- DOCK -->
+  <footer class="bottom-dock">
+    <button type="button" class="btn btn-light">
+    Save Draft
+    </button>
+    <button type="button" class="btn btn-light">
+    Pause Timer
+    </button>
+    <button type="button" class="btn btn-light disabled">
+    Continue
+    </button>
+      </footer>
+
+{% endblock content %}

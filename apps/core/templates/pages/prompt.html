@@ -14,9 +14,9 @@
   <div class="card-deck mb-5 text-center">
     <div class="card mb-6 shadow-sm">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Write about the last smell you remember.</h4>
+        <h4 class="my-0 font-weight-normal"> {{ new_prompt }}</h4>
       </div>
-      <div class="prompt-card">
+      <div id="prompt-card" style="background:url('{{ random_image }}') center center no-repeat">
 
       </div>
     </div>
@@ -31,8 +31,8 @@
   <button type="button" class="btn btn-lg btn-light">
   Prompt Me
   </button>
-  <button type="button" class="btn btn-lg btn-light">
+  <a href="{% url 'write' %}"><button type="button" class="btn btn-lg btn-light">
   Write
-  </button>
+  </button></a>
 </footer>
 {% endblock content %}

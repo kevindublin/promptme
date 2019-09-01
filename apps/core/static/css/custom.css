@@ -23,11 +23,11 @@
 
 }
 
-.prompt-card {
+#prompt-card {
 
   height: 56.25%;
   width: 100%;
-  background:url('https://picsum.photos/1280/720/') center center no-repeat;
+  
   min-height: 300px;
 
 }

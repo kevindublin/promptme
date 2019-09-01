@@ -47,6 +47,8 @@ def feedbackq(request):
 
 def prompt(request):
     context = {
+        'random_image': 'https://picsum.photos/1280/720/',
+        'new_prompt': 'What is the last smell you remember?'
     }
 
     return render(request, 'pages/prompt.html', context)
@@ -54,6 +56,8 @@ def prompt(request):
 
 def write(request):
     context = {
+        'random_image': 'https://picsum.photos/1280/720/',
+        'new_prompt': 'What is the last smell you remember?',
     }
 
     return render(request, 'pages/write.html', context)

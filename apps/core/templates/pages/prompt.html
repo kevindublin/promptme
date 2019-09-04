@@ -6,6 +6,12 @@
 
 {% block content %}
 
+{% load render_bundle from webpack_loader %}
+
+<div id="root">
+    </div>
+      {% render_bundle 'main' %}
+
 <div class="header px-3 py-3 pt-5 pb-5 mx-auto text-center">
   <h1 class="display-4">Prompt Me</h1>
 </div>

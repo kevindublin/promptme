@@ -34,6 +34,7 @@ LOCAL_APPS = [
 THIRD_PARTY_APPS = [
     'bootstrap4',
     'tinymce',
+    'webpack_loader',
 ]
 
 DJANGO_APPS = [
@@ -74,6 +75,13 @@ TEMPLATES = [
         },
     },
 ]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+            'BUNDLE_DIR_NAME': 'bundles/',
+            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+        }
+}
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,

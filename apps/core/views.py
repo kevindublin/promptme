@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -10,6 +11,7 @@ def home(request):
     return render(request, 'pages/home.html', context)
 
 
+@login_required
 def dashboard(request):
     context = {
     }
@@ -24,6 +26,7 @@ def about(request):
     return render(request, 'pages/about.html', context)
 
 
+@login_required
 def membership(request):
     context = {
     }
@@ -38,6 +41,7 @@ def form(request):
     return render(request, 'pages/form.html', context)
 
 
+@login_required
 def feedbackq(request):
     context = {
     }
@@ -45,6 +49,7 @@ def feedbackq(request):
     return render(request, 'pages/feedbackq.html', context)
 
 
+@login_required
 def prompt(request):
     context = {
         'random_image': 'https://picsum.photos/1280/720/',
@@ -54,6 +59,7 @@ def prompt(request):
     return render(request, 'pages/prompt.html', context)
 
 
+@login_required
 def write(request):
     context = {
         'random_image': 'https://picsum.photos/1280/720/',
@@ -63,6 +69,7 @@ def write(request):
     return render(request, 'pages/write.html', context)
 
 
+@login_required
 def edit(request):
     context = {
     }

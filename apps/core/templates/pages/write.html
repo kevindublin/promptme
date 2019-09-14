@@ -30,9 +30,14 @@
                     <h4 class="my-0 font-weight-normal"><span id="timer">10:00</span></h4>
                     </div>
                     <div class="write-box">
-                      <textarea class="form-control" id="userWrite"
-                          rows="12" maxlength="1100">
-                      </textarea>
+                      <form  method="post" action='.' enctype="multipart/form-data">
+                        <textarea class="form-control" id="userWrite"
+                            rows="12" maxlength="1100">
+                            {% csrf_token %}
+                            {{ form.as_p  }}
+                        </textarea>
+                        <input class="button" type="submit" value="Save">
+                      </form>
                     </div>
                 </div>
             </div>
@@ -47,10 +52,10 @@
     <button type="button" class="btn btn-light">
     Save Draft
     </button>
-    <button type="button" class="btn btn-light">
+    <button id="pause-timer" type="button" class="btn btn-light">
     Pause Timer
     </button>
-    <button type="button" class="btn btn-light disabled">
+    <button id="submit-write" type="button" class="btn btn-light" type="submit" value="Save">
     Continue
     </button>
       </footer>

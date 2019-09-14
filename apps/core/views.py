@@ -1,5 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django import forms
+from .models import Draft
+
+
+class WriteBox(forms.ModelForm):
+    class Meta:
+        model = Draft
+        fields = ['text', ]
 
 
 def home(request):
@@ -65,6 +73,24 @@ def write(request):
         'random_image': 'https://picsum.photos/1280/720/',
         'new_prompt': 'What is the last smell you remember?',
     }
+
+    # Save Draft
+    if request.method == 'POST':
+
+        # Create a form instance and populate it with data from the request,
+        form = WriteBox(request.POST)
+
+        if form.is_valid():
+            # Use the form to save
+            Draft = form.save(commit=False)
+            Draft.user = request.user
+            Draft.save()
+            # redirect to the previous page
+            return redirect(request.META.get('HTTP_REFERER', '/'))
+
+    else:
+        # if a GET we'll create a blank form
+        form = WriteBox()
 
     return render(request, 'pages/write.html', context)
 

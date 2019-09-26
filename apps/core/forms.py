@@ -1,6 +1,7 @@
 from django import forms
 from tinymce import TinyMCE
 from .models import Post
+import Draft
 
 
 class TinyMCEWidget(TinyMCE):
@@ -18,3 +19,15 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
+
+
+class WriteBox(Draft):
+    class Meta(Draft.Meta):
+        model = Draft
+        fields = (
+            'user',
+            'text',
+            'created',
+            'revised',
+            'prompt'
+        )

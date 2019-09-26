@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django import forms
 from .models import Draft
+import datetime
+
+currentprompt = 'What is the last smell you remember?'
+imgurl = 'https://picsum.photos/1280/720/'
 
 
 class WriteBox(forms.ModelForm):
@@ -60,8 +65,8 @@ def feedbackq(request):
 @login_required
 def prompt(request):
     context = {
-        'random_image': 'https://picsum.photos/1280/720/',
-        'new_prompt': 'What is the last smell you remember?'
+        'random_image': newimage(imgurl),
+        'new_prompt': newprompt(currentprompt)
     }
 
     return render(request, 'pages/prompt.html', context)
@@ -69,11 +74,6 @@ def prompt(request):
 
 @login_required
 def write(request):
-    context = {
-        'random_image': 'https://picsum.photos/1280/720/',
-        'new_prompt': 'What is the last smell you remember?',
-    }
-
     # Save Draft
     if request.method == 'POST':
 
@@ -82,15 +82,26 @@ def write(request):
 
         if form.is_valid():
             # Use the form to save
-            Draft = form.save(commit=False)
-            Draft.user = request.user
-            Draft.save()
-            # redirect to the previous page
+            newdraft = Draft.objects.create(
+                user=request.user,
+                text=form,
+                created=datetime.datetime.now(),
+                revised=datetime.datetime.now(),
+                prompt=currentprompt,
+                )
+            newdraft.save()
+            messages.success(request, 'Draft saved!')
+            return newdraft
             return redirect(request.META.get('HTTP_REFERER', '/'))
 
     else:
         # if a GET we'll create a blank form
         form = WriteBox()
+
+    context = {
+        'random_image': newimage(imgurl),
+        'new_prompt': newprompt(currentprompt),
+        }
 
     return render(request, 'pages/write.html', context)
 
@@ -101,3 +112,17 @@ def edit(request):
     }
 
     return render(request, 'pages/edit.html', context)
+
+
+def newprompt(currentprompt):
+
+    currentprompt = "What attempts to be a tree in the wind?"
+
+    return currentprompt
+
+
+def newimage(imgurl):
+
+    imgurl = 'https://picsum.photos/1280/720/'
+
+    return imgurl

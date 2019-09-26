@@ -26,3 +26,5 @@ INTERNAL_IPS = [
     'localhost',
 ]
 
+CSRF_COOKIE_DOMAIN = '127.0.0.1'
+

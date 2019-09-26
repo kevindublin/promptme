@@ -31,9 +31,9 @@
                     </div>
                     <div class="write-box">
                       <form  method="post" action='.' enctype="multipart/form-data">
+                        {% csrf_token %}
                         <textarea class="form-control" id="userWrite"
                             rows="12" maxlength="1100">
-                            {% csrf_token %}
                             {{ form.as_p  }}
                         </textarea>
                         <input class="button" type="submit" value="Save">

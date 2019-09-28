@@ -108,7 +108,7 @@ TINYMCE_DEFAULT_CONFIG = {
             charmap hr pagebreak nonbreaking anchor |  code |
             ''',
     'contextmenu': 'formats | link image',
-    'menubar': True,
+    'menubar': False,
     'statusbar': True,
     }
 

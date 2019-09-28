@@ -1,7 +1,7 @@
 from django import forms
 from tinymce import TinyMCE
 from .models import Post
-import Draft
+from .models import Draft
 
 
 class TinyMCEWidget(TinyMCE):

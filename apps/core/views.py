@@ -1,12 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from apps.core.forms import WriteBox
+from django import forms
 from .models import Draft
 import datetime
 
 currentprompt = 'What is the last smell you remember?'
 imgurl = 'https://picsum.photos/1280/720/'
+
+
+class WriteBox(forms.ModelForm):
+    class Meta:
+        model = Draft
+        fields = ['text', ]
 
 
 def home(request):
@@ -88,7 +94,7 @@ def write(request):
             return newdraft
             return redirect(request.META.get('HTTP_REFERER', '/'))
         else:
-            print('THIS IS WHAT THE FORM DATA IS:')
+            print('THIS IS WHAT THE FORM DATA IS')
             print(form)
     else:
         # if a GET we'll create a blank form

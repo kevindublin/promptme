@@ -20,7 +20,4 @@ class Draft(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     revised = models.DateTimeField(auto_now=True)
 
-    prompt = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name="prompt_title",
-    )
+    prompt = models.CharField(max_length=300)

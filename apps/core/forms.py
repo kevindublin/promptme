@@ -31,3 +31,6 @@ class WriteBox(Draft):
             'revised',
             'prompt'
         )
+        widget = TinyMCEWidget(
+            attrs={'required': False, 'cols': 30, 'rows': 10}
+        )

@@ -64,9 +64,12 @@ def feedbackq(request):
 
 @login_required
 def prompt(request):
+    global currentprompt
+    currentprompt = newprompt()
+    print(currentprompt)
     context = {
         'random_image': newimage(imgurl),
-        'new_prompt': newprompt(currentprompt)
+        'new_prompt': currentprompt
     }
 
     return render(request, 'pages/prompt.html', context)
@@ -74,6 +77,7 @@ def prompt(request):
 
 @login_required
 def write(request):
+    global currentprompt
     # Save Draft
     if request.method == 'POST':
 
@@ -82,27 +86,33 @@ def write(request):
 
         if form.is_valid():
             # Use the form to save
-            newdraft = form.save()
-            newdraft = Draft.objects.create(
-                user=request.user,
-                text=form,
-                created=datetime.datetime.now(),
-                revised=datetime.datetime.now(),
-                prompt=currentprompt,
-                )
+            print('form is valid, sending to db...')
+            newdraft = str(form)
+            newdraft = newdraft.replace('<tr><th><label for="id_text">Text:</label></th><td><textarea name="text" cols="40" rows="10" maxlength="1100" required id="id_text">', "")
+            newdraft = newdraft.replace('</textarea></td></tr>', '')
+            newdraft = newdraft.replace('&lt;p&gt;', '')
+            newdraft = newdraft.replace('&lt;/p&gt;', '')
+            print(newdraft)
+            Draft = form.save(commit=False)
+            Draft.user = request.user
+            Draft.text = newdraft
+            Draft.created = datetime.datetime.now()
+            Draft.revised = datetime.datetime.now()
+            Draft.prompt = currentprompt
+            Draft.save()
             messages.success(request, 'Draft saved!')
-            return newdraft
             return redirect(request.META.get('HTTP_REFERER', '/'))
         else:
-            print('THIS IS WHAT THE FORM DATA IS')
+            print('Form Data that is invalid')
             print(form)
     else:
         # if a GET we'll create a blank form
         form = WriteBox()
 
     context = {
+        'form': form,
         'random_image': newimage(imgurl),
-        'new_prompt': newprompt(currentprompt),
+        'new_prompt': currentprompt,
         }
 
     return render(request, 'pages/write.html', context)
@@ -116,7 +126,7 @@ def edit(request):
     return render(request, 'pages/edit.html', context)
 
 
-def newprompt(currentprompt):
+def newprompt():
 
     currentprompt = "What attempts to be a tree in the wind?"
 

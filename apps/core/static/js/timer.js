@@ -10,13 +10,14 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-            timer = duration;
+        	document.getElementById('draft-form').disabled = true;
+            timer = 0;
         }
     }, 1000);
 }
 
 window.onload = function () {
-    let writeTimer = 60 * 10,
+    let writeTimer = 60 * 6,
         display = document.querySelector('#timer');
     startTimer(writeTimer, display);
 };

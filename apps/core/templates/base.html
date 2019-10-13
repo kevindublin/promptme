@@ -38,16 +38,14 @@
     <!--Tinymce Text-Editor -->
     <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/tinymce/custom.js' %}" ></script>
-    <script>tinymce.init({selector:'textarea'});</script>
-    <script>
-      tinymce.init({
-        selector:'.editor',
-          setup: function (editor) {
-              editor.on('submit', function (e) {
-                  editor.save();
-              });
+    <script>tinymce.init({
+      selector: "textarea",
+      setup: function (editor) {
+          editor.on('change', function () {
+              editor.save();
+          });
           }
-       });
+      });
     </script>
   </head>
 

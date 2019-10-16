@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django import forms
 from .models import Draft
+import utils
 import datetime
 
 currentprompt = 'What is the last smell you remember?'
@@ -26,8 +27,11 @@ def home(request):
 
 @login_required
 def dashboard(request):
-    context = {
-    }
+    alldrafts = Draft.objects.order_by('-revised')
+    userdrafts = alldrafts.filter(user=request.user)
+    userdrafts = userdrafts
+
+    context = {'user_drafts': userdrafts}
 
     return render(request, 'pages/dashboard.html', context)
 

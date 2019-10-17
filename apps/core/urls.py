@@ -12,4 +12,6 @@ urlpatterns = [
     path('write/', views.write, name='write'),
     path('edit/', views.edit, name='edit'),
     path('membership', views.membership, name='membership'),
+    path('update-draft/<draft_id>/', views.update_draft),
+    path('delete-draft/<draft_id>/', views.delete_draft),
 ]

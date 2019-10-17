@@ -36,6 +36,28 @@ def dashboard(request):
     return render(request, 'pages/dashboard.html', context)
 
 
+@login_required
+def delete_draft(request, draft_id):
+    draft = Draft.objects.get(id=draft_id)
+    draft.delete()
+
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def update_draft(request, draft_id):
+    text = request.POST['text']
+
+    # Update draft
+    draft = Draft.objects.get(id=draft_id)
+    draft.text = text
+    draft.save()
+
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
 def about(request):
     context = {
     }

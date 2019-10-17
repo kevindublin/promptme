@@ -14,8 +14,8 @@
       <h1 class="jumbotron-heading">User Feed</h1>
       <p class="lead text-muted">This is where users can edit the drafts of their saved work.</p>
       <p>
-        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        <a href="/prompt/" class="btn btn-primary my-2">Write</a>
+        <a href="#" class="btn btn-secondary my-2">Read Others</a>
       </p>
     </div>
   </section>
@@ -32,12 +32,15 @@
               <p class="card-text"> {{ draft.text|truncatechars:50 }} </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/delete-draft/{{ draft.id }}/" class="btn btn-link">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                  </a>
                   <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal{{ draft.id }}">
-                      <i class="octicon octicon-pencil"></i>
+                      <i class="material-icons">launch</i>
+                  </button>
+                  {% include "snippets/preview_draft_modal.html" %}
+                  <a href="/delete-draft/{{ draft.id }}/" class="btn btn-link">
+                    <i class="material-icons">delete</i>
+                  </a>
+                  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modaltwo{{ draft.id }}">
+                      <i class="material-icons">edit</i>
                   </button>
                   {% include "snippets/edit_draft_modal.html" %}
                 </div>

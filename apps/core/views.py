@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django import forms
 from .models import Draft
-import utils
 import datetime
 
 currentprompt = 'What is the last smell you remember?'

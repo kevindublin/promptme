@@ -4,12 +4,17 @@ from django.contrib import messages
 from django import forms
 from .models import Draft
 import datetime
+import random
+import utils
 
 currentprompt = 'What is the last smell you remember?'
 imgurl = 'https://picsum.photos/1280/720/'
+fulldict = utils.get_dict()
 
 
 class WriteBox(forms.ModelForm):
+    text = forms.CharField(widget=forms.Textarea, label='')
+
     class Meta:
         model = Draft
         fields = ['text', ]
@@ -18,7 +23,7 @@ class WriteBox(forms.ModelForm):
 def home(request):
 
     context = {
-        'example_context_variable': 'Change me.',
+        '': '',
     }
 
     return render(request, 'pages/home.html', context)
@@ -93,7 +98,7 @@ def prompt(request):
     currentprompt = newprompt()
     print(currentprompt)
     context = {
-        'random_image': newimage(imgurl),
+        'random_image': newimage(),
         'new_prompt': currentprompt
     }
 
@@ -113,7 +118,7 @@ def write(request):
             # Use the form to save
             print('form is valid, sending to db...')
             newdraft = str(form)
-            newdraft = newdraft.replace('<tr><th><label for="id_text">Text:</label></th><td><textarea name="text" cols="40" rows="10" maxlength="1100" required id="id_text">', "")
+            newdraft = newdraft.replace('<tr><th></th><td><textarea name="text" cols="40" rows="10" required id="id_text">', "")
             newdraft = newdraft.replace('</textarea></td></tr>', '')
             newdraft = newdraft.replace('&lt;p&gt;', '')
             newdraft = newdraft.replace('&lt;/p&gt;', '')
@@ -136,7 +141,7 @@ def write(request):
 
     context = {
         'form': form,
-        'random_image': newimage(imgurl),
+        'random_image': imgurl,
         'new_prompt': currentprompt,
         }
 
@@ -158,8 +163,10 @@ def newprompt():
     return currentprompt
 
 
-def newimage(imgurl):
-
-    imgurl = 'https://picsum.photos/1280/720/'
-
+def newimage():
+    global imgurl
+    i = random.randint(1, 300000)
+    randword = fulldict[i]
+    print(i, fulldict[i])
+    imgurl = 'https://picsum.photos/seed/' + randword + '/1280/720'
     return imgurl

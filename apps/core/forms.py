@@ -10,9 +10,9 @@ class TinyMCEWidget(TinyMCE):
 
 
 class PostForm(forms.ModelForm):
-    content = forms.CharField(
+    content = forms.TextField(
         widget=TinyMCEWidget(
-            attrs={'required': False, 'cols': 30, 'rows': 10}
+            attrs={'required': False, 'cols': 30, 'rows': 20}
         )
     )
 
@@ -32,5 +32,5 @@ class WriteBox(Draft):
             'prompt'
         )
         widget = TinyMCEWidget(
-            attrs={'required': False, 'cols': 30, 'rows': 10}
+            attrs={'required': False, 'cols': 30, 'rows': 20}
         )

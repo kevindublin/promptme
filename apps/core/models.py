@@ -15,9 +15,10 @@ class Draft(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    text = models.TextField(max_length=1100)
+    text = models.TextField(max_length=1200)
 
     created = models.DateTimeField(auto_now_add=True)
     revised = models.DateTimeField(auto_now=True)
 
     prompt = models.CharField(max_length=300)
+    image = models.CharField(max_length=100)

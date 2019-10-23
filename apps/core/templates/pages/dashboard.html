@@ -26,7 +26,7 @@
         {% for draft in user_drafts %}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Prompt Image</text></svg>
+            <svg width="100%" height="225" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Image with Draft"><title>Draft Image</title><image width=100% height=100% xlink:href={{ draft.image }}></image></svg>
             <div class="card-body">
               <p class="card-title"> {{ draft.prompt }} </p>
               <p class="card-text"> {{ draft.text|truncatechars:50 }} </p>

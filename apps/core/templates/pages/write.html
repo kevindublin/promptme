@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <span id="charLength"> 1100</span> | 1100
+            <span id="charLength"> Maximum is 1200 characters.</span>
     </div>
   </div>
 
@@ -46,15 +46,15 @@
 
   <!-- DOCK -->
   <footer class="bottom-dock">
-    <button type="button" class="btn btn-light">
-    Save Draft
-    </button>
+    <a href="{% url 'dashboard' %}"><button type="button" class="btn btn-light">
+    Discard Draft
+    </button></a>
     <button id="pause-timer" type="button" class="btn btn-light">
     Pause Timer
     </button>
-    <button id="submit-write" type="button" class="btn btn-light" type="submit" value="Save">
-    Continue
-    </button>
+    <a href="{% url 'feedbackq' %}"><button id="submit-write" type="button" class="btn btn-light" form="draft-form" type="submit" value="Save">
+    Submit for Feedback
+    </button></a>
       </footer>
 
 {% endblock content %}

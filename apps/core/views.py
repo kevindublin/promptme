@@ -129,6 +129,7 @@ def write(request):
             Draft.created = datetime.datetime.now()
             Draft.revised = datetime.datetime.now()
             Draft.prompt = currentprompt
+            Draft.image = imgurl
             Draft.save()
             messages.success(request, 'Draft saved!')
             return redirect(request.META.get('HTTP_REFERER', '/'))

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.exceptions import ValidationError
 from django import forms
 from .models import Draft
 import datetime
@@ -123,16 +124,20 @@ def write(request):
             newdraft = newdraft.replace('&lt;p&gt;', '')
             newdraft = newdraft.replace('&lt;/p&gt;', '')
             print(newdraft)
-            Draft = form.save(commit=False)
-            Draft.user = request.user
-            Draft.text = newdraft
-            Draft.created = datetime.datetime.now()
-            Draft.revised = datetime.datetime.now()
-            Draft.prompt = currentprompt
-            Draft.image = imgurl
-            Draft.save()
-            messages.success(request, 'Draft saved!')
-            return redirect(request.META.get('HTTP_REFERER', '/'))
+            try:
+                Draft = form.save(commit=False)
+                Draft.user = request.user
+                Draft.text = newdraft
+                Draft.created = datetime.datetime.now()
+                Draft.revised = datetime.datetime.now()
+                Draft.prompt = currentprompt
+                Draft.image = imgurl
+                Draft.full_clean()
+                Draft.save()
+                messages.success(request, 'Draft saved!')
+                return redirect(request.META.get('HTTP_REFERER', '/'))
+            except ValidationError as error:
+                messages.warning(request, error.messages_dict)
         else:
             print('Form Data that is invalid')
             print(form)

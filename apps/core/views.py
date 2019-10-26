@@ -11,6 +11,7 @@ import utils
 currentprompt = 'What is the last smell you remember?'
 imgurl = 'https://picsum.photos/1280/720/'
 fulldict = utils.get_dict()
+allprompts = utils.get_prompts()
 
 
 class WriteBox(forms.ModelForm):
@@ -163,15 +164,16 @@ def edit(request):
 
 
 def newprompt():
-
-    currentprompt = "What attempts to be a tree in the wind?"
-
+    global currentprompt
+    i = random.randint(0, len(allprompts)-1)
+    currentprompt = allprompts[i]
+    print(i, allprompts[i])
     return currentprompt
 
 
 def newimage():
     global imgurl
-    i = random.randint(1, 300000)
+    i = random.randint(0, len(fulldict)-1)
     randword = fulldict[i]
     print(i, fulldict[i])
     imgurl = 'https://picsum.photos/seed/' + randword + '/1280/720'

@@ -45,10 +45,15 @@
                   {% include "snippets/edit_draft_modal.html" %}
 
                   <!--add conditional-->
+                  {% if draft.in_queue == False %}
                   <a href="/send-to-queue/{{ draft.id }}/" class="btn btn-link">
-                    <i class="material-icons">send</i>
+                    <i class="material-icons">queue_play_next</i>
                   </a>
-
+                  {% else %}
+                  <a href="/remove-from-queue/{{ draft.id }}/" class="btn btn-link">
+                    <i class="material-icons">remove_from_queue</i>
+                  </a>
+                  {% endif %}
                 </div>
                 <br>
                 <small class="text-muted"> {{ draft.revised }}</small>

@@ -46,7 +46,7 @@ def dashboard(request):
 def delete_draft(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.delete()
-
+    messages.warning(request, 'Draft deleted')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -55,6 +55,7 @@ def delete_draft(request, draft_id):
 def send_to_queue(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.in_queue = True
+    draft.save()
     messages.success(request, 'Draft added to queue')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
@@ -64,7 +65,8 @@ def send_to_queue(request, draft_id):
 def remove_from_queue(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.in_queue = False
-    messages.success(request, 'Draft removed from queue')
+    draft.save()
+    messages.warning(request, 'Draft removed from queue')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
 

@@ -43,7 +43,14 @@
                       <i class="material-icons">edit</i>
                   </button>
                   {% include "snippets/edit_draft_modal.html" %}
+
+                  <!--add conditional-->
+                  <a href="/send-to-queue/{{ draft.id }}/" class="btn btn-link">
+                    <i class="material-icons">send</i>
+                  </a>
+
                 </div>
+                <br>
                 <small class="text-muted"> {{ draft.revised }}</small>
               </div>
             </div>

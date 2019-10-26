@@ -22,3 +22,4 @@ class Draft(models.Model):
 
     prompt = models.CharField(max_length=300)
     image = models.CharField(max_length=100)
+    in_queue = models.BooleanField(default=False)

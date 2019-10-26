@@ -39,3 +39,15 @@ def get_prompts():
     allprompts = promptpackone + promptpacktwo + promptpackthree
     
     return allprompts
+    
+def get_next_fromq():
+    alldrafts = Draft.objects.order_by('revised')
+    queuedrafts = alldrafts.filter(in_queue=True)
+    queuedrafts = alldrafts.filter(user!=user)
+    queuedrafts = [queuedrafts]
+    
+    return queuedrafts
+    
+    
+    
+    

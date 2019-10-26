@@ -52,6 +52,24 @@ def delete_draft(request, draft_id):
 
 
 @login_required
+def send_to_queue(request, draft_id):
+    draft = Draft.objects.get(id=draft_id)
+    draft.in_queue = True
+    messages.success(request, 'Draft added to queue')
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def remove_from_queue(request, draft_id):
+    draft = Draft.objects.get(id=draft_id)
+    draft.in_queue = False
+    messages.success(request, 'Draft removed from queue')
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
 def update_draft(request, draft_id):
     text = request.POST['text']
 
@@ -59,7 +77,7 @@ def update_draft(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.text = text
     draft.save()
-
+    messages.success(request, 'Draft upated')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
 

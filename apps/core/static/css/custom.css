@@ -10,8 +10,8 @@
 
 .navbar-avatar {
     height: 30px;
-    margin-top: -10px;
     margin-bottom: -10px;
+    margin-top: -10px;
 }
 
 .bottom-dock {
@@ -23,11 +23,12 @@
 
 }
 
-#prompt-card {
-
+.prompt-card {
   height: 56.25%;
-  width: 100%;
-  
   min-height: 300px;
+  width: 100%;
+}
 
+.container {
+    max-width: 1280px;
 }

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django import forms
-from .models import Draft
+from .models import Draft, Feedback
 import datetime
 import random
 import utils
@@ -21,6 +21,12 @@ class WriteBox(forms.ModelForm):
         model = Draft
         fields = ['text', ]
 
+class CommentBox(forms.ModelForm):
+    text = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='')
+
+    class Meta:
+        model = Feedback
+        fields = ['favorite_lines', ]
 
 def home(request):
 
@@ -108,7 +114,25 @@ def form(request):
 
 @login_required
 def feedbackq(request):
+    alldrafts = Draft.objects.order_by('revised')
+    queueddrafts = alldrafts.filter(in_queue=True)
+    queueddrafts = alldrafts.exclude(user=request.user)
+    queueddrafts = queueddrafts
+    print(queueddrafts)
+
+
+    if request.method == 'POST':
+        form = CommentBox(request.POST)
+
+        if form.is_valid():
+            # Use the form to save
+            print('form is valid, sending to db...')
+    else:
+        form = CommentBox()
+
     context = {
+        'form': form,
+        'queued_draft': queueddrafts[0]
     }
 
     return render(request, 'pages/feedbackq.html', context)

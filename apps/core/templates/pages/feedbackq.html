@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Prompt Me - Feedback Queue
+{% endblock title %}
+
+{% block content %}
+
+<div class="header px-3 py-3 pt-5 pb-5 mx-auto text-center">
+    <h3 class="display-4">Feedback Queue</h3>
+</div>
+<div class="the-wrapper">
+    <div class="q-column">
+        <div class="card draft-card">
+            <h5 class="card-header">{{ queued_draft.prompt }}</h5>
+            <div class="card-body">
+            <p class="q-draft"> {{ queued_draft.text | safe }}</p>
+            </div>
+        </div>
+
+        <form method="POST" id="surveyForm">
+            <div class="card survey-card">
+                <h5 class="card-header">Feedback Survey</h5>
+                <div class="card-body">
+                    <div id="feedbackSurvey" class="carousel slide" data-ride="carousel" data-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="card-box">
+                                    <h6 class="card-title">Was there a throughline progressing from beginning to end?</h6>
+                                    <label class="radio-inline"><input type="radio" name="q1">Yes</label>
+                                    <label class="radio-inline"><input type="radio" name="q1">No</label>
+                                    <label class="radio-inline"><input type="radio" name="q1">Somewhat</label> 
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card-box">
+                                    <h6 class="card-title">When read aloud, is it rhythmic?</h6>
+                                    <label class="radio-inline"><input type="radio" name="q2">Yes</label>
+                                    <label class="radio-inline"><input type="radio" name="q2">No</label>
+                                    <label class="radio-inline"><input type="radio" name="q2">Somewhat</label> 
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card-box">
+                                    <h6 class="card-title">Was the point of view clear?</h6>
+                                    <label class="radio-inline"><input type="radio" name="q3">Yes</label>
+                                    <label class="radio-inline"><input type="radio" name="q3">No</label>
+                                    <label class="radio-inline"><input type="radio" name="q3">Somewhat</label> 
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card-box">
+                                    <h6 class="card-title">What were your favorite lines?</h6>
+                                    <textarea class="mceNoEditor"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#feedbackSurvey" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#feedbackSurvey" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                    </div> 
+                </div>
+            </div>
+            <button class="shadow btn btn-primary form-btn" id="btnValidate">Submit</button>
+        </form>
+    </div>            
+</div>    
+
+<hr class="featurette-divider">
+  
+      <!-- DOCK -->
+<footer class="bottom-dock">
+    <button type="button" class="btn btn-light">
+        Discard Feedback
+    </button>
+    <button type="button" class="btn btn-light">
+        Pause
+    </button>
+    <button  type="button" class="btn btn-light" form_id="surveyForm">
+        Continue
+    </button>
+        
+</footer>
+
+{% endblock content %}

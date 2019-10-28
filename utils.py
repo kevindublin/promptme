@@ -1,5 +1,6 @@
 import time
 import datetime
+from apps.core.models import Draft
 
 write_timer = '0:6:00'
 
@@ -43,7 +44,7 @@ def get_prompts():
 def get_next_fromq():
     alldrafts = Draft.objects.order_by('revised')
     queuedrafts = alldrafts.filter(in_queue=True)
-    queuedrafts = alldrafts.filter(user!=user)
+    queuedrafts = alldrafts.exclude(user=request.user)
     queuedrafts = [queuedrafts]
     
     return queuedrafts

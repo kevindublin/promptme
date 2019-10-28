@@ -1,5 +1,13 @@
 /* Custom CSS goes here */
 
+@media only screen and (max-width: 825px) {
+
+    .card {
+        width: 100vw;
+    }
+  
+}
+
 .navbar {
     background: linear-gradient(135deg, #f2f9fe 0%, #d6f0fd 100%);
 }

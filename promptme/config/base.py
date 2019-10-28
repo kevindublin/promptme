@@ -87,8 +87,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': 1120,
     'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 20,
-    'selector': 'textarea',
+    'custom_undo_redo_levels': 10,
+    'selector': "textarea:not(.mceNoEditor)",
     'theme': 'modern',
     'plugins': '''
             textcolor save link image media preview codesample contextmenu

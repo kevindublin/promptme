@@ -17,7 +17,8 @@
             <p class="q-draft"> {{ queued_draft.text | safe }}</p>
             </div>
         </div>
-
+    </div>
+    <div class="q-column">
         <form method="POST" id="surveyForm">
             <div class="card survey-card">
                 <h5 class="card-header">Feedback Survey</h5>
@@ -51,7 +52,7 @@
                             <div class="carousel-item">
                                 <div class="card-box">
                                     <h6 class="card-title">What were your favorite lines?</h6>
-                                    <textarea class="mceNoEditor"></textarea>
+                                    <textarea rows="10" class="mceNoEditor"></textarea>
                                 </div>
                             </div>
                         </div>

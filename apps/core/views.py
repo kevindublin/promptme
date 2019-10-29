@@ -23,12 +23,12 @@ class WriteBox(forms.ModelForm):
         fields = ['text', ]
 
 
-class CommentBox(forms.ModelForm):
+class FeedbackBox(forms.ModelForm):
     text = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='')
 
     class Meta:
         model = Feedback
-        fields = ['favorite_lines', ]
+        fields = ['summary', 'progression', 'aural_quality', 'pov_clear', 'style_distinct', 'metaphors', 'setting_specfic', 'noun_specific', 'verb_specific', 'adjective_specific', 'worldview', 'emi', 'favorite_lines', 'comments']
 
 
 def home(request):
@@ -125,13 +125,37 @@ def feedbackq(request):
     print(queueddrafts)
 
     if request.method == 'POST':
-        form = CommentBox(request.POST)
+        form = request.POST
+        two = request.POST
+        print(request.POST)
 
-        if form.is_valid():
+        if form == two:
             # Use the form to save
+            newfeedback = Feedback.objects.create(
+                draft=queueddrafts[0],
+                reader=request.user,
+                summary=request.POST['q0'],
+                progression=request.POST['q1'],
+                aural_quality=request.POST['q2'],
+                pov_clear=request.POST['q3'],
+                style_distinct=request.POST['q4'],
+                metaphors=request.POST['q5'],
+                setting_specfic=request.POST['q6'],
+                noun_specific=request.POST['q7'],
+                verb_specific=request.POST['q8'],
+                adjective_specific=request.POST['q9'],
+                worldview=request.POST['q10'],
+                emi=request.POST['emotional_impact'],
+                favorite_lines=[request.POST['fave_line1'], request.POST['fave_line2'], request.POST['fave_line3']],
+                comments=request.POST['comments']
+                )
+            newfeedback.save()
+            messages.success(request, 'Feedback saved!')
             print('form is valid, sending to db...')
+            print(form)
     else:
-        form = CommentBox()
+        print('form not submitted!')
+        form = FeedbackBox()
 
     context = {
         'form': form,
@@ -188,7 +212,7 @@ def write(request):
             except ValidationError as error:
                 messages.warning(request, error.messages_dict)
         else:
-            print('Form Data that is invalid')
+            print('Form Data is invalid')
             print(form)
     else:
         # if a GET we'll create a blank form

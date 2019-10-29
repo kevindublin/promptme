@@ -37,7 +37,7 @@ class WriteBox(Draft):
         )
 
 
-class CommentBox(Feedback):
+class FeedbackBox(Feedback):
     class Meta(Feedback.Meta):
         model = Feedback
         fields = (

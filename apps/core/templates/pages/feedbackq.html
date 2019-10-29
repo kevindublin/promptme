@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="q-column">
-        <form method="POST" id="surveyForm">
+        <form action="/feedbackq/" method="POST" id="FeedbackBox">
             {% csrf_token %}
             <div class="card survey-card">
                 <h5 class="card-header">Feedback</h5>
@@ -36,9 +36,9 @@
                             <div class="carousel-item">
                                 <div class="card-box">
                                     <h6 class="card-title">{{ question }}</h6>
-                                    <label class="radio-inline"><input type="radio" name="q{{ forloop.counter }}">Yes</label>
-                                    <label class="radio-inline"><input type="radio" name="q{{ forloop.counter }}">No</label>
-                                    <label class="radio-inline"><input type="radio" name="q{{ forloop.counter }}">Somewhat</label>
+                                    <label class="radio-inline"><input type="radio" value="Y" name="q{{ forloop.counter }}">Yes</label>
+                                    <label class="radio-inline"><input type="radio" value="N" name="q{{ forloop.counter }}">No</label>
+                                    <label class="radio-inline"><input type="radio" value="S" name="q{{ forloop.counter }}">Somewhat</label>
                                 </div>
                             </div>
                             {% endfor %}
@@ -67,7 +67,7 @@
                             <div class="carousel-item">
                                 <div class="card-box">
                                     <h6 class="card-title">Any additional comments?</h6>
-                                    <textarea rows="10" class="mceNoEditor"></textarea>
+                                    <textarea id="id_comments" name="comments" rows="10" class="mceNoEditor"></textarea>
                                 </div>
                             </div>
                         </div>

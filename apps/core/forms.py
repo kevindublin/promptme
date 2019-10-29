@@ -36,11 +36,13 @@ class WriteBox(Draft):
             attrs={'required': False, 'cols': 30, 'rows': 30}
         )
 
+
 class CommentBox(Feedback):
     class Meta(Feedback.Meta):
         model = Feedback
         fields = (
+
             'favorite_lines',
         )
-        widget=forms.Textarea
+        widget = forms.Textarea
         models.CharField(widget=form.Textarea(attrs={"class": "mceNoEditor"}))

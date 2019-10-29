@@ -61,3 +61,4 @@ class Feedback(models.Model):
 
     emi = models.CharField(max_length=1, choices=EMOTIONAL_IMPACT_INDEX)
     favorite_lines = models.TextField(max_length=500)
+    comments = models.TextField(max_length=500)

@@ -12,6 +12,7 @@ currentprompt = 'What is the last smell you remember?'
 imgurl = 'https://picsum.photos/1280/720/'
 fulldict = utils.get_dict()
 allprompts = utils.get_prompts()
+feedback_questions = utils.get_questions()
 
 
 class WriteBox(forms.ModelForm):
@@ -21,12 +22,14 @@ class WriteBox(forms.ModelForm):
         model = Draft
         fields = ['text', ]
 
+
 class CommentBox(forms.ModelForm):
     text = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='')
 
     class Meta:
         model = Feedback
         fields = ['favorite_lines', ]
+
 
 def home(request):
 
@@ -114,12 +117,12 @@ def form(request):
 
 @login_required
 def feedbackq(request):
+    global feedback_questions
     alldrafts = Draft.objects.order_by('revised')
     queueddrafts = alldrafts.filter(in_queue=True)
     queueddrafts = alldrafts.exclude(user=request.user)
     queueddrafts = queueddrafts
     print(queueddrafts)
-
 
     if request.method == 'POST':
         form = CommentBox(request.POST)
@@ -132,7 +135,8 @@ def feedbackq(request):
 
     context = {
         'form': form,
-        'queued_draft': queueddrafts[0]
+        'queued_draft': queueddrafts[0],
+        'feedback_questions': feedback_questions
     }
 
     return render(request, 'pages/feedbackq.html', context)

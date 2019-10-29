@@ -21,37 +21,51 @@
     <div class="q-column">
         <form method="POST" id="surveyForm">
             <div class="card survey-card">
-                <h5 class="card-header">Feedback Survey</h5>
+                <h5 class="card-header">Feedback</h5>
                 <div class="card-body">
                     <div id="feedbackSurvey" class="carousel slide" data-ride="carousel" data-interval="false">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="card-box">
-                                    <h6 class="card-title">Was there a throughline progressing from beginning to end?</h6>
-                                    <label class="radio-inline"><input type="radio" name="q1">Yes</label>
-                                    <label class="radio-inline"><input type="radio" name="q1">No</label>
-                                    <label class="radio-inline"><input type="radio" name="q1">Somewhat</label> 
+                                    <h6 class="card-title">Write a brief (50 word) summary of what you just read:</h6>
+                                    <textarea rows="10" class="mceNoEditor" name="q0"></textarea>
+                                </div>
+                            </div>
+                            {% for question in feedback_questions %}
+                            <div class="carousel-item">
+                                <div class="card-box">
+                                    <h6 class="card-title">{{ question }}</h6>
+                                    <label class="radio-inline"><input type="radio" name="q{{ forloop.counter }}">Yes</label>
+                                    <label class="radio-inline"><input type="radio" name="q{{ forloop.counter }}">No</label>
+                                    <label class="radio-inline"><input type="radio" name="q{{ forloop.counter }}">Somewhat</label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="carousel-item">
+                                <div class="card-box">
+                                    <h6 class="card-title">How did the piece make you feel?</h6>
+                                    <select name="emotional_impact">
+                                     <option value="0">Indifferent</option>
+                                     <option value="1">Angry</option>
+                                     <option value="2">Disgusted</option>
+                                     <option value="3">Happy</option>
+                                     <option value="4">Sad</option>
+                                     <option value="5">Amused</option>
+                                     <option value="6">Surprised</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="card-box">
-                                    <h6 class="card-title">When read aloud, is it rhythmic?</h6>
-                                    <label class="radio-inline"><input type="radio" name="q2">Yes</label>
-                                    <label class="radio-inline"><input type="radio" name="q2">No</label>
-                                    <label class="radio-inline"><input type="radio" name="q2">Somewhat</label> 
+                                    <h6 class="card-title">What were your 3 favorite lines?</h6>
+                                    <input type="text" name="fave_line1" label="Line 1:" placeholder="paste a favorite sentence, line, or phrase" /><br />
+                                    <input type="text" name="fave_line2" label="Line 2:" placeholder="paste a favorite sentence, line, or phrase" /><br />
+                                    <input type="text" name="fave_line3" label="Line 3:" placeholder="paste a favorite sentence, line, or phrase" />
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="card-box">
-                                    <h6 class="card-title">Was the point of view clear?</h6>
-                                    <label class="radio-inline"><input type="radio" name="q3">Yes</label>
-                                    <label class="radio-inline"><input type="radio" name="q3">No</label>
-                                    <label class="radio-inline"><input type="radio" name="q3">Somewhat</label> 
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="card-box">
-                                    <h6 class="card-title">What were your favorite lines?</h6>
+                                    <h6 class="card-title">Any additional comments?</h6>
                                     <textarea rows="10" class="mceNoEditor"></textarea>
                                 </div>
                             </div>
@@ -64,16 +78,16 @@
                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                           <span class="sr-only">Next</span>
                         </a>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <button class="shadow btn btn-primary form-btn" id="btnValidate">Submit</button>
         </form>
-    </div>            
-</div>    
+    </div>
+</div>
 
 <hr class="featurette-divider">
-  
+
       <!-- DOCK -->
 <footer class="bottom-dock">
     <button type="button" class="btn btn-light">
@@ -85,7 +99,7 @@
     <button  type="button" class="btn btn-light" form_id="surveyForm">
         Continue
     </button>
-        
+
 </footer>
 
 {% endblock content %}

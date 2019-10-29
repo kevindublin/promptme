@@ -13,10 +13,25 @@ promptpackone = ["What sound do you trust the least?","When have you received di
 promptpacktwo = ["What do dogs dream of?","What are a cat's deepest desires?","Who would you like to have dinner with?","What makes you famous?","What makes you infamous?","What are you the patron saint of?","What do you rehearse?","How do you rehearse for the spontaneous?","How do you rehearse for everyday life?","What is your perfect day made of?","What is the last song you sang?","What is the last song someone sang to you?","How does the mind show its age?","How will you die?","When will you die?","How were you born?","What were your parents' lives like before you?","What do you share with the last person you saw?","Who are you most gratefulf for?","What is the source of your deepest gratitude?","What would you change about how you were raised?","When does your life story begin?","Who would be the best author of your life story?","Whose life story would you like to read?","What would you wake up and change tomorrow?","What questions would you ask a crystal ball?","Who reminds you of your future self?","Why haven't you reached your greatest dream?","What is the greatest accomplishment of your life?","Who have you let down?","Who have you not talked to in a long time?","Who do you miss having in your life?","How do you show friendship?","Who is your most valued friend?","When did your first friendship begin?","When did your last friendship end?","How did your last friendship end?","How will your next friendship begin?","What is your favorite memory?","Who shares your favorite memory with you?","When did you forget the details of your childhood?","What is your worst memory?","Who shares your worst memory?","How did your worst memory begin?","How did your worst memory end?","Who would you share your last day with?","How would you spend your last day?","Where is love in your life?","How is love a part of your life?","When did love last enter your life?","What are your most positive characteristics?","Who do you admire the most?","How was your childhood different?","How was your childhood the same?","How is your relationship with your mother?","What's a memory you share with your mother?","How is your relationship with your father?","What's a memory you share with your father?","What sounds do you currently hear?","What smells do you currently smell?","What can't you see behind you?","Who made the last thing you touched?","Where did the last thing you touched come from?","Where would you like to visit most?","What would you like to share that you don't?","Who would you like to share your life with?","What are important things to know about you?","Where do you come from?","Where does your father come from?","Where does your mother come from?","What happened the day your mom was born?","What happened the day your dad was born?","What wouldn't you share with someone you just met?","What was the last embarassing thing you saw?","How do you deal with embarassment?","When was the last time you were embarassed?","When was the last time you cried?","Who was the last person you cried in front of?","What was the thing that made you cry the most?","What is too serious to be joked about?","What was the last joke you told?","When was the last time you laughed?","What is the most funniest thing you've seen?","How can someone make you laugh?","What are you holding back saying to someone?","What would you save from a fire?","Whose death would you find most upsetting?","What death has upset you the most?","When was your first experience with death?","How did you first understand death?","What is your most frequent problem?","What is your most recent problem?","What do you do that you don't like?","What do you celebrate?","What was the last thing you tripped over?","What is your favorite technology?","What are your bad habits?","What are your good habits?","How would you quit your bad habits?","How can you begin with a kiss?"]
 promptpackthree = ["What would you choose as a last meal?","What would you never ask advice about?","What's your most unfair experience?","What do you no longer believe in?","What is the last smell you remember?","What attempts to be a tree in the wind?","Who has been dead much longer than alive?","What inanimate object waits?","What is the color of your last kiss?","How do you introduce a kiss?","What's your most worn out memory?","How can you tell a lie and swaddle truth?","When have you collaborated with death?","Who has revealed truth as an old lie?","Who worships at the temple of your body?","When does death carry you?","Where do you feel the most delight?","What has been dark and worked inside you?","When have you laughed until you forgot?","When have your eyes wanted to be hands?","When have you erased impossibility?","When did your ears learn no?","When was the last time you were told no?","When have you been an entrance?","Who do you know that is an entrance?","How does a rosebud feel before it blooms?","Who do you know who is an event?","What can you end that's endless?","When does a god yawn?","What have you misheard through static?","What propriety would you put in a trash can?","What are your most incorrect theories?","What would happen if you called an ex’s phone?","How can you translate your last physical experience?","What have you said that you immediately regret?","When has your desire become another person?","When have you been wrong but love wasn’t?","What is your history of bad choices?","What do you love that's fatal?","What do we all carry?","When is a puddle a mirror for the stars?","Who was the last person you saw in street light?","What does it mean to fear a woman?","What does it mean to fear a man?","Who knows your tongue better than you?","How can you repeat a cruel line after a kind?","How can you repeat one shape throughout?","What is full of hum and buzz and emptiness?","What is the last name you said out loud?","When has a stranger’s glance been an invitation?","How can the flesh echo?","What's the best way to learn a language?","How can you make lust holy?","What was the last experiment you conducted?","What have you forgiven yourself for?","How have stirred gasps in distant rooms?","What’s most beautiful at dawn?","When is the last time you suffered?","When is life a duty?","What's important but too far to grasp?","What is on the edge of a sexual encounter?","What is your favorite city you weren’t born in?","What is the best place for orgasms?","What misheard lyrics do you still sing?","What sacred space do you put a mouth on?","What birdsong do you recognize?","What common object do you see as extraordinary?","How can you repeat a phrase throughout?","What do you do with an obnoxious word?","When do you worry about beauty?","How do you admit your indignity?","What is the sum of our lives?","Where is the strangest place for a reflection?","What can't be doubted?","What sounds have a body?","What is the source of your last mistake?","What are two things you always keep?","How can you explain the weather with gods?","When is the last time you were ashamed?","When is the last time you avoided eye contact?","How can you reveal the history of language?","When do you notice small flaws in large spaces?","Who would love you if you became a vampire?","Who is the most tender monster?","What's just outside the window?","Who will never love you?","What is the last thing you imagined?","How could your life be easier?","How can you translate birdsong?","What do you find funny that no else does?","What has been stolen from you?","What have you ever stolen?","What do you find most strange?","Where do you keep broken promises?","Who was the last person that yelled at you?","What was your last argument about?","Who was the last person you yelled at?","When was the last time you meddled?","What was the first promise?","What was the last thing you lost?"]
 
+
+def get_questions():
+    feedback_questions = ["Is there a throughline that progresses from beginning to end?",
+                        "When read aloud, is it rhythmic?",
+                        "Is the point of view/speaker clear?",
+                        "Is the writing style distinct?",
+                        "Is the setting clear and & specific?",
+                        "Are there clear & distinct metaphors/analogies?",
+                        "Are the nouns/characters or items specific?",
+                        "Are the verbs/actions specific?",
+                        "Are the adjectives/descriptions specific?",
+                        "Does it communicate how the world works in the microcosm of the piece?"]
+    return feedback_questions
+
+
 def timer(write_timer, n):
 
     write_timer
-    
+
     while n > 0:
         time.sleep(1)
         n = n - 1
@@ -24,31 +39,28 @@ def timer(write_timer, n):
         return write_timer, n
         if n == 0:
             print("Time's up. Press Continue to edit")
-            
+
 
 def get_drafts():
     alldrafts = Draft.objects.order_by('-revised')
     userdrafts = alldrafts.filter(user=user)
     userdrafts = [userdrafts]
 
+
 def get_dict():
     fulldict = verb + noun + adjective + light
-    
     return fulldict
-    
+
+
 def get_prompts():
     allprompts = promptpackone + promptpacktwo + promptpackthree
-    
     return allprompts
-    
+
+
 def get_next_fromq():
     alldrafts = Draft.objects.order_by('revised')
     queuedrafts = alldrafts.filter(in_queue=True)
     queuedrafts = alldrafts.exclude(user=request.user)
     queuedrafts = [queuedrafts]
-    
+
     return queuedrafts
-    
-    
-    
-    

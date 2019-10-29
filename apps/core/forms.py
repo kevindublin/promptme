@@ -41,8 +41,21 @@ class CommentBox(Feedback):
     class Meta(Feedback.Meta):
         model = Feedback
         fields = (
-
-            'favorite_lines',
+            'summary',
+            'progression',
+            'aural_quality',
+            'pov_clear',
+            'style_distinct',
+            'metaphors',
+            'setting_specific',
+            'noun_specific',
+            'verb_specific',
+            'adjective_subjective',
+            'worldview',
+            'emi',
+            'fave_line1',
+            'fave_line2',
+            'fave_line3',
+            'comments'
         )
         widget = forms.Textarea
-        models.CharField(widget=form.Textarea(attrs={"class": "mceNoEditor"}))

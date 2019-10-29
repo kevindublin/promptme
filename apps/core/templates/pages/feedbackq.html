@@ -20,6 +20,7 @@
     </div>
     <div class="q-column">
         <form method="POST" id="surveyForm">
+            {% csrf_token %}
             <div class="card survey-card">
                 <h5 class="card-header">Feedback</h5>
                 <div class="card-body">

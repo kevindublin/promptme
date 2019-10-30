@@ -13,6 +13,7 @@ imgurl = 'https://picsum.photos/1280/720/'
 fulldict = utils.get_dict()
 allprompts = utils.get_prompts()
 feedback_questions = utils.get_questions()
+q = 0
 
 
 class WriteBox(forms.ModelForm):
@@ -154,16 +155,24 @@ def feedbackq(request):
             print('form is valid, sending to db...')
             print(form)
     else:
-        print('form not submitted!')
         form = FeedbackBox()
-
+  
     context = {
         'form': form,
-        'queued_draft': queueddrafts[0],
+        'queued_draft': queueddrafts[q],
         'feedback_questions': feedback_questions
     }
 
     return render(request, 'pages/feedbackq.html', context)
+
+
+def next_in_q(request, queueddrafts):
+    if q < len(queueddrafts)-1:
+        q = q + 1
+    else:
+        q = 0
+
+    return q
 
 
 @login_required

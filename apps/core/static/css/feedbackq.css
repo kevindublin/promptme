@@ -26,14 +26,15 @@ html {
 }
 
 .the-wrapper div {
-    flex: 1;
-    max-width: 1280px;
+  flex: 1;
+  justify-content: stretch;  
+  max-width: 1280px;
 
 }
 
 .q-column {
-    align-items: center;
-    align-items: flex-start;
+    
+    align-items: stretch;
     display: flex;
     flex-direction: column;
     max-width: 800px;
@@ -100,4 +101,13 @@ html {
 
 .mceNoEditor {
 	width: 70%;
+}
+
+.carousel-indicators li {
+  cursor: pointer;
+  background-color: #ffff99;
+  box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+}
+.carousel-indicators .active {
+  background-color: #0000ff;
 }

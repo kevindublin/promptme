@@ -16,4 +16,5 @@ urlpatterns = [
     path('delete-draft/<draft_id>/', views.delete_draft),
     path('send-to-queue/<draft_id>/', views.send_to_queue),
     path('remove-from-queue/<draft_id>/', views.remove_from_queue),
+    path('next-in-queue/', views.next_in_q, name='next_in_q'),
 ]

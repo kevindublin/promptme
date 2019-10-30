@@ -54,6 +54,10 @@
                     <i class="material-icons">remove_from_queue</i>
                   </a>
                   {% endif %}
+                  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalthree{{ Feedback.draft.id }}">
+                      <i class="material-icons">comment</i>
+                  </button>
+                  {% include "snippets/view_feedback_modal.html" %}
                 </div>
                 <br>
                 <small class="text-muted"> {{ draft.revised }}</small>

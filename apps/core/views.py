@@ -53,6 +53,17 @@ def dashboard(request):
 
 
 @login_required
+def dashboard_feedback(request):
+    allfeedback = Feedback.objects.order_by('-id')
+
+    userfeedback = allfeedback.filter(writer=request.user)
+
+    context = {'user_feedback': userfeedback}
+
+    return render(request, 'pages/dashboard.html', context)
+
+
+@login_required
 def delete_draft(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.delete()
@@ -156,7 +167,7 @@ def feedbackq(request):
             print(form)
     else:
         form = FeedbackBox()
-  
+
     context = {
         'form': form,
         'queued_draft': queueddrafts[q],

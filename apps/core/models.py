@@ -46,6 +46,7 @@ class Feedback(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    added = models.DateTimeField(auto_now=True)
 
     summary = models.TextField(max_length=500)
     progression = models.CharField(max_length=1, choices=SURVEY_OPTIONS)

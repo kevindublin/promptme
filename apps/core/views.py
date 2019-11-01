@@ -43,22 +43,14 @@ def home(request):
 
 @login_required
 def dashboard(request):
+    # Get user drafts on dashboard #
     alldrafts = Draft.objects.order_by('-revised')
     userdrafts = alldrafts.filter(user=request.user)
-    userdrafts = userdrafts
+    # Get user feedback #
+    allfeedback = Feedback.objects.order_by('-added')
+    userfeedback = allfeedback.filter(draft__user=request.user)
 
-    context = {'user_drafts': userdrafts}
-
-    return render(request, 'pages/dashboard.html', context)
-
-
-@login_required
-def dashboard_feedback(request):
-    allfeedback = Feedback.objects.order_by('-id')
-
-    userfeedback = allfeedback.filter(writer=request.user)
-
-    context = {'user_feedback': userfeedback}
+    context = {'user_drafts': userdrafts, 'user_feedback': userfeedback}
 
     return render(request, 'pages/dashboard.html', context)
 
@@ -133,7 +125,6 @@ def feedbackq(request):
     alldrafts = Draft.objects.order_by('revised')
     queueddrafts = alldrafts.filter(in_queue=True)
     queueddrafts = alldrafts.exclude(user=request.user)
-    queueddrafts = queueddrafts
     print(queueddrafts)
 
     if request.method == 'POST':
@@ -144,7 +135,7 @@ def feedbackq(request):
         if form == two:
             # Use the form to save
             newfeedback = Feedback.objects.create(
-                draft=queueddrafts[0],
+                draft=queueddrafts[q],
                 reader=request.user,
                 summary=request.POST['q0'],
                 progression=request.POST['q1'],

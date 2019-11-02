@@ -3,18 +3,37 @@
   <div class="modal-lg modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Feedback from {{ feedback.reader }}:</h5>
+        <h5 class="modal-title">Your Feedback</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-            <p>Summary of your piece: {{ feedback.summary }}</p>
-            <p>Their favorite lines were:
-              {{ feedback.favorite_lines }}</p>
-            <p>Additional comments: {{ feedback.comments }}</p>
-    
+        <div id="feedback-slider" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            {% for feedback in user_feedback %}
+
+            <div class="carousel-item {% if forloop.first %} active {% endif %}">
+
+              <h6>Feedback from {{ feedback.reader }}:</h6>
+              <p>Summary of your piece: {{ feedback.summary }}</p>
+              <p>Their favorite lines were:
+                {{ feedback.favorite_lines }}
+              </p>
+              <p>Additional comments: {{ feedback.comments }}</p>
+            </div>
+            {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#feedback-slider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#feedback-slider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
 
       </div>
     </div>

@@ -23,6 +23,13 @@ class Draft(models.Model):
     prompt = models.CharField(max_length=300)
     image = models.CharField(max_length=100)
     in_queue = models.BooleanField(default=False)
+    received_feedback = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['revised']
+
+    def __str__(self):
+        return 'Feedback {} by {}'.format(self.text, self.prompt)
 
 
 class Feedback(models.Model):
@@ -40,7 +47,7 @@ class Feedback(models.Model):
         ('5', 'Amused'),
         ('6', 'Surprised')
     )
-    draft = models.ForeignKey('Draft', on_delete=models.CASCADE)
+    draft = models.ForeignKey('Draft', on_delete=models.CASCADE, related_name='allfeedback')
 
     reader = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -63,3 +70,9 @@ class Feedback(models.Model):
     emi = models.CharField(max_length=1, choices=EMOTIONAL_IMPACT_INDEX)
     favorite_lines = models.TextField(max_length=500)
     comments = models.TextField(max_length=500)
+
+    class Meta:
+        ordering = ['-added']
+
+    def __str__(self):
+        return 'Feedback {} by {}'.format(self.summary, self.comments)

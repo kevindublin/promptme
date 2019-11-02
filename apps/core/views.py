@@ -153,6 +153,12 @@ def feedbackq(request):
                 comments=request.POST['comments']
                 )
             newfeedback.save()
+            # activate feedback on draft #
+            turn_on_id = queueddrafts[q].id
+            activate = Draft.objects.get(id=turn_on_id)
+            activate.received_feedback = True
+            activate.save()
+
             messages.success(request, 'Feedback saved!')
             print('form is valid, sending to db...')
             print(form)

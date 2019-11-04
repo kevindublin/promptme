@@ -10,7 +10,7 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-        	document.getElementById('draft-form').disabled = true;
+        	$("#draftForm :input").prop('readonly', true);
             timer = 0;
         }
     }, 1000);

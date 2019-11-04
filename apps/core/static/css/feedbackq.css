@@ -105,7 +105,7 @@ html {
 
 .carousel-indicators li {
   cursor: pointer;
-  background-color: #ffff99;
+  background-color: #eee;
   box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
 }
 .carousel-indicators .active {

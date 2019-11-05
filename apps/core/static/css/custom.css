@@ -5,7 +5,7 @@
     .card {
         width: 100vw;
     }
-  
+
 }
 
 .navbar {
@@ -43,5 +43,10 @@
 
 .lead, .col-text {
 
-   text-align: justify; 
+   text-align: justify;
+}
+
+.drip-style {
+  font-size: 16pt;
+  font-weight: bold;
 }

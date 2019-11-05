@@ -47,8 +47,20 @@ def dashboard(request):
     alldrafts = Draft.objects.order_by('-revised')
     userdrafts = alldrafts.filter(user=request.user)
     # Get user feedback #
+    draftswithfeedback = userdrafts.filter(received_feedback=True)
     allfeedback = Feedback.objects.order_by('-added')
     userfeedback = allfeedback.filter(draft__user=request.user)
+    # Make Feedback match the draft #
+
+    '''
+    draftfeedback.setdefault(feedback, [])
+    for draft in draftswithfeedback:
+        for feedback in userfeedback:
+            if draft.id == feedback.draft__id:
+                draftfeedback['feedback'].append = feedback
+
+    print(draftfeedback)
+    '''
 
     context = {'user_drafts': userdrafts, 'user_feedback': userfeedback}
 
@@ -125,7 +137,6 @@ def feedbackq(request):
     alldrafts = Draft.objects.order_by('revised')
     queueddrafts = alldrafts.filter(in_queue=True)
     queueddrafts = alldrafts.exclude(user=request.user)
-    print(queueddrafts)
 
     if request.method == 'POST':
         form = request.POST
@@ -161,7 +172,6 @@ def feedbackq(request):
 
             messages.success(request, 'Feedback saved!')
             print('form is valid, sending to db...')
-            print(form)
     else:
         form = FeedbackBox()
 
@@ -213,7 +223,6 @@ def write(request):
             newdraft = newdraft.replace('</textarea></td></tr>', '')
             newdraft = newdraft.replace('&lt;p&gt;', '')
             newdraft = newdraft.replace('&lt;/p&gt;', '')
-            print(newdraft)
             try:
                 Draft = form.save(commit=False)
                 Draft.user = request.user
@@ -225,7 +234,7 @@ def write(request):
                 Draft.full_clean()
                 Draft.save()
                 messages.success(request, 'Draft saved!')
-                return redirect(request.META.get('HTTP_REFERER', '/'))
+                return redirect(request.META.get('dashboard', '/dashboard/'))
             except ValidationError as error:
                 messages.warning(request, error.messages_dict)
         else:

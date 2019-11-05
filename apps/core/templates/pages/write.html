@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
     Prompt Me - Write
@@ -23,7 +24,7 @@
             </div>
         </div>
         <div id="wordDrip">
-          <p id="drips"></p>
+          <p id="drips" class="drip-style"></p>
         </div>
     </div>
     <div class="col-md-6">
@@ -52,12 +53,13 @@
     <a href="{% url 'prompt' %}"><button type="button" class="btn btn-light">
     Discard Draft
     </button></a>
-    <button id="pause-timer" type="button" class="btn btn-light">
+    <button id="pause" type="button" class="btn btn-light">
     Pause Timer
     </button>
-    <a href="{% url 'dashboard' %}"><button id="submit-write" type="button" class="btn btn-light" form="draft-form" type="submit" value="Save">
-    Submit for Feedback
-    </button></a>
+    <button id="resume" type="button" class="btn btn-light">
+    Resume Timer
+    </button>
       </footer>
+      <script src="{% static 'js/timer2.js' %}"></script>
 
 {% endblock content %}

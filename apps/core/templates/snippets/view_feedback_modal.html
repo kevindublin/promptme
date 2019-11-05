@@ -16,7 +16,7 @@
 
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
 
-              <h6>Feedback from {{ feedback.reader }}:</h6>
+              <h6>Feedback from <a href="#">{{ feedback.reader }}:</a></h6>
               <p>Summary of your piece: {{ feedback.summary }}</p>
               <p>Their favorite lines were:
                 {{ feedback.favorite_lines }}

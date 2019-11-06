@@ -116,14 +116,6 @@ def about(request):
     return render(request, 'pages/about.html', context)
 
 
-@login_required
-def membership(request):
-    context = {
-    }
-
-    return render(request, 'pages/membership.html', context)
-
-
 def form(request):
     context = {
     }

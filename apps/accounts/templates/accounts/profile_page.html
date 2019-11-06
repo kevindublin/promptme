@@ -11,16 +11,22 @@
 
         <h3>@{{ user.username }}</h3>
         <p><strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
-        <p>{{ user.bio }}</p>
+        <p>{{ user.bio | safe }}</p>
 
         {% if is_viewing_self %}
-            <a href="{% url "edit_profile" %}">Edit</a>
+            <a href="{% url 'edit_profile' %}">Edit</a>
+            
         {% endif %}
     </div>
 
     <div class="col-md-9">
-        stuff could go here...
+      {% if is_viewing_self %}
+      <h4>Your Broadsides</h4>
+      <p>This is where you can share public updates.</p>
+      {% else %}
+      <h4>Broadsides</h4>
+      <p>This is where users will share news/updates/calls for submissions and statuses.</p>
+      {% endif %}
     </div>
 </div>
 {% endblock %}
-

@@ -11,7 +11,6 @@ urlpatterns = [
     path('prompt/', views.prompt, name='prompt'),
     path('write/', views.write, name='write'),
     path('edit/', views.edit, name='edit'),
-    path('membership', views.membership, name='membership'),
     path('update-draft/<draft_id>/', views.update_draft),
     path('delete-draft/<draft_id>/', views.delete_draft),
     path('send-to-queue/<draft_id>/', views.send_to_queue),

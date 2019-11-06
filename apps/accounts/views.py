@@ -48,6 +48,7 @@ def logout_view(request):
     return redirect('home')
 
 
+@login_required
 def view_all_users(request):
     all_users = User.objects.all()
     context = {
@@ -56,9 +57,13 @@ def view_all_users(request):
     return render(request, 'accounts/view_all_users.html', context)
 
 
+@login_required
 def view_profile(request, username):
     user = User.objects.get(username=username)
-
+    '''
+    fix the user gravatar in the top right on viewing other user
+    currentuser = request.user
+    '''
     if request.user == user:
         is_viewing_self = True
     else:
@@ -77,7 +82,7 @@ def edit_profile(request):
         form = UserEditForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('dashboard')
     else:
         form = UserEditForm(instance=request.user)
 
@@ -85,3 +90,11 @@ def edit_profile(request):
         'form': form,
     }
     return render(request, 'accounts/edit_profile.html', context)
+
+
+@login_required
+def membership(request):
+    context = {
+    }
+
+    return render(request, 'accounts/membership.html', context)

@@ -20,3 +20,19 @@ Icon made by Freepik from www.flaticon.com
 
 <img src="{% static '/images/desk.jpg' %}" alt="desk" height="100%" width="100%" />
 
+Step 1
+
+You're served a prompt with a question and an photo. You can click "Prompt Me" until a combination speaks to you. Once you have one, you click "write."
+
+Step 2
+
+You have six minutes to draft a new piece of generative writing prompted by the question and image. It can be directly or loosely-related, whatever comes, write the entire time. Each minute, a new word will drip below the image into the drip bank. As each word appears, work it into your writing, no matter how strange. Let it take your piece in another direction, give it texture.
+
+Step 3
+
+On the Dashboard, you're able to preview, delete, edit, add/remove to feedback queue, and view feedback on drafts. The prompts will serve as titles and the images will serve as reminders. 
+
+<img src="{% static '/images/home_promptme.png' %}">
+
+#2b9ed8
+

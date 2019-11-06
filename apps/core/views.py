@@ -53,6 +53,9 @@ def dashboard(request):
     # Make Feedback match the draft #
 
     '''
+    try list comprehension syntax?
+
+
     draftfeedback.setdefault(feedback, [])
     for draft in draftswithfeedback:
         for feedback in userfeedback:

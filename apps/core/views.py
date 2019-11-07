@@ -14,6 +14,8 @@ fulldict = utils.get_dict()
 allprompts = utils.get_prompts()
 feedback_questions = utils.get_questions()
 q = 0
+queueddrafts = []
+qcalls = 0
 
 
 def home(request):
@@ -103,6 +105,13 @@ def about(request):
     return render(request, 'pages/about.html', context)
 
 
+def privacy(request):
+    context = {
+    }
+
+    return render(request, 'pages/privacy.html', context)
+
+
 def form(request):
     context = {
     }
@@ -113,46 +122,56 @@ def form(request):
 @login_required
 def feedbackq(request):
     global feedback_questions
+    global queueddrafts
     alldrafts = Draft.objects.order_by('revised')
     queueddrafts = alldrafts.filter(in_queue=True)
     queueddrafts = alldrafts.exclude(user=request.user)
 
     if request.method == 'POST':
-        form = request.POST
-        two = request.POST
-        print(request.POST)
-
-        if form == two:
+        form = FeedbackBox(request.POST)
+                
+        if form.is_valid():
+            print('attempting to validate form')
+            newfeedback = form.cleaned_data
             # Use the form to save
-            newfeedback = Feedback.objects.create(
+            try:
+                newfeedback = Feedback.objects.create(
                 draft=queueddrafts[q],
                 reader=request.user,
-                summary=request.POST['q0'],
-                progression=request.POST['q1'],
-                aural_quality=request.POST['q2'],
-                pov_clear=request.POST['q3'],
-                style_distinct=request.POST['q4'],
-                metaphors=request.POST['q5'],
-                setting_specfic=request.POST['q6'],
-                noun_specific=request.POST['q7'],
-                verb_specific=request.POST['q8'],
-                adjective_specific=request.POST['q9'],
-                worldview=request.POST['q10'],
-                emi=request.POST['emotional_impact'],
-                favorite_lines=[request.POST['fave_line1'], request.POST['fave_line2'], request.POST['fave_line3']],
+                added=datetime.datetime.now(),
+                summary=request.POST['summary'],
+                progression=request.POST['progression'],
+                aural_quality=request.POST['aural_quality'],
+                pov_clear=request.POST['pov_clear'],
+                style_distinct=request.POST['style_distinct'],
+                metaphors=request.POST['metaphors'],
+                setting_specific=request.POST['setting_specific'],
+                noun_specific=request.POST['noun_specific'],
+                verb_specific=request.POST['verb_specific'],
+                adjective_specific=request.POST['adjective_specific'],
+                worldview=request.POST['worldview'],
+                emi=request.POST['emi'],
+                favorite_lines=request.POST['favorite_lines'],
                 comments=request.POST['comments']
                 )
-            newfeedback.save()
-            # activate feedback on draft #
-            turn_on_id = queueddrafts[q].id
-            activate = Draft.objects.get(id=turn_on_id)
-            activate.received_feedback = True
-            activate.save()
+                newfeedback.save()
+                # activate feedback on draft #
+                turn_on_id = queueddrafts[q].id
+                activate = Draft.objects.get(id=turn_on_id)
+                activate.received_feedback = True
+                activate.save()
 
-            messages.success(request, 'Feedback saved!')
-            print('form is valid, sending to db...')
+                global qcalls
+                qcalls = 0
+                messages.success(request, 'Feedback saved!')
+                return redirect(request.META.get('HTTP_REFERER', '/'))
+
+            except ValidationError as e:
+                print('getting validation error:', e)
+                messages.warning(request, e.message_dict)
     else:
         form = FeedbackBox()
+        
 
     context = {
         'form': form,
@@ -163,13 +182,22 @@ def feedbackq(request):
     return render(request, 'pages/feedbackq.html', context)
 
 
-def next_in_q(request, queueddrafts):
-    if q < len(queueddrafts)-1:
-        q = q + 1
-    else:
-        q = 0
+def queue_next(request):
+    global queueddrafts
+    global q
+    global qcalls
 
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+    if qcalls < 3:
+        qcalls = qcalls + 1
+        if q < len(queueddrafts)-1:
+            q = q + 1
+        else:
+            q = 0
+        messages.success(request, 'Next in queue.')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        messages.warning(request, 'No more skips available!')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
@@ -215,12 +243,12 @@ def write(request):
                 messages.success(request, 'Draft saved!')
                 return redirect(request.META.get('dashboard', '/dashboard/'))
             except ValidationError as error:
-                messages.warning(request, error.messages_dict)
+                messages.warning(request, error.message_dict)
         else:
             print('Form Data is invalid')
             print(form)
     else:
-        # if a GET we'll create a blank form
+        # blank form on GET
         form = WriteBox()
 
     context = {

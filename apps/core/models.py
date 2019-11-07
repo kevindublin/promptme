@@ -55,7 +55,7 @@ class Feedback(models.Model):
     pov_clear = models.CharField(max_length=1, choices=SURVEY_OPTIONS)
     style_distinct = models.CharField(max_length=1, choices=SURVEY_OPTIONS)
     metaphors = models.CharField(max_length=1, choices=SURVEY_OPTIONS)
-    setting_specfic = models.CharField(max_length=1, choices=SURVEY_OPTIONS)
+    setting_specific = models.CharField(max_length=1, choices=SURVEY_OPTIONS)
     noun_specific = models.CharField(max_length=1, choices=SURVEY_OPTIONS)
     verb_specific = models.CharField(max_length=1, choices=SURVEY_OPTIONS)
     adjective_specific = models.CharField(max_length=1, choices=SURVEY_OPTIONS)

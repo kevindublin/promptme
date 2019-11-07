@@ -56,3 +56,15 @@
   align-items: center;
   justify-content: center;
 }
+
+.fquestion {
+    font-style: italic;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.card-box {
+    padding-left: 50px;
+}

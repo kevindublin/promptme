@@ -14,14 +14,18 @@
           <div class="carousel-inner">
             {% for feedback in user_feedback %}
 
-            <div class="carousel-item {% if forloop.first %} active {% endif %}">
+            <div class="carousel-item feedback-view {% if forloop.first %} active {% endif %}">
 
-              <h6>Feedback from <a href="#">{{ feedback.reader }}:</a></h6>
-              <p>Summary of your piece: {{ feedback.summary }}</p>
-              <p>Their favorite lines were:
-                {{ feedback.favorite_lines }}
-              </p>
-              <p>Additional comments: {{ feedback.comments }}</p>
+              <h5>Feedback from <a href="#">{{ feedback.reader }}:</a></h5><br />
+              <h6>Summary of your piece:</h6>
+              <p>{{ feedback.summary }}</p>
+              <h6>Their favorite lines were: </h6>
+              <p>{{ feedback.favorite_lines }}</p>             
+              <h6>Additional comments:</h6>
+              <p>{{ feedback.comments }}</p>
+              <a href="/delete-feedback/{{ feedback.id }}/" class="btn btn-link">
+                <button class="btn btn-primary">Delete this Feedback</button>
+              </a>
             </div>
             {% endfor %}
           </div>

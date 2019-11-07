@@ -201,6 +201,15 @@ def queue_next(request):
 
 
 @login_required
+def delete_feedback(request, feedback_id):
+    feedback = Feedback.objects.get(id=feedback_id)
+    feedback.delete()
+    messages.warning(request, 'That feedback was deleted')
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
 def prompt(request):
     global currentprompt
     currentprompt = newprompt()

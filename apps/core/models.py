@@ -4,12 +4,6 @@ from tinymce.widgets import TinyMCE
 from django import forms
 
 
-class PostForm(forms.ModelForm):
-    ...
-    content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
-    ...
-
-
 class Draft(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

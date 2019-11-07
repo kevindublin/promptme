@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import ValidationError
-from django import forms
+from .forms import WriteBox, FeedbackBox
 from .models import Draft, Feedback
 import datetime
 import random
@@ -14,22 +14,6 @@ fulldict = utils.get_dict()
 allprompts = utils.get_prompts()
 feedback_questions = utils.get_questions()
 q = 0
-
-
-class WriteBox(forms.ModelForm):
-    text = forms.CharField(widget=forms.Textarea, label='')
-
-    class Meta:
-        model = Draft
-        fields = ['text', ]
-
-
-class FeedbackBox(forms.ModelForm):
-    text = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='')
-
-    class Meta:
-        model = Feedback
-        fields = ['summary', 'progression', 'aural_quality', 'pov_clear', 'style_distinct', 'metaphors', 'setting_specfic', 'noun_specific', 'verb_specific', 'adjective_specific', 'worldview', 'emi', 'favorite_lines', 'comments']
 
 
 def home(request):
@@ -185,7 +169,7 @@ def next_in_q(request, queueddrafts):
     else:
         q = 0
 
-    return q
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required

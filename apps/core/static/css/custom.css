@@ -50,3 +50,9 @@
   font-size: 16pt;
   font-weight: bold;
 }
+
+.page-pen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

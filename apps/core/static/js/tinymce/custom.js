@@ -14,5 +14,8 @@ tinymce.init({
     'insertdatetime media paste code wordcount'
   ],
   toolbar: 'undo redo | formatselect | bold italic backcolor | bullist numlist outdent indent | removeformat',
+  force_p_newlines : true,
+  force_br_newlines : true,
+  remove_linebreaks : false,
 });
 

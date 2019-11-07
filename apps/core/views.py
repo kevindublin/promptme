@@ -201,7 +201,7 @@ def write(request):
             newdraft = newdraft.replace('<tr><th></th><td><textarea name="text" cols="40" rows="10" required id="id_text">', "")
             newdraft = newdraft.replace('</textarea></td></tr>', '')
             newdraft = newdraft.replace('&lt;p&gt;', '')
-            newdraft = newdraft.replace('&lt;/p&gt;', '')
+            newdraft = newdraft.replace('&lt;/p&gt;', '<br />')
             try:
                 Draft = form.save(commit=False)
                 Draft.user = request.user

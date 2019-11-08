@@ -153,7 +153,13 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../apps/core/static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
+
+STATICFILES_STORAGE = (
+    'django.contrib.staticfiles.storage.StaticFilesStorage'
+    if TESTING
+    else 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+)
 
 
 # We also needed to add this to specify where the downloads go

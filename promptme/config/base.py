@@ -33,7 +33,7 @@ LOCAL_APPS = [
 
 THIRD_PARTY_APPS = [
     'bootstrap4',
-    'tinymce'
+    'tinymce',
 ]
 
 DJANGO_APPS = [
@@ -75,13 +75,6 @@ TEMPLATES = [
     },
 ]
 
-WEBPACK_LOADER = {
-    'DEFAULT': {
-            'BUNDLE_DIR_NAME': 'bundles/',
-            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
-        }
-}
-
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': 1120,
@@ -90,7 +83,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'selector': "textarea:not(.mceNoEditor)",
     'theme': 'modern',
     'plugins': '''
-            textcolor save link image media preview codesample contextmenu
+            textcolor spellchecker save link image media preview codesample contextmenu
             table code lists fullscreen  insertdatetime  nonbreaking
             contextmenu directionality searchreplace wordcount visualblocks
             visualchars code fullscreen autolink lists  charmap print  hr
@@ -106,6 +99,7 @@ TINYMCE_DEFAULT_CONFIG = {
             visualblocks visualchars |
             charmap hr pagebreak nonbreaking anchor |  code |
             ''',
+    'TINYMCE_SPELLCHECKER': True,
     'contextmenu': 'formats | link image',
     'menubar': False,
     'statusbar': True,
@@ -157,6 +151,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/account/login/'
+STATIC_JS_DIR = os.path.join(STATIC_URL, "js")
+TINYMCE_JS_ROOT = os.path.join(STATIC_JS_DIR, "tinymce")
+TINYMCE_JS_URL = os.path.join(TINYMCE_JS_ROOT, "tinymce.min.js")
 
 # Specify we are using a custom user model
 AUTH_USER_MODEL = 'accounts.User'

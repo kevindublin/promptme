@@ -11,6 +11,7 @@ psycopg2-binary = "*"
 requests = "*"
 django-tinymce = "==2.8.0"
 Django = "*"
+whitenoise = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

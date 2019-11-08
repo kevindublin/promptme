@@ -33,7 +33,6 @@ LOCAL_APPS = [
 
 THIRD_PARTY_APPS = [
     'bootstrap4',
-    'tinymce',
     'webpack_loader',
 ]
 

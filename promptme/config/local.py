@@ -27,8 +27,5 @@ INTERNAL_IPS = [
     '10.0.0.82'
 ]
 
-CSRF_COOKIE_DOMAIN = [
-    '127.0.0.1',
-    '10.0.0.82'
-]
+CSRF_COOKIE_DOMAIN = '127.0.0.1'
 

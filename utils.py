@@ -1,5 +1,3 @@
-import time
-import datetime
 from apps.core.models import Draft
 
 write_timer = '0:6:00'
@@ -26,19 +24,6 @@ def get_questions():
                         "Are the adjectives/descriptions specific?",
                         "Does it communicate how the world works in the microcosm of the piece?"]
     return feedback_questions
-
-
-def timer(write_timer, n):
-
-    write_timer
-
-    while n > 0:
-        time.sleep(1)
-        n = n - 1
-        write_timer = str(datetime.timedelta(seconds=n))
-        return write_timer, n
-        if n == 0:
-            print("Time's up. Press Continue to edit")
 
 
 def get_drafts():

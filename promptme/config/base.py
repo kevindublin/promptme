@@ -33,7 +33,6 @@ LOCAL_APPS = [
 
 THIRD_PARTY_APPS = [
     'bootstrap4',
-    'webpack_loader',
 ]
 
 DJANGO_APPS = [

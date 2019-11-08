@@ -7,6 +7,11 @@ DEBUG = False
 import django_heroku
 django_heroku.settings(locals())
 
+#Configure Django app for Google App Engine
+from google.appengine.ext import vendor
+
+vendor.add('lib')
+
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 

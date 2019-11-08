@@ -153,6 +153,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../apps/core/static'),
 )
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # We also needed to add this to specify where the downloads go
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')

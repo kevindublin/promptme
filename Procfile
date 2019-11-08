@@ -1,2 +1,2 @@
 web: python manage.py runserver 0.0.0.0:$PORT
-web: gunicorn wsgi --log-file -
+web: gunicorn wsgi --log-file --log-file - --log-level debug

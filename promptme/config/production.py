@@ -4,6 +4,7 @@ from .base import *  # noqa
 DEBUG = False
 
 # Configure Django App for Heroku.
+import django_tinymce
 import django_heroku
 django_heroku.settings(locals())
 

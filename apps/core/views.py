@@ -33,7 +33,7 @@ def dashboard(request):
     alldrafts = Draft.objects.order_by('-revised')
     userdrafts = alldrafts.filter(user=request.user)
     # Get user feedback #
-    draftswithfeedback = userdrafts.filter(received_feedback=True)
+    # draftswithfeedback = userdrafts.filter(received_feedback=True)
     allfeedback = Feedback.objects.order_by('-added')
     userfeedback = allfeedback.filter(draft__user=request.user)
     # Make Feedback match the draft #

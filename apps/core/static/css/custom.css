@@ -73,3 +73,7 @@ ul {
     padding-left: 75px;
     padding-right: 75px;
 }
+
+.modal-open {
+    overflow: scroll;
+}

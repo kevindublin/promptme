@@ -145,14 +145,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = './apps/core/static'
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = "/static/"
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../apps/core/static'),
 )
 
-STATICFILES_STORAGE = 'promptme.storage.WhiteNoiseStaticFilesStorage'
+STATICFILES_STORAGE = []
 
 
 # We also needed to add this to specify where the downloads go

@@ -31,16 +31,18 @@
 - Add broadside model many to one
 - Post public broadside messages
 - Add private messaging
-- Add Friends model to User
+- Add Collaborators model to User
 - Follow User Feature
-- Collaborator Feed to see that friends have written a new draft
+- Collaborator Feed to see that friends have written a new draft, ask to read it
 
 **Membership and Subscription Features**
+- Membership model
 - Membership Tiers tied to account
 - Pay Portal, accept payments through PayPal
+- Number of queue calls, prompts, & drafts written tied to membership tier
 
 **Writing Career Features**
 - Submission Tracker
 - Open calls for submissions
 - User posted Calls for submissions
-- Web scraper and separate API which pulls from elsewhere
+- Web scraper which pulls calls from all over the web and prompt me calls that API

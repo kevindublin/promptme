@@ -80,7 +80,9 @@ def remove_from_queue(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.in_queue = False
     draft.save()
-    print(draft.text, 'removed from queue')
+    global queueddrafts
+    queueddrafts = ['']
+    print('this is in queue,' queueddrafts)
     messages.warning(request, 'Draft removed from queue')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))

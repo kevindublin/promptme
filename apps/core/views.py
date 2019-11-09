@@ -126,6 +126,7 @@ def feedbackq(request):
     alldrafts = Draft.objects.order_by('revised')
     queueddrafts = alldrafts.filter(in_queue=True)
     queueddrafts = alldrafts.exclude(user=request.user)
+    print(queueddrafts)
 
     if queueddrafts == []:
         queueddrafts = [{'prompt': 'Sorry', 'text': 'There are no drafts in the queue'}]

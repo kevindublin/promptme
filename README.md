@@ -7,7 +7,7 @@
 
 - View Feedback shows all feedback for a user on each individual draft
 - Mobile Write view TinyMCE auto switches to full screen and can't see drip words
-- Mobile View of Feedback Queue has uneven columns
+- Mobile View of Feedback Queue has uneven rows
 - Bottom dock in mobile view is off-center
 - Write View collapses and hides drip bank if not filled when window forces min width
 - Feedback Queue view crashes when queue is empty (maybe fixed)

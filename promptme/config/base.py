@@ -152,7 +152,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../apps/core/static'),
 )
 
-STATICFILES_STORAGE = django.contrib.staticfiles.storage.ManifestStaticFilesStorage
+STATICFILES_STORAGE = django.contrib.staticfiles.storage.ManifestStaticFilesStorage.manifest_strict
 
 
 # We also needed to add this to specify where the downloads go

@@ -4,5 +4,6 @@ from .base import *  # noqa
 DEBUG = False
 
 # Configure Django App for Heroku.
+import os
 import django_heroku
 django_heroku.settings(locals())

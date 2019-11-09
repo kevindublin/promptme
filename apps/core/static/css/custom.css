@@ -72,9 +72,5 @@ ul {
 .feedback-view {
     padding-left: 75px;
     padding-right: 75px;
-    overflow: inherit;
-}
-
-.modal-open {
-    overflow: inherit;
+    overflow-y: scroll;
 }

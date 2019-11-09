@@ -134,7 +134,7 @@ def feedbackq(request):
 
     print(queueddrafts)
 
-    if queueddrafts == []:
+    if len(queueddrafts) == 0:
         queueddrafts = [{'prompt': 'Sorry', 'text': 'There are no drafts in the queue'}]
 
     if request.method == 'POST':
@@ -269,7 +269,6 @@ def write(request):
                 messages.warning(request, error.message_dict)
         else:
             print('Form Data is invalid')
-            print(form)
     else:
         # blank form on GET
         form = WriteBox()

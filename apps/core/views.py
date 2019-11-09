@@ -127,9 +127,12 @@ def feedbackq(request):
     queueddrafts = alldrafts.filter(in_queue=True)
     queueddrafts = alldrafts.exclude(user=request.user)
 
+    if queueddrafts == []:
+        queueddrafts = [{'prompt': 'Sorry', 'text': 'There are no drafts in the queue'}]
+
     if request.method == 'POST':
         form = FeedbackBox(request.POST)
-                
+
         if form.is_valid():
             print('attempting to validate form')
             newfeedback = form.cleaned_data
@@ -171,7 +174,7 @@ def feedbackq(request):
                 messages.warning(request, e.message_dict)
     else:
         form = FeedbackBox()
-        
+
 
     context = {
         'form': form,

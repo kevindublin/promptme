@@ -80,6 +80,7 @@ def remove_from_queue(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.in_queue = False
     draft.save()
+    print(draft.text, 'removed from queue')
     messages.warning(request, 'Draft removed from queue')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
@@ -123,9 +124,12 @@ def form(request):
 def feedbackq(request):
     global feedback_questions
     global queueddrafts
+
     alldrafts = Draft.objects.order_by('revised')
     queueddrafts = alldrafts.filter(in_queue=True)
+    print('getting drafts in queue')
     queueddrafts = alldrafts.exclude(user=request.user)
+
     print(queueddrafts)
 
     if queueddrafts == []:
@@ -190,6 +194,10 @@ def queue_next(request):
     global queueddrafts
     global q
     global qcalls
+
+    if len(queueddrafts) == 1:
+        messages.warning(request, 'No more drafts in the gueue.')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
     if qcalls < 3:
         qcalls = qcalls + 1

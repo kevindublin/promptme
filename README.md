@@ -1,8 +1,6 @@
 # Prompt Me
 *a web service to spark creative writing & community. Currently testing the MVP. Many features left to add.*
 
----
-
 ## Known Issues:
 
 - View Feedback shows all feedback for a user on each individual draft

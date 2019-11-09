@@ -1,7 +1,7 @@
 # Prompt Me
 *a web service to spark creative writing & community. Currently testing the MVP. Many features left to add.*
 
-[logo]: https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/logo.png "logo"
+![logo](https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/logo.png "logo")
 
 ## Known Issues:
 

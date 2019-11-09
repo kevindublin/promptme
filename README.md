@@ -12,11 +12,11 @@
 - Write View collapses and hides drip bank if not filled when window forces min width
 - Feedback Queue view crashes when queue is empty (maybe fixed)
 
-[prompt]: https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/home_promptme.png "prompted"
+![prompt](https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/home_promptme.png "prompted")
 
-[write]: https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/home_write.png "written"
+![write](https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/home_write.png "written")
 
-[dashboard]: https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/home_dashboard.png "edited"
+![dashboard](https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/home_dashboard.png "edited")
 
 
 ## Features to Add:

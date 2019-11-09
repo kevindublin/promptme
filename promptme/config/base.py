@@ -48,6 +48,7 @@ DJANGO_APPS = [
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -144,7 +145,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, '../apps/core/static'),
+)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # We also needed to add this to specify where the downloads go
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')

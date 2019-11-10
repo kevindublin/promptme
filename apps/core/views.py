@@ -80,6 +80,9 @@ def remove_from_queue(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.in_queue = False
     draft.save()
+    global queueddrafts
+    queueddrafts = ['']
+    print('this is in queue', queueddrafts)
     messages.warning(request, 'Draft removed from queue')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
@@ -123,11 +126,19 @@ def form(request):
 def feedbackq(request):
     global feedback_questions
     global queueddrafts
+
     alldrafts = Draft.objects.order_by('revised')
     queueddrafts = alldrafts.filter(in_queue=True)
+    print('getting drafts in queue')
     queueddrafts = alldrafts.exclude(user=request.user)
 
+<<<<<<< HEAD
+    print(queueddrafts)
+
+    if len(queueddrafts) == 0:
+=======
     if queueddrafts == []:
+>>>>>>> 9282e5306245a577466285775ad94c625fde49ae
         queueddrafts = [{'prompt': 'Sorry', 'text': 'There are no drafts in the queue'}]
 
     if request.method == 'POST':
@@ -189,6 +200,10 @@ def queue_next(request):
     global queueddrafts
     global q
     global qcalls
+
+    if len(queueddrafts) == 1:
+        messages.warning(request, 'No more drafts in the gueue.')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
     if qcalls < 3:
         qcalls = qcalls + 1
@@ -258,7 +273,6 @@ def write(request):
                 messages.warning(request, error.message_dict)
         else:
             print('Form Data is invalid')
-            print(form)
     else:
         # blank form on GET
         form = WriteBox()

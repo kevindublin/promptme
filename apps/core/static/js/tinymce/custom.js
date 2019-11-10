@@ -1,7 +1,10 @@
 
 tinymce.init({
   selector : "textarea:not(.mceNoEditor)",
-      setup: function (editor) {
+  mobile: {
+    theme: 'silver'
+  },
+  setup: function (editor) {
           editor.on('change', function () {
               editor.save();
           });
@@ -16,4 +19,3 @@ tinymce.init({
   toolbar: 'undo redo | formatselect | bold italic backcolor | bullist numlist outdent indent | removeformat',
 
 });
-

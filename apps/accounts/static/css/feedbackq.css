@@ -1,0 +1,113 @@
+html {
+  font-size: 2vh;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 2vh;
+  }
+
+}
+
+ @media only screen and (max-width: 825px) {
+
+    .card {
+        width: 100vw;
+    }
+
+}
+
+.the-wrapper {
+
+	align-content: center;
+	align-items: center;
+  display: flex;
+	flex-wrap: wrap;
+	max-width: 1280px;
+}
+
+.the-wrapper div {
+  flex: 1;
+  justify-content: stretch;  
+  max-width: 1280px;
+
+}
+
+.q-column {
+    
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+}
+
+.survery-card, .draft-card {
+ 	  height: 100%;
+  	margin: 10px;
+    min-width: 220px;
+  	padding: 0;
+
+}
+
+.draft-card {
+	max-width: 35%;
+}
+
+.survey-card {
+
+  max-height: 515px;
+  max-width: 60%;
+}
+
+.card-box {
+
+    padding: 5px;
+    text-align: center;
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none;
+  bottom: 75%;
+  height: 100px;
+  width: 100px;
+
+}
+
+.carousel-control-next-icon:after
+{
+  color: black;
+  content: '>';
+  font-size: 30px;
+
+}
+
+.carousel-control-prev-icon:after {
+  color: black;
+  content: '<';
+  font-size: 30px;
+
+}
+
+.form-btn {
+	float: right;
+	margin-top: 25px;
+
+}
+
+.carousel-inner > .carousel-item {
+	max-height: 400px;
+}
+
+.mceNoEditor {
+	width: 70%;
+}
+
+.carousel-indicators li {
+  cursor: pointer;
+  background-color: #eee;
+  box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+}
+.carousel-indicators .active {
+  background-color: #0000ff;
+}

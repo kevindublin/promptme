@@ -26,7 +26,7 @@ class FeedbackBox(forms.ModelForm):
         ('6', 'Surprised')
     )
 
-    summary = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='Write a brief summary of what you just read:')
+    summary = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='Write a brief summary of the draft:')
     progression = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label='Is there a throughline from beginning to end?')
     aural_quality = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label='When read aloud, is it rhythmic?')
     pov_clear = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label='Is the point of view/speaker clear?')
@@ -38,8 +38,8 @@ class FeedbackBox(forms.ModelForm):
     adjective_specific = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Are the adjectives/descriptions specific?")
     worldview = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Does it communicate how the world works in the microcosm of the piece?")
     emi = forms.ChoiceField(choices=EMOTIONAL_IMPACT_INDEX, widget=forms.RadioSelect, label='How did the piece make you feel?')
-    favorite_lines = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='What were your 3 favorite lines?')
-    comments = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='Any additional comments?')
+    favorite_lines = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='What are your favorite lines?')
+    comments = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor"}), label='Additional comments:')
 
     class Meta:
         model = Feedback

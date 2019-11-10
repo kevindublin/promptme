@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Prompt Me - Write
+{% endblock title %}
+
+{% block content %}
+
+<div class="header px-3 py-3 pt-5 pb-2 mx-auto text-center">
+  <h1 class="display-4">Prompt Me</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-header">
+                <h4 class="my-0 font-weight-normal"> {{ new_prompt }}</h4>
+                </div>
+                <div class="prompt-card" style="background:url('{{ random_image }}') center center no-repeat">
+                </div>
+            </div>
+        </div>
+        <div id="wordDrip">
+          <p id="drips" class="drip-style"></p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card-deck mb-3 text-center">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-header">
+                    <h4 class="my-0 font-weight-normal"><span id="timer">6:00</span></h4>
+                    </div>
+                    <div class="write-box">
+                      <form id="draftForm" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-primary">Save</button>
+                      </form>
+                    </div>
+                </div>
+            </div>
+            <span id="charLength"> Maximum is 1200 characters.</span>
+    </div>
+  </div>
+
+      <hr class="featurette-divider">
+
+  <!-- DOCK -->
+  <footer class="bottom-dock">
+    <a href="{% url 'prompt' %}"><button type="button" class="btn btn-light">
+    Discard Draft
+    </button></a>
+    <button id="pause" type="button" class="btn btn-light">
+    Pause Timer
+    </button>
+    <button id="resume" type="button" class="btn btn-light">
+    Resume Timer
+    </button>
+      </footer>
+      <script src="{% static 'js/timer2.js' %}"></script>
+
+{% endblock content %}

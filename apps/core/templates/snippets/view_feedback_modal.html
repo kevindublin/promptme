@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modalthree{{ feedback.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalthree{{ draft.id }}" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-lg modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,7 +12,7 @@
 
         <div id="feedback-slider" class="carousel slide" data-ride="carousel" data-interval="false">
           <div class="carousel-inner">
-            {% for feedback in user_feedback %}
+            {% for feedback in draft.allfeedback.all %}
 
             <div class="carousel-item feedback-view {% if forloop.first %} active {% endif %}">
 
@@ -20,7 +20,7 @@
               <h6>Summary of your piece:</h6>
               <p>{{ feedback.summary }}</p>
               <h6>Their favorite lines were: </h6>
-              <p>{{ feedback.favorite_lines }}</p>             
+              <p>{{ feedback.favorite_lines }}</p>
               <h6>Additional comments:</h6>
               <p>{{ feedback.comments }}</p>
               <a href="/delete-feedback/{{ feedback.id }}/" class="btn btn-link">

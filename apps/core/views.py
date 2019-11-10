@@ -132,14 +132,11 @@ def feedbackq(request):
     print('getting drafts in queue')
     queueddrafts = alldrafts.exclude(user=request.user)
 
-<<<<<<< HEAD
     print(queueddrafts)
 
     if len(queueddrafts) == 0:
-=======
-    if queueddrafts == []:
->>>>>>> 9282e5306245a577466285775ad94c625fde49ae
-        queueddrafts = [{'prompt': 'Sorry', 'text': 'There are no drafts in the queue'}]
+        queueddrafts = [{'prompt': 'Sorry',
+                        'text': 'There are no drafts in the queue'}]
 
     if request.method == 'POST':
         form = FeedbackBox(request.POST)
@@ -150,24 +147,24 @@ def feedbackq(request):
             # Use the form to save
             try:
                 newfeedback = Feedback.objects.create(
-                draft=queueddrafts[q],
-                reader=request.user,
-                added=datetime.datetime.now(),
-                summary=request.POST['summary'],
-                progression=request.POST['progression'],
-                aural_quality=request.POST['aural_quality'],
-                pov_clear=request.POST['pov_clear'],
-                style_distinct=request.POST['style_distinct'],
-                metaphors=request.POST['metaphors'],
-                setting_specific=request.POST['setting_specific'],
-                noun_specific=request.POST['noun_specific'],
-                verb_specific=request.POST['verb_specific'],
-                adjective_specific=request.POST['adjective_specific'],
-                worldview=request.POST['worldview'],
-                emi=request.POST['emi'],
-                favorite_lines=request.POST['favorite_lines'],
-                comments=request.POST['comments']
-                )
+                    draft=queueddrafts[q],
+                    reader=request.user,
+                    added=datetime.datetime.now(),
+                    summary=request.POST['summary'],
+                    progression=request.POST['progression'],
+                    aural_quality=request.POST['aural_quality'],
+                    pov_clear=request.POST['pov_clear'],
+                    style_distinct=request.POST['style_distinct'],
+                    metaphors=request.POST['metaphors'],
+                    setting_specific=request.POST['setting_specific'],
+                    noun_specific=request.POST['noun_specific'],
+                    verb_specific=request.POST['verb_specific'],
+                    adjective_specific=request.POST['adjective_specific'],
+                    worldview=request.POST['worldview'],
+                    emi=request.POST['emi'],
+                    favorite_lines=request.POST['favorite_lines'],
+                    comments=request.POST['comments']
+                    )
                 newfeedback.save()
                 # activate feedback on draft #
                 turn_on_id = queueddrafts[q].id
@@ -185,7 +182,6 @@ def feedbackq(request):
                 messages.warning(request, e.message_dict)
     else:
         form = FeedbackBox()
-
 
     context = {
         'form': form,

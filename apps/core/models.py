@@ -18,6 +18,7 @@ class Draft(models.Model):
     image = models.CharField(max_length=100)
     in_queue = models.BooleanField(default=False)
     received_feedback = models.BooleanField(default=False)
+    feedback_amount = models.IntegerField(default=0)
 
     class Meta:
         ordering = ['revised']

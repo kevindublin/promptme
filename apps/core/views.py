@@ -36,20 +36,6 @@ def dashboard(request):
     # draftswithfeedback = userdrafts.filter(received_feedback=True)
     allfeedback = Feedback.objects.order_by('-added')
     userfeedback = allfeedback.filter(draft__user=request.user)
-    # Make Feedback match the draft #
-
-    '''
-    try list comprehension syntax?
-
-
-    draftfeedback.setdefault(feedback, [])
-    for draft in draftswithfeedback:
-        for feedback in userfeedback:
-            if draft.id == feedback.draft__id:
-                draftfeedback['feedback'].append = feedback
-
-    print(draftfeedback)
-    '''
 
     context = {'user_drafts': userdrafts, 'user_feedback': userfeedback}
 
@@ -132,8 +118,6 @@ def feedbackq(request):
     print('getting drafts in queue')
     queueddrafts = alldrafts.exclude(user=request.user)
 
-    print(queueddrafts)
-
     if len(queueddrafts) == 0:
         queueddrafts = [{'prompt': 'Sorry',
                         'text': 'There are no drafts in the queue'}]
@@ -167,10 +151,11 @@ def feedbackq(request):
                     )
                 newfeedback.save()
                 # activate feedback on draft #
-                turn_on_id = queueddrafts[q].id
-                activate = Draft.objects.get(id=turn_on_id)
-                activate.received_feedback = True
-                activate.save()
+                draft_id = queueddrafts[q].id
+                draft = Draft.objects.get(id=draft_id)
+                draft.feedback_amount = draft.feedback_amount + 1
+                draft.save()
+                check_feedback(draft_id)
 
                 global qcalls
                 qcalls = 0
@@ -197,7 +182,7 @@ def queue_next(request):
     global q
     global qcalls
 
-    if len(queueddrafts) == 1:
+    if len(queueddrafts) <= 1:
         messages.warning(request, 'No more drafts in the gueue.')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -215,12 +200,31 @@ def queue_next(request):
 
 
 @login_required
-def delete_feedback(request, feedback_id):
+def delete_feedback(request, feedback_id, draft_id):
+
     feedback = Feedback.objects.get(id=feedback_id)
     feedback.delete()
+
+    draft = Draft.objects.get(id=draft_id)
+    draft.feedback_amount = draft.feedback_amount - 1
+    draft.save()
+    check_feedback(draft_id)
+
     messages.warning(request, 'That feedback was deleted')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def check_feedback(draft_id):
+
+    draft = Draft.objects.get(id=draft_id)
+    if draft.feedback_amount == 0:
+        draft.received_feedback = false
+        draft.save()
+
+    else:
+        draft.received_feedback = True
+        draft.save()
 
 
 @login_required

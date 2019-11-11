@@ -218,8 +218,8 @@ def delete_feedback(request, feedback_id, draft_id):
 def check_feedback(draft_id):
 
     draft = Draft.objects.get(id=draft_id)
-    if draft.feedback_amount == 0:
-        draft.received_feedback = false
+    if draft.feedback_amount <= 0:
+        draft.received_feedback = False
         draft.save()
 
     else:

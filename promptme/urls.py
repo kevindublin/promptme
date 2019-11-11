@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^tinymce/', include('tinymce.urls')),
 
-] + static( # Add in uploaded media files
+] + static(  # Add in uploaded media files
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
 

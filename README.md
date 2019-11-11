@@ -5,11 +5,12 @@
 
 ## Known Issues:
 
-- View Feedback shows all feedback for a user on each individual draft
-- Mobile Write view TinyMCE auto switches to full screen and can't see drip words
+~~- View Feedback shows all feedback for a user on each individual draft~~
+~~- Mobile Write view TinyMCE auto switches to full screen and can't see drip words~~
 - Mobile View of Feedback Queue has uneven rows
 - Bottom dock in mobile view is off-center
 - Write View collapses and hides drip bank if not filled when window forces min width
+- Image and prompt will occasionally change when write is pressed
 - Feedback Queue view crashes when queue is empty (maybe fixed)
 
 ![prompt](https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/home_promptme.png "prompted")
@@ -22,9 +23,10 @@
 ## Features to Add:
 
 **Individual Features**
-- Third app with Full TinyMCE in-browser text editor
-- Export writing to Google Drive and Dropbox
 - Social Login with django-allauth
+- Add pie charts for feedback results, analytics
+- Third app with Full TinyMCE in-browser text editor to work on drafts
+- Export writing to Google Drive and Dropbox
 - Take photos of handwritten or printed text and OCR into editor as a draft for those who prefer to write by hand, uploadcare
 
 **Community Features**
@@ -34,6 +36,7 @@
 - Add Collaborators model to User
 - Follow User Feature
 - Collaborator Feed to see that friends have written a new draft, ask to read it
+- Exquisite Corpse, Renga, Call & Response games
 
 **Membership and Subscription Features**
 - Membership model

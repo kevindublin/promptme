@@ -18,11 +18,11 @@ def get_questions():
                         "Is the point of view/speaker clear?",
                         "Is the writing style distinct?",
                         "Are there clear & distinct metaphors/analogies?",
-                        "Is the setting clear and & specific?",
+                        "Is the setting clear & specific?",
                         "Are the nouns/characters or items specific?",
                         "Are the verbs/actions specific?",
                         "Are the adjectives/descriptions specific?",
-                        "Does it communicate how the world works in the microcosm of the piece?"]
+                        "Does it communicate a view of how the world works?"]
     return feedback_questions
 
 

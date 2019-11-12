@@ -66,9 +66,6 @@ def remove_from_queue(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.in_queue = False
     draft.save()
-    global queueddrafts
-    queueddrafts = ['']
-    print('this is in queue', queueddrafts)
     messages.warning(request, 'Draft removed from queue')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
@@ -116,11 +113,12 @@ def feedbackq(request):
     alldrafts = Draft.objects.order_by('revised')
     queueddrafts = alldrafts.filter(in_queue=True)
     print('getting drafts in queue')
-    queueddrafts = alldrafts.exclude(user=request.user)
+    queueddrafts = queueddrafts.exclude(user=request.user)
+    print('this is the queue:', queueddrafts)
 
     if len(queueddrafts) == 0:
-        queueddrafts = [{'prompt': 'Sorry',
-                        'text': 'There are no drafts in the queue'}]
+        messages.warning(request, 'Sorry, there are currently no drafts in the queue.')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
     if request.method == 'POST':
         form = FeedbackBox(request.POST)

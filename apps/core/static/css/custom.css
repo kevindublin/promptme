@@ -80,3 +80,7 @@ ul {
     padding-right: 75px;
     overflow-y: scroll;
 }
+
+.lead-in {
+  padding-left: 100px;
+}

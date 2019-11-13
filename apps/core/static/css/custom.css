@@ -46,6 +46,11 @@
    text-align: justify;
 }
 
+.lead-pricing {
+
+   text-align: center;
+}
+
 #wordDrip {
   margin: 2px;
   padding-top: 2px;

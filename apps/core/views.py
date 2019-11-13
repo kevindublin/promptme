@@ -109,22 +109,24 @@ def form(request):
 def feedbackq(request):
     global feedback_questions
     global queueddrafts
-
+    # getting all drafts from db
     alldrafts = Draft.objects.order_by('revised')
+    # making sure all drafts have been added to the queue
     queueddrafts = alldrafts.filter(in_queue=True)
-    print('getting drafts in queue')
+    # making sure drafts are written by other user
     queueddrafts = queueddrafts.exclude(user=request.user)
-    print('this is the queue:', queueddrafts)
+    # making sure that the current user hasn't already given feedback
+    queueddrafts = queueddrafts.exclude(allfeedback__reader=request.user)
 
     if len(queueddrafts) == 0:
-        messages.warning(request, 'Sorry, there are currently no drafts in the queue.')
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        messages.warning(request, 'Sorry, there are currently no more drafts in the queue.')
+        return redirect(request.META.get('dashboard', '/dashboard/'))
 
     if request.method == 'POST':
         form = FeedbackBox(request.POST)
 
         if form.is_valid():
-            print('attempting to validate form')
+            
             newfeedback = form.cleaned_data
             # Use the form to save
             try:

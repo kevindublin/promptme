@@ -8,9 +8,9 @@ import datetime
 import random
 import utils
 
-currentprompt = 'What is the last smell you remember?'
-imgurl = 'https://picsum.photos/1280/720/'
+
 fulldict = utils.get_dict()
+blanklist = utils.get_blanklist()
 allprompts = utils.get_prompts()
 feedback_questions = utils.get_questions()
 q = 0
@@ -126,7 +126,7 @@ def feedbackq(request):
         form = FeedbackBox(request.POST)
 
         if form.is_valid():
-            
+
             newfeedback = form.cleaned_data
             # Use the form to save
             try:
@@ -306,6 +306,11 @@ def newimage():
     global imgurl
     i = random.randint(0, len(fulldict)-1)
     randword = fulldict[i]
+
+    for word in blanklist:
+        if word == randword:
+            return newimage()
+
     print(i, fulldict[i])
     imgurl = 'https://picsum.photos/seed/' + randword + '/1280/720'
     return imgurl

@@ -10,7 +10,7 @@
 - Mobile view of Feedback Queue has uneven rows
 - Bottom dock in mobile view is off-centere
 - ~~Write View collapses and hides drip bank if not filled when window forces min width~~
-- Image and prompt will occasionally change when write is pressed
+- ~~Image and prompt will occasionally change when write is pressed~~
 - ~~Feedback Queue view crashes when queue is empty~~
 
 ![prompt](https://raw.githubusercontent.com/kevindublin/promptme/master/apps/core/static/images/home_promptme.png "prompted")

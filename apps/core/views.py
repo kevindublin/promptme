@@ -229,11 +229,11 @@ def check_feedback(draft_id):
 
 @login_required
 def prompt(request):
+    global currentprompt
+    global imgurl
     currentprompt = newprompt()
     imgurl = newimage()
     print(currentprompt)
-    global currentprompt
-    global imgurl
     context = {
         'random_image': imgurl,
         'new_prompt': currentprompt

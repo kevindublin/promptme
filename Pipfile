@@ -12,6 +12,7 @@ requests = "*"
 django-tinymce = "==2.8.0"
 Django = "*"
 whitenoise = "*"
+django-forgiving-collectstatic = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

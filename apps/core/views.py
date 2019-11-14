@@ -229,10 +229,16 @@ def check_feedback(draft_id):
 
 @login_required
 def prompt(request):
+
+    # Set as global variables as backup attempt
     global currentprompt
     global imgurl
+
     currentprompt = newprompt()
     imgurl = newimage()
+    # Set the variables to the session
+    request.session['currentprompt'] = currentprompt
+    request.session['imgurl'] = imgurl
     print(currentprompt)
     context = {
         'random_image': imgurl,
@@ -244,7 +250,13 @@ def prompt(request):
 
 @login_required
 def write(request):
+
+    # Attempt to pull variables from previous view
     global currentprompt
+    global imgurl
+    # Pull the prompt and image from the session data as a backup
+    currentprompt = request.session['currentprompt']
+    imgurl = request.session['imgurl']
     # Save Draft
     if request.method == 'POST':
 

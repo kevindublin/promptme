@@ -43,6 +43,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
 ]
 
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
@@ -152,7 +153,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../apps/core/static'),
 )
 
-STATICFILES_STORAGE = 'django_forgiving_collecstatic.storages.ForgivingManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'storage.ManifestStaticFilesStorage.manifest_strict'
 
 
 # We also needed to add this to specify where the downloads go

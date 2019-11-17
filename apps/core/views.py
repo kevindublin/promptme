@@ -98,7 +98,6 @@ def privacy(request):
 
 @login_required
 def feedbackq(request):
-    global feedback_questions
     global queueddrafts
     # getting all drafts from db
     alldrafts = Draft.objects.order_by('revised')
@@ -162,7 +161,6 @@ def feedbackq(request):
     context = {
         'form': form,
         'queued_draft': queueddrafts[q],
-        'feedback_questions': feedback_questions
     }
 
     return render(request, 'pages/feedbackq.html', context)

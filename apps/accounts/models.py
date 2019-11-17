@@ -22,3 +22,17 @@ class User(AbstractUser):
             size_str = ''
 
         return GRAVATAR_URL % (digest, size_str)
+
+class Membership(models.Model):
+
+    MEMBERSHIP_LEVELS = (
+        (0, 'Member'),
+        (1, 'Plus'),
+        (2, 'Premium'),
+        (3, 'Professional'),
+        (4, 'Instructor')
+    )
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='membership')
+
+    level = models.IntegerField(choices=MEMBERSHIP_LEVELS)

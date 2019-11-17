@@ -12,13 +12,13 @@ import utils
 fulldict = utils.get_dict()
 blanklist = utils.get_blanklist()
 allprompts = utils.get_prompts()
-feedback_questions = utils.get_questions()
 q = 0
 queueddrafts = []
 qcalls = 0
 
 
 def home(request):
+
 
     context = {
         '': '',
@@ -32,8 +32,6 @@ def dashboard(request):
     # Get user drafts on dashboard #
     alldrafts = Draft.objects.order_by('-revised')
     userdrafts = alldrafts.filter(user=request.user)
-    # Get user feedback #
-    # draftswithfeedback = userdrafts.filter(received_feedback=True)
     allfeedback = Feedback.objects.order_by('-added')
     userfeedback = allfeedback.filter(draft__user=request.user)
 
@@ -98,13 +96,6 @@ def privacy(request):
     return render(request, 'pages/privacy.html', context)
 
 
-def form(request):
-    context = {
-    }
-
-    return render(request, 'pages/form.html', context)
-
-
 @login_required
 def feedbackq(request):
     global feedback_questions
@@ -118,7 +109,7 @@ def feedbackq(request):
     # making sure that the current user hasn't already given feedback
     queueddrafts = queueddrafts.exclude(allfeedback__reader=request.user)
 
-    if len(queueddrafts) == 0:
+    if len(queueddrafts) == 0 or q >= len(queueddrafts):
         messages.warning(request, 'Sorry, there are currently no more drafts in the queue.')
         return redirect(request.META.get('dashboard', '/dashboard/'))
 

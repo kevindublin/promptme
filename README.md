@@ -5,6 +5,7 @@
 
 ## Known Issues:
 
+- Home page slider and contents break styling on maximum Retina and widescreen displays
 - ~~View Feedback shows all feedback for a user on each individual draft~~
 - ~~Mobile Write view TinyMCE auto switches to full screen and can't see drip words~~
 - Mobile view of Feedback Queue has uneven rows

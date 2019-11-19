@@ -36,3 +36,21 @@ class Membership(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='membership')
 
     level = models.IntegerField(choices=MEMBERSHIP_LEVELS)
+
+
+class UserPrompt(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+
+    text = models.CharField(max_length=45)
+
+    created = models.DateTimeField(auto_now_add=True)
+    revised = models.DateTimeField(auto_now=True)
+
+    public = models.BooleanField(default=False)
+    upvotes = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['-upvotes']

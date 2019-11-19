@@ -3,9 +3,13 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 
-from apps.accounts.forms import UserEditForm, SignupForm
-from apps.accounts.models import User
+
+from apps.accounts.forms import UserEditForm, SignupForm, SubmitPrompt
+from apps.accounts.models import User, UserPrompt
+
+import datetime
 
 
 def log_in(request):
@@ -59,19 +63,54 @@ def view_all_users(request):
 
 @login_required
 def view_profile(request, username):
-    user = User.objects.get(username=username)
-    '''
-    fix the user gravatar in the top right on viewing other user
-    currentuser = request.user
-    '''
-    if request.user == user:
+    currentuser = User.objects.get(username=username)
+    alluserprompts = UserPrompt.objects.order_by('-upvotes')
+    currentuserprompts = alluserprompts.filter(user=currentuser)
+
+
+    if request.user == currentuser:
         is_viewing_self = True
     else:
         is_viewing_self = False
+        currentuserprompts = currentuserprompts.filter(public=True)
+
+    if request.method == 'POST':
+
+        # Create a form instance and populate it with data from the request,
+        form = SubmitPrompt(request.POST)
+
+        if form.is_valid():
+
+            newuserprompt = form.cleaned_data
+
+            try:
+                newuserprompt = UserPrompt.objects.create(
+                    user=request.user,
+                    text=request.POST['text'],
+                    created=datetime.datetime.now(),
+                    revised=datetime.datetime.now(),
+                    public=request.POST['public'],
+                    upvotes=0
+                )
+                newuserprompt.save()
+                messages.success(request, 'New prompt saved!')
+                return redirect(request.META.get('HTTP_REFERER', '/'))
+
+            except ValidationError as e:
+                print('getting validation error:', e)
+                messages.warning(request, e.message_dict)
+        else:
+            print('Form Data is invalid')
+
+    else:
+        form = SubmitPrompt()
+
 
     context = {
-        'user': user,
+        'currentuser': currentuser,
         'is_viewing_self': is_viewing_self,
+        'form': form,
+        'currentuserprompts': currentuserprompts,
     }
     return render(request, 'accounts/profile_page.html', context)
 

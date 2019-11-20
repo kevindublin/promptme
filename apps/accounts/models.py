@@ -35,7 +35,7 @@ class Membership(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='membership')
 
-    level = models.IntegerField(choices=MEMBERSHIP_LEVELS)
+    level = models.IntegerField(choices=MEMBERSHIP_LEVELS, default=0)
 
 
 class UserPrompt(models.Model):
@@ -54,3 +54,14 @@ class UserPrompt(models.Model):
 
     class Meta:
         ordering = ['-upvotes']
+
+
+class Vote(models.Model):
+    user = models.ForeignKey(User,
+        on_delete=models.CASCADE,
+        related_name='voted_on'
+    )
+    prompt = models.ForeignKey(UserPrompt,
+        on_delete=models.CASCADE,
+        related_name='vote'
+    )

@@ -82,11 +82,16 @@ def view_profile(request, username):
         if form.is_valid():
 
             newuserprompt = form.cleaned_data
+            text = newuserprompt['text']
+            text = text.capitalize()
+
+            if not text.endswith('?'):
+                text += '?'
 
             try:
                 newuserprompt = UserPrompt.objects.create(
                     user=request.user,
-                    text=request.POST['text'],
+                    text=text,
                     created=datetime.datetime.now(),
                     revised=datetime.datetime.now(),
                     public=request.POST['public'],

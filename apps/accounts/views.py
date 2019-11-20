@@ -137,3 +137,65 @@ def membership(request):
     }
 
     return render(request, 'accounts/membership.html', context)
+
+
+@login_required
+def delete_prompt(request, prompt_id):
+    prompt = UserPrompt.objects.get(id=prompt_id)
+    prompt.delete()
+    messages.warning(request, 'Prompt deleted')
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def public_toggle(request, prompt_id):
+    prompt = UserPrompt.objects.get(id=prompt_id)
+
+    if prompt.public == False:
+        prompt.public = True
+    else:
+        prompt.public = False
+
+    prompt.save()
+    messages.success(request, 'Prompt now ', prompt_public)
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def update_prompt(request, prompt_id):
+    text = request.POST['text']
+
+
+    # Update draft
+    prompt = UserPrompt.objects.get(id=prompt_id)
+    prompt.text = text
+    prompt.save()
+    messages.success(request, 'Prompt upated')
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def upvote_prompt(request, prompt_id):
+    prompt = UserPrompt.objects.get(id=prompt_id)
+
+    prompt.upvotes = prompt.upvotes + 1
+
+    prompt.save()
+    messages.success(request, 'Vote saved')
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/dashboard'))
+
+
+@login_required
+def downvote_prompt(request, prompt_id):
+    prompt = UserPrompt.objects.get(id=prompt_id)
+
+    prompt.upvotes = prompt.upvotes - 1
+
+    prompt.save()
+    messages.success(request, 'Vote saved')
+    # Redirect to wherever they came from
+    return redirect(request.META.get('HTTP_REFERER', '/dashboard'))

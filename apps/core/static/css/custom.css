@@ -89,3 +89,15 @@ ul {
 .lead-in {
   padding-left: 10px;
 }
+
+.list-inline-item a {
+  color: white;
+}
+
+.list-inline-item a:hover {
+  cursor: pointer;
+}
+
+.list-group-item, .list-group-item:hover{
+  z-index: auto;
+}

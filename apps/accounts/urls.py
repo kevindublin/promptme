@@ -10,4 +10,9 @@ urlpatterns = [
     path('users/', views.view_all_users, name='view_all_users'),
     path('users/<username>/', views.view_profile, name='view_profile'),
     path('membership/', views.membership, name='membership'),
+    path('update-prompt/<prompt_id>/', views.update_prompt),
+    path('delete-prompt/<prompt_id>/', views.delete_prompt, name='delete_prompt'),
+    path('public-toggle/<prompt_id>/', views.public_toggle),
+    path('upvote-prompt/<prompt_id>/', views.upvote_prompt),
+    path('downvote-prompt/<prompt_id>/', views.downvote_prompt),
 ]

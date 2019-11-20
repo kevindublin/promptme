@@ -47,8 +47,7 @@ footer p {
   margin-bottom: .25rem;
 }
 
-.modal-dialog,
-.modal-content {
+.modal-dashboard{
     /* 80% of window height */
     height: 90%;
 }

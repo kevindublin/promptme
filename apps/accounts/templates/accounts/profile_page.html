@@ -25,14 +25,48 @@
       <form id="promptForm" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-primary">Create Prompt</button>
       </form>
       {% else %}
       <h4>Shared User Prompts</h4>
       {% endif %}
-      {% for prompt in currentuserprompts %}
-      <p>{{ prompt.text }}</p>
-      {% endfor %}
+      <br>
+      <div class="shared-prompts">
+        <ul class="list-group list-group-flush">
+        {% for prompt in currentuserprompts %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ prompt.text }}
+              <ul class="list-inline">
+                <li class="list-inline-item badge badge-primary">
+                  <a data-toggle="modal" data-target="#modalPrompt{{ prompt.id }}">
+                  edit
+                  </a>
+                  {% include "snippets/edit_prompt_modal.html" %}
+                </li>
+                <li class="list-inline-item badge badge-primary">
+                  <a href="/account/delete-prompt/{{ prompt.id }}/">
+                  delete
+                  </a>
+                </li>
+                <li class="list-inline-item badge badge-primary">
+                  <a href="/account/downvote-prompt/{{ prompt.id }}/">
+                  downvote
+                  </a>
+                </li>
+                <li class="list-inline-item badge badge-primary">
+                  <a href="/account/upvote-prompt/{{ prompt.id }}/">
+                  upvote
+                  </a>
+                </li>
+                <li class="list-inline-item badge badge-primary">
+                  write
+                </li>
+              </ul>
+            <span class="badge badge-primary badge-pill">{{ prompt.upvotes }}</span>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
     </div>
 </div>
 {% endblock %}

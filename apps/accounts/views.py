@@ -154,11 +154,13 @@ def public_toggle(request, prompt_id):
 
     if prompt.public == False:
         prompt.public = True
+        messages.success(request, 'Prompt now public.')
     else:
         prompt.public = False
+        messages.success(request, 'Prompt now private.')
 
     prompt.save()
-    messages.success(request, 'Prompt now ', prompt_public)
+
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
 

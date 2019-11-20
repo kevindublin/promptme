@@ -12,7 +12,7 @@ urlpatterns = [
     path('membership/', views.membership, name='membership'),
     path('update-prompt/<prompt_id>/', views.update_prompt),
     path('delete-prompt/<prompt_id>/', views.delete_prompt, name='delete_prompt'),
-    path('public-toggle/<prompt_id>/', views.public_toggle),
+    path('public-toggle/<prompt_id>/', views.public_toggle, name='public_toggle'),
     path('upvote-prompt/<prompt_id>/', views.upvote_prompt),
     path('downvote-prompt/<prompt_id>/', views.downvote_prompt),
 ]

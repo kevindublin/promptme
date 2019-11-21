@@ -71,7 +71,9 @@
                 </li>
                 {% endif %}
                 <li class="list-inline-item badge badge-primary">
+                  <a href="{% url 'prompt' %}">
                   write
+                  </a>
                 </li>
               </ul>
             <span class="badge badge-primary badge-pill">{{ prompt.upvotes }}</span>

@@ -5,18 +5,25 @@
 {% endblock title %}
 
 {% block content %}
-<div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <h4>Collaborator Feed</h4>
-        <p>Eventually this will list friends and their activities.</p>
-        {% for user in users %}
-            <a href="{% url 'view_profile' user.username %}">
-                <div class="card card-signin card-user my-5">
-                    <img src="{{ user.gravatar }}" />
-                    <h5 class="card-title text-center">@{{ user.username }}</h5>
-                </div>
-            </a>
-        {% endfor %}
+
+{% for user in users %}
+<div class="card mb-3 mx-auto" style="max-width: 550px; max-height: 225px;">
+  <div class="row no-gutters">
+    <div class="col-md-3">
+      <a href="{% url 'view_profile' user.username %}">
+        <img src="{{ user.gravatar }}" />
+        <h6 class="card-title text-left">@{{ user.username }}</h6>
+      </a>
     </div>
+    <div class="col-sm-8 col-lg-8">
+      <div class="card-body">
+        <p class="card-text">{{ user.allprompts.all.0.text }} <span class="badge badge-primary badge-pill">{{ user.allprompts.all.0.upvotes }}</span></p>
+        <p class="card-text"><small class="text-muted">{{ user.allprompts.all.0.revised }}</small>
+
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
+{% endfor %}
 {% endblock %}

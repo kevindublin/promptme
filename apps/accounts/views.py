@@ -12,6 +12,8 @@ from apps.accounts.models import User, UserPrompt
 import datetime
 
 
+sent_from_user = False
+
 def log_in(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
@@ -55,6 +57,7 @@ def logout_view(request):
 @login_required
 def view_all_users(request):
     all_users = User.objects.all()
+
     context = {
         'users': all_users,
     }
@@ -66,7 +69,8 @@ def view_profile(request, username):
     currentuser = User.objects.get(username=username)
     alluserprompts = UserPrompt.objects.order_by('-upvotes')
     currentuserprompts = alluserprompts.filter(user=currentuser)
-
+    sent_from_user == True
+    request.session['sent_from_user'] = sent_from_user
 
     if request.user == currentuser:
         is_viewing_self = True
@@ -191,7 +195,6 @@ def upvote_prompt(request, prompt_id):
     prompt.upvotes = prompt.upvotes + 1
 
     prompt.save()
-    messages.success(request, 'Vote saved')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/dashboard'))
 
@@ -203,6 +206,5 @@ def downvote_prompt(request, prompt_id):
     prompt.upvotes = prompt.upvotes - 1
 
     prompt.save()
-    messages.success(request, 'Vote saved')
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/dashboard'))

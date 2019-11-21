@@ -225,6 +225,7 @@ def prompt(request):
 
     currentprompt = newprompt()
     imgurl = newimage()
+
     # Set the variables to the session
     request.session['currentprompt'] = currentprompt
     request.session['imgurl'] = imgurl
@@ -243,6 +244,10 @@ def write(request):
     # Attempt to pull variables from previous view
     global currentprompt
     global imgurl
+
+    # Check if it's sent from profile
+    if request.session['sent_from_user'] == True:
+        currentprompt = request.session['currentprompt']
     # Pull the prompt and image from the session data as a backup
     currentprompt = request.session['currentprompt']
     imgurl = request.session['imgurl']

@@ -41,7 +41,7 @@ class Membership(models.Model):
 class UserPrompt(models.Model):
     user = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.CASCADE, related_name='allprompts'
     )
 
     text = models.CharField(max_length=45)

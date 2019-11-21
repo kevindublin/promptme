@@ -163,9 +163,11 @@ def public_toggle(request, prompt_id):
     prompt = UserPrompt.objects.get(id=prompt_id)
 
     if prompt.public == False:
+        prompt.upvotes = 0
         prompt.public = True
         messages.success(request, 'Prompt now public.')
     else:
+        prompt.upvotes = -100
         prompt.public = False
         messages.success(request, 'Prompt now private.')
 

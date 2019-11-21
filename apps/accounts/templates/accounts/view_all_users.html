@@ -17,10 +17,14 @@
     </div>
     <div class="col-sm-8 col-lg-8">
       <div class="card-body">
-        <p class="card-text">{{ user.allprompts.all.0.text|default:"User hasn't submitted any prompts." }}</p>
-        <p class="card-text"><small class="text-muted">{{ user.allprompts.all.0.revised }}</small>
-          <span class="badge badge-primary badge-pill">{{ user.allprompts.all.0.upvotes }}</span>
-        </p>
+        {% if user.allprompts.all.0.upvotes == -100 %}
+          <p class="card-text">User has no public prompts.</p>
+        {% else %}
+          <p class="card-text">{{ user.allprompts.all.0.text|default:"User hasn't submitted any prompts." }}</p>
+          <p class="card-text"><small class="text-muted">{{ user.allprompts.all.0.revised }}</small>
+            <span class="badge badge-primary badge-pill">{{ user.allprompts.all.0.upvotes }}</span>
+          </p>
+        {% endif %}
       </div>
     </div>
   </div>

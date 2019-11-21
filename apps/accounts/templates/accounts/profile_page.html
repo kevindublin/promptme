@@ -78,6 +78,8 @@
               </ul>
             <span class="badge badge-primary badge-pill">{{ prompt.upvotes }}</span>
           </li>
+          {% empty %}
+          <li>This user hasn't created any prompts.</li>
         {% endfor %}
         </ul>
       </div>

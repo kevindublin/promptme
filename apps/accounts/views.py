@@ -69,7 +69,8 @@ def view_profile(request, username):
     currentuser = User.objects.get(username=username)
     alluserprompts = UserPrompt.objects.order_by('-upvotes')
     currentuserprompts = alluserprompts.filter(user=currentuser)
-    sent_from_user == True
+    global sent_from_user
+    sent_from_user = True
     request.session['sent_from_user'] = sent_from_user
 
     if request.user == currentuser:

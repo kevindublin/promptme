@@ -172,7 +172,7 @@ def queue_next(request):
     global qcalls
 
     if len(queueddrafts) <= 1:
-        messages.warning(request, 'No more drafts in the gueue.')
+        messages.warning(request, 'No more drafts in the queue.')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
     if qcalls < 3:

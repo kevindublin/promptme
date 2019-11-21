@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block content %}
-
+<h4 class="text-center">Collaborators</h4>
 {% for user in users %}
 <div class="card mb-3 mx-auto" style="max-width: 550px; max-height: 225px;">
   <div class="row no-gutters">
@@ -17,9 +17,9 @@
     </div>
     <div class="col-sm-8 col-lg-8">
       <div class="card-body">
-        <p class="card-text">{{ user.allprompts.all.0.text }} <span class="badge badge-primary badge-pill">{{ user.allprompts.all.0.upvotes }}</span></p>
+        <p class="card-text">{{ user.allprompts.all.0.text }}</p>
         <p class="card-text"><small class="text-muted">{{ user.allprompts.all.0.revised }}</small>
-
+          <span class="badge badge-primary badge-pill">{{ user.allprompts.all.0.upvotes }}</span>
         </p>
       </div>
     </div>

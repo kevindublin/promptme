@@ -87,7 +87,6 @@ def view_profile(request, username):
         if form.is_valid():
 
             newuserprompt = form.cleaned_data
-            print(newuserprompt)
             if newuserprompt['public'] == False:
                 value = -100
             else:

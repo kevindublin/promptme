@@ -76,7 +76,11 @@
                   </a>
                 </li>
               </ul>
+            {% if prompt.upvotes == -100 %}
+            <span class="badge badge-primary badge-pill">*</span>
+            {% else %}
             <span class="badge badge-primary badge-pill">{{ prompt.upvotes }}</span>
+            {% endif %}
           </li>
           {% empty %}
           <li>This user hasn't created any prompts.</li>

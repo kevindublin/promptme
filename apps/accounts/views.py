@@ -35,7 +35,7 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
 
-            # Log-in the user right away
+            # Log-in the user
             messages.success(request, 'Account created successfully. Welcome!')
             login(request, user)
             return redirect('dashboard')
@@ -87,6 +87,11 @@ def view_profile(request, username):
         if form.is_valid():
 
             newuserprompt = form.cleaned_data
+            print(newuserprompt)
+            if newuserprompt['public'] == False:
+                value = -100
+            else:
+                value = 0
             text = newuserprompt['text']
             text = text.capitalize()
 
@@ -100,7 +105,7 @@ def view_profile(request, username):
                     created=datetime.datetime.now(),
                     revised=datetime.datetime.now(),
                     public=request.POST['public'],
-                    upvotes=0
+                    upvotes=value
                 )
                 newuserprompt.save()
                 messages.success(request, 'New prompt saved!')

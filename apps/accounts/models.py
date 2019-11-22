@@ -50,7 +50,7 @@ class UserPrompt(models.Model):
     revised = models.DateTimeField(auto_now=True)
 
     public = models.BooleanField(default=False)
-    upvotes = models.IntegerField(default=0)
+    upvotes = models.IntegerField(default=-100)
 
     class Meta:
         ordering = ['-upvotes']

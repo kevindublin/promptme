@@ -9,8 +9,8 @@
 - Mobile view of Feedback Queue has uneven rows
 - Bottom dock in mobile view is off-centere
 - Add password reset functionality
-- Private prompts will show up in collab feed if there are no other user prompts created
-- Unlimited voting, maybe limit it to one vote per account
+- ~~Private prompts will show up in collab feed if there are no other user prompts created
+- Unlimited voting, will eventually change to each user getting a certain amount based on their tier
 - ~~View Feedback shows all feedback for a user on each individual draft~~
 - ~~Mobile Write view TinyMCE auto switches to full screen and can't see drip words~~
 - ~~Write View collapses and hides drip bank if not filled when window forces min width~~

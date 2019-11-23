@@ -14,7 +14,9 @@
         <p>{{ currentuser.bio | safe }}</p>
 
         {% if is_viewing_self %}
-            <a href="{% url 'edit_profile' %}">Edit</a>
+            <p><a href="{% url 'edit_profile' %}">Edit bio</a><p>
+            <h6>Membership Status:</h6>
+              <p>{{ currentuser.membership }}</p>
 
         {% endif %}
     </div>

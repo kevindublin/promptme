@@ -21,7 +21,7 @@ def get_blanklist():
 		'zoom', 'warble', 'jowl', 'riverbank', 'whimper', 'dampen', 'vertebrae', 'shine', 'twaddle',
 		'squint', 'dazed', 'maw', 'shrapnel', 'sunshine', 'moss', 'boulder', 'deep', 'mesh', 'sunshade', 'bridge',
 		'kindling', 'crashed', 'sizzle', 'muffle', 'vibrate', 'solstice', 'thud', 'fluttery', 'beetle', 'puce',
-		'empty', 'shrunken', 'pitter-patter', 'soggy', 'snarl']
+		'empty', 'shrunken', 'pitter-patter', 'soggy', 'snarl', 'blade']
 	return blanklist
 
 

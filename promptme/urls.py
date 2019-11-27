@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('apps.core.urls')),
     path('account/', include('apps.accounts.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
 
 ] + static(  # Add in uploaded media files

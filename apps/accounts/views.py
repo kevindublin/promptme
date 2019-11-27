@@ -4,6 +4,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from apps.core.models import Draft
+from apps.core.forms import WriteBox
 
 
 from apps.accounts.forms import UserEditForm, SignupForm, SubmitPrompt
@@ -11,8 +13,6 @@ from apps.accounts.models import User, UserPrompt
 
 import datetime
 
-
-sent_from_user = False
 
 def log_in(request):
     if request.method == 'POST':
@@ -69,9 +69,6 @@ def view_profile(request, username):
     currentuser = User.objects.get(username=username)
     alluserprompts = UserPrompt.objects.order_by('-upvotes')
     currentuserprompts = alluserprompts.filter(user=currentuser)
-    global sent_from_user
-    sent_from_user = True
-    request.session['sent_from_user'] = sent_from_user
 
     if request.user == currentuser:
         is_viewing_self = True
@@ -203,7 +200,7 @@ def upvote_prompt(request, prompt_id):
 
     prompt.save()
     # Redirect to wherever they came from
-    return redirect(request.META.get('HTTP_REFERER', '/dashboard'))
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
@@ -214,4 +211,41 @@ def downvote_prompt(request, prompt_id):
 
     prompt.save()
     # Redirect to wherever they came from
-    return redirect(request.META.get('HTTP_REFERER', '/dashboard'))
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def write_userprompt(request, prompt_id):
+    # Get the user prompt
+    currentuserprompt = UserPrompt.objects.get(id=prompt_id)
+    currentuserprompt = currentuserprompt.text
+
+    if request.method == 'POST':
+        form = WriteBox(request.POST)
+
+        if form.is_valid(): 
+            print('form is valid')
+            newdraft = str(form)
+            newdraft = newdraft.replace('<tr><th></th><td><textarea name="text" cols="40" rows="10" required id="id_text">', "")
+            newdraft = newdraft.replace('</textarea></td></tr>', '')
+            newdraft = newdraft.replace('&lt;p&gt;', '')
+            newdraft = newdraft.replace('&lt;/p&gt;', '<br />')
+            newdraft = newdraft.replace('<p>','')
+            newdraft = newdraft.replace('</p>','')
+            savedraft = Draft.objects.create(
+                user=request.user,
+                text=newdraft,
+                created=datetime.datetime.now(),
+                revised=datetime.datetime.now(),
+                prompt=currentuserprompt,
+                image='https://picsum.photos/seed/trial/1280/720',
+                in_queue=False,
+                received_feedback=False,
+                feedback_amount=0
+            )
+            savedraft.save()
+            messages.success(request, 'New draft saved.')
+            return redirect(request.META.get('dashboard', '/dashboard/'))
+        else:
+            messages.warning(request, 'Your submission is invalid.')
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))

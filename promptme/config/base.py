@@ -34,6 +34,13 @@ LOCAL_APPS = [
 THIRD_PARTY_APPS = [
     'bootstrap4',
     'tinymce',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # enabled social providers:
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter'
 ]
 
 DJANGO_APPS = [
@@ -43,6 +50,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites'
 
 ]
 
@@ -76,6 +84,11 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
@@ -167,3 +180,7 @@ TINYMCE_JS_URL = os.path.join(TINYMCE_JS_ROOT, "tinymce.min.js")
 
 # Specify we are using a custom user model
 AUTH_USER_MODEL = 'accounts.User'
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = 'dashboard'

@@ -73,9 +73,10 @@
                 </li>
                 {% endif %}
                 <li class="list-inline-item badge badge-primary">
-                  <a href="{% url 'prompt' %}">
+                  <a data-toggle="modal" data-target="#modalWrite{{ prompt.id }}">
                   write
                   </a>
+                  {% include "snippets/write_prompt_modal.html" %}
                 </li>
               </ul>
             {% if prompt.upvotes == -100 %}

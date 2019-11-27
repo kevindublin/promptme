@@ -11,6 +11,7 @@ urlpatterns = [
     path('users/<username>/', views.view_profile, name='view_profile'),
     path('membership/', views.membership, name='membership'),
     path('update-prompt/<prompt_id>/', views.update_prompt),
+    path('write-userprompt/<prompt_id>/', views.write_userprompt),
     path('delete-prompt/<prompt_id>/', views.delete_prompt, name='delete_prompt'),
     path('public-toggle/<prompt_id>/', views.public_toggle, name='public_toggle'),
     path('upvote-prompt/<prompt_id>/', views.upvote_prompt),

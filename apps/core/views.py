@@ -245,9 +245,6 @@ def write(request):
     global currentprompt
     global imgurl
 
-    # Check if it's sent from profile
-    if request.session['sent_from_user'] == True:
-        currentprompt = request.session['currentprompt']
     # Pull the prompt and image from the session data as a backup
     currentprompt = request.session['currentprompt']
     imgurl = request.session['imgurl']

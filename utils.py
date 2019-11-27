@@ -40,7 +40,18 @@ def get_prompts():
     allprompts = promptpackone + promptpacktwo + promptpackthree + promptpackfour
     return allprompts
 
+def newimage():
+    global imgurl
+    i = random.randint(0, len(fulldict)-1)
+    randword = fulldict[i]
 
+    for word in blanklist:
+        if word == randword:
+            return newimage()
+
+    print(i, fulldict[i])
+    imgurl = 'https://picsum.photos/seed/' + randword + '/1280/720'
+    return imgurl
 def get_next_fromq():
     alldrafts = Draft.objects.order_by('revised')
     queuedrafts = alldrafts.filter(in_queue=True)

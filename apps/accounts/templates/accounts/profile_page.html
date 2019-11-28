@@ -42,39 +42,39 @@
                 {% if request.user == currentuser %}
                 <li class="list-inline-item badge badge-primary">
                   <a data-toggle="modal" data-target="#modalPrompt{{ prompt.id }}">
-                  edit
+                  <i class="material-icons">edit</i>
                   </a>
                   {% include "snippets/edit_prompt_modal.html" %}
                 </li>
                 <li class="list-inline-item badge badge-primary">
                   <a href="/account/delete-prompt/{{ prompt.id }}/">
-                  delete
+                  <i class="material-icons">delete</i>
                   </a>
                 </li>
                 <li class="list-inline-item badge badge-primary">
                   <a href="/account/public-toggle/{{ prompt.id }}/">
                   {% if prompt.public == True %}
-                  public
+                  <i class="material-icons">cloud_queue</i>
                   {% else %}
-                  private
+                  <i class="material-icons">cloud_off</i>
                   {% endif %}
                   </a>
                 </li>
                 {% else %}
                 <li class="list-inline-item badge badge-primary">
                   <a href="/account/downvote-prompt/{{ prompt.id }}/">
-                  downvote
+                  <i class="material-icons">thumb_down</i>
                   </a>
                 </li>
                 <li class="list-inline-item badge badge-primary">
                   <a href="/account/upvote-prompt/{{ prompt.id }}/">
-                  upvote
+                  <i class="material-icons">thumb_up</i>
                   </a>
                 </li>
                 {% endif %}
                 <li class="list-inline-item badge badge-primary">
                   <a data-toggle="modal" data-target="#modalWrite{{ prompt.id }}">
-                  write
+                  <i class="material-icons">keyboard</i>
                   </a>
                   {% include "snippets/write_prompt_modal.html" %}
                 </li>

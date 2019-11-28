@@ -1,4 +1,6 @@
 {% load bootstrap4 %}
+{% load socialaccount %}
+{% load static %}
 
 <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -11,7 +13,34 @@
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{ form_title }}</button>
                 </form>
             </div>
+            <div align='center'>
+              <ul class="list-inline">
+                <a href="{% provider_login_url 'github' %}">
+                  <li class="list-inline-item">
+                    <button type="button" class="btn btn-outline-dark">
+                      <img src="{% static 'icons/github.png' %}" /> Login with GitHub
+                    </button>
+                  </li></a>
+                  <a href="{% provider_login_url 'google' %}">
+                    <li class="list-inline-item">
+                      <button type="button" class="btn btn-outline-danger">
+                        <img src="{% static 'icons/google.png' %}" /> Login with Google
+                      </button>
+                    </li></a>
+                <a href="{% provider_login_url 'facebook' method='oauth2' %}">
+                  <li class="list-inline-item">
+                    <button type="button" class="btn btn-outline-secondary">
+                      <img src="{% static 'icons/facebook.png' %}" /> Login with Facebook
+                    </button>
+                  </li></a>
+                  <a href="{% provider_login_url 'twitter' %}">
+                    <li class="list-inline-item">
+                      <button type="button" class="btn btn-outline-secondary">
+                        <img src="{% static 'icons/twitter.png' %}" /> Login with Twitter
+                      </button>
+                    </li></a>
+              </ul>
+            </div>
         </div>
     </div>
 </div>
-

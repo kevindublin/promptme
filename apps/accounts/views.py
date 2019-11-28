@@ -156,7 +156,7 @@ def delete_prompt(request, prompt_id):
     prompt.delete()
     messages.warning(request, 'Prompt deleted')
     # Redirect to wherever they came from
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+    return redirect(request.META.get('HTTP_REFERER', 'dashboard'))
 
 
 @login_required
@@ -175,7 +175,7 @@ def public_toggle(request, prompt_id):
     prompt.save()
 
     # Redirect to wherever they came from
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+    return redirect(request.META.get('HTTP_REFERER', 'dashboard'))
 
 
 @login_required
@@ -214,6 +214,7 @@ def downvote_prompt(request, prompt_id):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
+@login_required
 def write_userprompt(request, prompt_id):
     # Get the user prompt
     currentuserprompt = UserPrompt.objects.get(id=prompt_id)
@@ -222,7 +223,7 @@ def write_userprompt(request, prompt_id):
     if request.method == 'POST':
         form = WriteBox(request.POST)
 
-        if form.is_valid(): 
+        if form.is_valid():
             print('form is valid')
             newdraft = str(form)
             newdraft = newdraft.replace('<tr><th></th><td><textarea name="text" cols="40" rows="10" required id="id_text">', "")

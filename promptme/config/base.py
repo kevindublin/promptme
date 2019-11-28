@@ -40,8 +40,50 @@ THIRD_PARTY_APPS = [
     # enabled social providers:
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.twitter'
+    'allauth.socialaccount.providers.github',
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.12',
+    },
+     'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'github': {
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+    }
+}
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -181,6 +223,6 @@ TINYMCE_JS_URL = os.path.join(TINYMCE_JS_ROOT, "tinymce.min.js")
 # Specify we are using a custom user model
 AUTH_USER_MODEL = 'accounts.User'
 
-SITE_ID = 1
+SITE_ID = 3
 
 LOGIN_REDIRECT_URL = 'dashboard'

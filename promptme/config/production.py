@@ -7,3 +7,6 @@ DEBUG = True
 import os
 import django_heroku
 django_heroku.settings(locals())
+
+# set site_id for social login to promptme.herokuapp.com
+SITE_ID = 6

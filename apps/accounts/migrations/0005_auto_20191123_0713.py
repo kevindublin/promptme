@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='user',
-            name='level',
+            name='membership',
             field=models.IntegerField(choices=[(0, 'Member'), (1, 'Plus'), (2, 'Premium'), (3, 'Professional'), (4, 'Instructor')], default=0),
         ),
         migrations.AlterField(

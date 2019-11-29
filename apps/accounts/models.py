@@ -10,15 +10,15 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
 
     MEMBERSHIP_LEVELS = (
-        ('Member', 'Member'),
-        ('Plus', 'Plus'),
-        ('Premium', 'Premium'),
-        ('Professional', 'Professional'),
-        ('Instructor', 'Instructor'),
-        ('Student', 'Student')
+        (0, 'Member'),
+        (1, 'Plus'),
+        (2, 'Premium'),
+        (3, 'Professional'),
+        (4, 'Student'),
+        (5, 'Instructor')
     )
 
-    membership = models.CharField(max_length=12,choices=MEMBERSHIP_LEVELS, default='Member')
+    membership = models.IntegerField(choices=MEMBERSHIP_LEVELS, default='0')
     bio = models.TextField()
 
     def gravatar(self, size=None):

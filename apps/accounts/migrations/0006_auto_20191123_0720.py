@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='user',
             name='level',
-            field=models.IntegerField(choices=[('Member', 'Member'), ('Plus', 'Plus'), ('Premium', 'Premium'), ('Professional', 'Professional'), ('Instructor', 'Instructor'), ('Student', 'Student')], default='Member'),
+            field=models.CharField(choices=[('Member', 'Member'), ('Plus', 'Plus'), ('Premium', 'Premium'), ('Professional', 'Professional'), ('Instructor', 'Instructor'), ('Student', 'Student')], default='Member'),
         ),
     ]

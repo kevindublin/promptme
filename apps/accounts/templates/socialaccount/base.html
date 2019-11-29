@@ -1,0 +1,147 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>
+        {% block title %}
+            PromptMe
+        {% endblock title %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A web utility to generate creative writing.">
+    <meta name="author" content="Kevin Dublin">
+    <link rel="icon" type="image/ico" href="{% static 'icons/favicon.ico' %}">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- CSS for bootstrap -->
+    <link href="{% static 'css/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <!--custom CSS for sign sign in form -->
+    <link href="{% static 'css/signinform.css' %}" rel="stylesheet">
+    <!-- custom CSS for icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- custom CSS for carousel -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+
+    <!-- custom CSS for dashboard -->
+    <link href="{% static 'css/dash.css' %}" rel="stylesheet">
+
+    <!-- custom CSS for pricing -->
+    <link href="{% static 'css/pricing.css' %}" rel="stylesheet">
+
+    <!-- custom CSS for feedback queue -->
+    <link href="{% static 'css/feedbackq.css' %}" rel="stylesheet">
+
+    <!-- final override CSS -->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+
+    <!--Tinymce Text-Editor -->
+    <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/tinymce/custom.js' %}" ></script>
+  </head>
+
+<body>
+
+<nav class="navbar navbar-expand-md">
+    <div class="container">
+        {% if request.user.is_authenticated %}
+        <a class="navbar-brand" href="{% url 'dashboard' %}">
+            <!-- Add logo here  <img src="" /> -->
+            Prompt Me
+        </a>
+        {% else %}
+        <a class="navbar-brand" href="/">
+            <!-- Add logo here  <img src="" /> -->
+            Prompt Me
+        </a>
+        {% endif %}
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                ☰
+            </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'feedbackq' %}">Feedback Queue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'prompt' %}">Write</a>
+                </li>
+              {% else %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="{% url 'about' %}">About</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#how-it-works">How it Works</a>
+                    <a class="dropdown-item" href="#pricing-plan">Pricing</a>
+                  </div>
+                </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view_all_users' %}">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}" >Sign Out</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view_profile' request.user %}" >
+                            {{ request.user }}
+                            <img src="{{ user.gravatar }}" class="navbar-avatar" />
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a id="log-in-link" class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="log-in-link" class="nav-link" href="{% url 'signup' %}">Sign up</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </nav>
+</div>
+
+
+
+{% block main %}
+    <div class="container pt-2">
+
+      {# Enable Django's "messages" system #}
+      {% if messages %}
+          {% for message in messages %}
+              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+          {% endfor %}
+      {% endif %}
+
+      {% block content %}
+
+      {% endblock content %}
+
+    </div>
+{% endblock main %}
+
+      <!-- Footer or Dock -->
+    <footer class="container">
+      <p class="float-right"><a href="#">Back to top</a></p>
+      <p>© 2019 Prompt Me | <a href="{% url 'privacy' %}">Privacy</a> | <a target="_blank" href="https://app.termly.io/document/terms-of-use-for-saas/428728f2-abbc-420f-bebc-097c36d50578">Terms</a></p>
+    </footer>
+      <script src="{% static 'js/bootstrap/jquery-3.4.1.min.js' %}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+      <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+  </body>
+</html>

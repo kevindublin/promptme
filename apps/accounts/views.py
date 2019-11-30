@@ -18,7 +18,7 @@ def log_in(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            login(request, form.get_user())
+            login(request, form.get_user(), backend='django.contrib.auth.backends.ModelBackend')
             return redirect('dashboard')
     else:
         form = AuthenticationForm()
@@ -37,7 +37,7 @@ def sign_up(request):
 
             # Log-in the user
             messages.success(request, 'Account created successfully. Welcome!')
-            login(request, user)
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('dashboard')
     else:
         form = SignupForm()

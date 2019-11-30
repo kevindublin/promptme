@@ -34,6 +34,7 @@ LOCAL_APPS = [
 THIRD_PARTY_APPS = [
     'bootstrap4',
     'tinymce',
+    'anymail',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -43,6 +44,14 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.twitter',
 ]
+
+ANYMAIL = {
+    "MAILGUN_API_KEY": "97cb763813a10361db87dedd392df31b-acb0b40c-463743a4",
+    "MAILGUN_SENDER_DOMAIN": 'mail.kevindublin.com',
+}
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+DEFAULT_FROM_EMAIL = "promptme@mail.kevindublin.com"
+SERVER_EMAIL = "postmaster@mail.kevindublin.com"
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {

@@ -14,6 +14,7 @@ Django = "*"
 whitenoise = "*"
 django-forgiving-collectstatic = "*"
 django-allauth = "*"
+django-anymail = {extras = ["mailgun"],version = "*"}
 
 [dev-packages]
 django-debug-toolbar = "*"

@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,12 +47,12 @@ THIRD_PARTY_APPS = [
 ]
 
 ANYMAIL = {
-    "MAILGUN_API_KEY": "97cb763813a10361db87dedd392df31b-acb0b40c-463743a4",
-    "MAILGUN_SENDER_DOMAIN": 'mail.kevindublin.com',
+    "MAILGUN_API_KEY": 'MAIL_KEY',
+    "MAILGUN_SENDER_DOMAIN": 'SENDER_DOMAIN',
 }
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_FROM_EMAIL = "promptme@mail.kevindublin.com"
-SERVER_EMAIL = "postmaster@mail.kevindublin.com"
+DEFAULT_FROM_EMAIL = "MAIL_EMAIL"
+SERVER_EMAIL = "MAIL_EMAIL"
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {

@@ -109,7 +109,7 @@ def feedbackq(request):
     queueddrafts = queueddrafts.exclude(allfeedback__reader=request.user)
 
     if len(queueddrafts) == 0 or q >= len(queueddrafts):
-        messages.warning(request, 'Sorry, there are currently no more drafts in the queue.')
+        messages.warning(request, 'Sorry, there are currently no drafts in the queue.')
         return redirect(request.META.get('dashboard', '/dashboard/'))
 
     if request.method == 'POST':

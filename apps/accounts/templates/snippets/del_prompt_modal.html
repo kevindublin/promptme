@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modalPromptDelete{{ draft.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalDelPrompt{{ prompt.id }}" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content modal-dashboard">
       <div class="modal-header">
@@ -9,10 +9,10 @@
         </button>
       </div>
       <div class="modal-body">
-        Are You sure you want to delete this prompt?
+        <p class="modal-text">Are you sure you want to delete this prompt?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
         <a class="btn btn-danger" href="/account/delete-prompt/{{ prompt.id }}/" role="button">Delete</a>
       </div>
     </div>

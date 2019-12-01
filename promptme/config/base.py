@@ -46,13 +46,14 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount.providers.twitter',
 ]
 
-ANYMAIL = {
-    "MAILGUN_API_KEY": 'MAIL_KEY',
-    "MAILGUN_SENDER_DOMAIN": 'SENDER_DOMAIN',
-}
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_FROM_EMAIL = "MAIL_EMAIL"
-SERVER_EMAIL = "MAIL_EMAIL"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('MAIL_HOST')
+EMAIL_USE_TLS = True
+EMAIL_PORT = config('MAIL_PORT')
+EMAIL_HOST_USER = config('MAIL_U')
+EMAIL_HOST_PASSWORD = config('MAIL_PASS')
+DEFAULT_FROM_EMAIL = config('FROM_MAIL')
+SERVER_EMAIL = config('FROM_SERVER')
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {

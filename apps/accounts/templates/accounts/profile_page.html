@@ -47,10 +47,10 @@
                   {% include "snippets/edit_prompt_modal.html" %}
                 </li>
                 <li class="list-inline-item badge badge-primary">
-                  <a data-toggle="modal" data-target="#modalPromptDelete{{ prompt.id }}">
+                  <a data-toggle="modal" data-target="#modalDelPrompt{{ prompt.id }}">
                   <i class="material-icons">delete</i>
                   </a>
-                  {% include "snippets/delete_prompt_modal.html" %}
+                  {% include "snippets/del_prompt_modal.html" %}
                 </li>
                 <li class="list-inline-item badge badge-primary">
                   <a href="/account/public-toggle/{{ prompt.id }}/">

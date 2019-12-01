@@ -111,3 +111,8 @@ ul {
 .modal-title {
   color: #5a5a5a;
 }
+
+.modal-text {
+  color: #5a5a5a;
+  font-size: 1rem;
+}

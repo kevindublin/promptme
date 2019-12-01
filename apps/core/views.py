@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from .forms import WriteBox, FeedbackBox
 from .models import Draft, Feedback
+from django.core.mail import send_mail
 import datetime
 import random
 import utils

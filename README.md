@@ -8,7 +8,7 @@
 - Home page slider and contents break styling on maximum Retina and widescreen displays
 - Mobile view of Feedback Queue has uneven rows
 - Bottom dock in mobile view is off-centere
-- Add password reset functionality
+- ~~Add password reset functionality~~
 - ~~Private prompts will show up in collab feed if there are no other user prompts created~~
 - Unlimited voting, will eventually change to each user getting a certain amount based on their tier
 - ~~View Feedback shows all feedback for a user on each individual draft~~
@@ -27,7 +27,7 @@
 ## Features to Add:
 
 **Individual Features**
-- Social Login with django-allauth
+- ~~Social Login~~
 - Add pie charts for feedback results, analytics
 - Third app with Full TinyMCE in-browser text editor to work on drafts
 - Export writing to Google Drive and Dropbox
@@ -38,7 +38,7 @@
 - ~~Create feed for public prompts~~
 - Add private messaging & inbox
 - Follow User Feature (collaborators)
-- Join a usergroup and make your work visibile to that group
+- Join a writing group and make your work visibile to that group in a private queue
 - Exquisite Corpse, Renga, Call & Response games
 
 **Membership and Subscription Features**
@@ -48,7 +48,7 @@
 - Number of queue calls, prompts, & drafts written tied to membership tier
 
 **Writing Career Features**
-- Submission Tracker
+- Submission Tracker via Submittable API
 - Open calls for submissions
 - User posted Calls for submissions
-- Web scraper which pulls calls from all over the web and prompt me calls that API
+- Web scraper which pulls submission calls from all over the web and prompt me calls that API

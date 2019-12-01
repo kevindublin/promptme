@@ -28,6 +28,7 @@
 
 **Individual Features**
 - ~~Social Login~~
+- Context dictionary: hover over words to show the definition
 - Add pie charts for feedback results, analytics
 - Third app with Full TinyMCE in-browser text editor to work on drafts
 - Export writing to Google Drive and Dropbox

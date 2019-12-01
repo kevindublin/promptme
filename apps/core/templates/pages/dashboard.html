@@ -36,9 +36,10 @@
                       <i class="material-icons">launch</i>
                   </button>
                   {% include "snippets/preview_draft_modal.html" %}
-                  <a href="/delete-draft/{{ draft.id }}/" class="btn btn-link">
+                  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deletemodal{{ draft.id }}">
                     <i class="material-icons">delete</i>
-                  </a>
+                  </button>
+                  {% include "snippets/delete_draft_modal.html" %}
                   <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modaltwo{{ draft.id }}">
                       <i class="material-icons">edit</i>
                   </button>

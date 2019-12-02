@@ -322,9 +322,10 @@ def newimage():
     return imgurl
 
 
-def contact():
+def contact(request):
+    
 
     context = {
     }
-    
+
     return render(request, 'pages/contact.html', context)

@@ -8,13 +8,15 @@
 
 
 {% block content %}
-
+<div class="header px-3 py-3 pt-5 pb-5 mx-auto text-center">
+    <h5 class="display-4">Contact Us</h5>
+    <p class="lead text-muted text-center">We love to hear from our users.</p>
+</div>
 <div class="container-fluid">
-  <div class="row">
+  <div class="row justify-content-md-center">
     <div class="col-lg-6 col-md-6 col-sm-6">
       <div class="form-wrapper">
-        <form>
-          <!-- inputs -->
+        <form id="contactForm" action="/contact/" method=POST>
           <div class="form-group">
             <label class="sr-only" for="name">Name</label>
             <div class="input-group">
@@ -38,7 +40,7 @@
             <textarea class="form-control" id="message" rows="6" placeholder="Message"></textarea>
           </div>
           <!-- buttons -->
-          <div class="btn-group pull-right" role="group">
+          <div class="btn-group form-btn" role="group">
             <button type="reset" class="btn btn-default">
               Reset
             </button>
@@ -51,7 +53,6 @@
     </div>
   </div>
 </div>
-
 <hr class="featurette-divider">
 
 

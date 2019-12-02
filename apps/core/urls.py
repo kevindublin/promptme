@@ -18,6 +18,6 @@ urlpatterns = [
     path('queue-next/', views.queue_next, name="queue_next"),
     path('delete-feedback/<int:feedback_id>/<int:draft_id>',
          views.delete_feedback, name="delete-feedback"),
-
+    path('contact/', views.contact, name='contact'),
 
 ]

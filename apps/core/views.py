@@ -320,3 +320,11 @@ def newimage():
     print(i, fulldict[i])
     imgurl = 'https://picsum.photos/seed/' + randword + '/1280/720'
     return imgurl
+
+
+def contact():
+
+    context = {
+    }
+    
+    return render(request, 'pages/contact.html', context)

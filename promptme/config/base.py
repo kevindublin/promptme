@@ -46,12 +46,13 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount.providers.twitter',
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config('MAIL_HOST')
-EMAIL_USE_TLS = True
-EMAIL_PORT = config('MAIL_PORT')
-EMAIL_HOST_USER = config('MAIL_U')
-EMAIL_HOST_PASSWORD = config('MAIL_PASS')
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+ANYMAIL = {
+    # (exact settings here depend on your ESP...)
+    "MAILGUN_API_KEY": config('KEY'),
+    "MAILGUN_SENDER_DOMAIN": config('SENDER')
+    }
+
 DEFAULT_FROM_EMAIL = config('FROM_MAIL')
 SERVER_EMAIL = config('FROM_SERVER')
 

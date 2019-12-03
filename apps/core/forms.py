@@ -10,6 +10,13 @@ class WriteBox(forms.ModelForm):
         fields = ['text', ]
 
 
+class ContactForm(forms.Form):
+    name = forms.CharField(widget=forms.TextInput (attrs={'placeholder':'Name', 'class': 'form-control'}), label='')
+    email = forms.EmailField(widget=forms.EmailInput (attrs={'placeholder':'you@example.com', 'class': 'form-control'}), label='')
+    subject = forms.CharField(widget=forms.TextInput (attrs={'placeholder':'Subject', 'class': 'form-control'}), label='')
+    message = forms.CharField(widget=forms.Textarea (attrs={'placeholder':'Your message...', 'class': 'form-control'}), label='')
+
+
 class FeedbackBox(forms.ModelForm):
     SURVEY_OPTIONS = (
         ('Y', 'Yes'),

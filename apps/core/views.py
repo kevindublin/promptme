@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import ValidationError
-from .forms import WriteBox, FeedbackBox
+from .forms import WriteBox, FeedbackBox, ContactForm
 from .models import Draft, Feedback
 from django.core.mail import send_mail
+from django.utils.html import strip_tags
+from decouple import config
 import datetime
 import random
 import utils
@@ -259,6 +261,7 @@ def write(request):
             # Use the form to save
             print('form is valid, sending to db...')
             newdraft = str(form)
+            newdraft = strip_tags(newdraft)
             newdraft = newdraft.replace('<tr><th></th><td><textarea name="text" cols="40" rows="10" required id="id_text">', "")
             newdraft = newdraft.replace('</textarea></td></tr>', '')
             newdraft = newdraft.replace('&lt;p&gt;', '')
@@ -324,8 +327,29 @@ def newimage():
 
 def contact(request):
     
+    if request.method == 'POST':
+
+        form = ContactForm()
+
+        newmessage = 'New message from: \n' + request.POST['email'] + '\n' + request.POST['message']
+
+        try:
+            send_mail(request.POST['subject'], 
+            strip_tags(newmessage),
+            config('FROM_MAIL'),
+            [config('FROM_SERVER')],
+            html_message=newmessage)
+            messages.success(request, 'Email sent!')
+            return redirect(request.META.get('HTTP_REFERER', '/'))
+        except ValidationError as e:
+            print('getting validation error:', e)
+            messages.warning(request, e.message_dict)
+
+    else:
+        form = ContactForm()
 
     context = {
+        'form' : form,
     }
 
     return render(request, 'pages/contact.html', context)

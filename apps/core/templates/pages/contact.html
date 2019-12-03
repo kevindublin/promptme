@@ -17,28 +17,8 @@
     <div class="col-lg-6 col-md-6 col-sm-6">
       <div class="form-wrapper">
         <form id="contactForm" action="/contact/" method=POST>
-          <div class="form-group">
-            <label class="sr-only" for="name">Name</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="name" placeholder="Name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="email">Email</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="email" placeholder="Email">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="subject">Subject</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="subject" placeholder="Subject">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="message">Message</label>
-            <textarea class="form-control" id="message" rows="6" placeholder="Message"></textarea>
-          </div>
+          {% csrf_token %}
+          {{ form.as_p }}
           <!-- buttons -->
           <div class="btn-group form-btn" role="group">
             <button type="reset" class="btn btn-default">

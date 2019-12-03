@@ -79,8 +79,8 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="{% url 'about' %}">About</a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#how-it-works">How it Works</a>
-                    <a class="dropdown-item" href="#pricing-plan">Pricing</a>
+                    <a class="dropdown-item" href="{% url 'home' %}#how-it-works">How it Works</a>
+                    <a class="dropdown-item" href="{% url 'home' %}#pricing-plan">Pricing</a>
                   </div>
                 </li>
                 {% endif %}

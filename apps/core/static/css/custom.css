@@ -116,3 +116,7 @@ ul {
   color: #5a5a5a;
   font-size: 1rem;
 }
+
+a:not([href]):not([tabindex]) {
+  color: white;
+}

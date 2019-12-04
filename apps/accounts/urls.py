@@ -16,4 +16,5 @@ urlpatterns = [
     path('public-toggle/<prompt_id>/', views.public_toggle, name='public_toggle'),
     path('upvote-prompt/<prompt_id>/', views.upvote_prompt),
     path('downvote-prompt/<prompt_id>/', views.downvote_prompt),
+    path('delete-account/<currentuser_id>/', views.delete_account, name='delete_account')
 ]

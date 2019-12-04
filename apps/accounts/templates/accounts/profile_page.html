@@ -17,6 +17,8 @@
             <p><a href="{% url 'edit_profile' %}">Edit bio</a><p>
             <h6>Membership Status:</h6>
               <p>{{ currentuser.membership }}</p>
+            <a class="btn btn-danger" role="button" data-toggle="modal" data-target="#modalDelAcct{{ currentuser.id }}">Delete Account</a>
+            {% include "snippets/del_account_modal.html" %}
 
         {% endif %}
     </div>

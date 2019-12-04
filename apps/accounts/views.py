@@ -57,9 +57,10 @@ def logout_view(request):
 @login_required
 def view_all_users(request):
     all_users = User.objects.all()
+    active_users = User.objects.exclude(is_active=False)
 
     context = {
-        'users': all_users,
+        'users': active_users,
     }
     return render(request, 'accounts/view_all_users.html', context)
 
@@ -151,11 +152,23 @@ def membership(request):
 
 
 @login_required
+def delete_account(request, currentuser_id):
+    user = User.objects.get(id=currentuser_id)
+
+    user.is_active = False
+    user.save()
+    logout(request)
+    messages.warning(request, 'Your user account has been deleted.')
+
+    return redirect('home')
+
+
+@login_required
 def delete_prompt(request, prompt_id):
     prompt = UserPrompt.objects.get(id=prompt_id)
     prompt.delete()
     messages.warning(request, 'Prompt deleted')
-    # Redirect to wherever they came from
+
     return redirect(request.META.get('HTTP_REFERER', 'dashboard'))
 
 

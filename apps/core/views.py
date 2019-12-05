@@ -9,7 +9,6 @@ from django.utils.html import strip_tags
 from decouple import config
 import datetime
 import random
-import bleach
 import utils
 
 

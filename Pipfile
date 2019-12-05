@@ -16,6 +16,7 @@ django-forgiving-collectstatic = "*"
 django-allauth = "*"
 django-anymail = {extras = ["mailgun"],version = "*"}
 python-decouple = "*"
+bleach = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

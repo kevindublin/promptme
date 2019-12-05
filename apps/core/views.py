@@ -9,6 +9,7 @@ from django.utils.html import strip_tags
 from decouple import config
 import datetime
 import random
+import bleach
 import utils
 
 
@@ -241,6 +242,17 @@ def prompt(request):
     return render(request, 'pages/prompt.html', context)
 
 
+def clean_text(form):
+    text = str(form)
+    text = text.replace('<tr><th></th><td><textarea name="text" cols="40" rows="10" required id="id_text">', "")
+    text = text.replace('</textarea></td></tr>', '')
+    text = text.replace('&lt;p&gt;', '')
+    text = text.replace('&lt;/p&gt;', '<br />')
+    text = text.replace('<span style="font-weight: 400;">', '')
+    text = text.replace('</span>', '')
+    text = strip_tags(text)
+    return text
+
 @login_required
 def write(request):
 
@@ -260,12 +272,8 @@ def write(request):
         if form.is_valid():
             # Use the form to save
             print('form is valid, sending to db...')
-            newdraft = str(form)
-            newdraft = strip_tags(newdraft)
-            newdraft = newdraft.replace('<tr><th></th><td><textarea name="text" cols="40" rows="10" required id="id_text">', "")
-            newdraft = newdraft.replace('</textarea></td></tr>', '')
-            newdraft = newdraft.replace('&lt;p&gt;', '')
-            newdraft = newdraft.replace('&lt;/p&gt;', '<br />')
+            newdraft = clean_text(form)
+
             try:
                 Draft = form.save(commit=False)
                 Draft.user = request.user
@@ -326,15 +334,16 @@ def newimage():
 
 
 def contact(request):
-    
+
     if request.method == 'POST':
 
         form = ContactForm()
 
-        newmessage = 'New message from: \n' + request.POST['email'] + '\n' + request.POST['message']
+        newmessage = "New message from {} at {} \n Subject: {} \n \n {}"
+        newmessage = newmessage.format(request.POST['name'], request.POST['email'], request.POST['subject'], request.POST['message'])
 
         try:
-            send_mail(request.POST['subject'], 
+            send_mail(request.POST['subject'],
             strip_tags(newmessage),
             config('FROM_MAIL'),
             [config('FROM_SERVER')],

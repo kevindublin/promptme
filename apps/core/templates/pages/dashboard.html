@@ -29,7 +29,7 @@
             <svg width="100%" height="225" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Image with Draft"><title>Draft Image</title><image width=100% height=100% xlink:href={{ draft.image }}></image></svg>
             <div class="card-body">
               <p class="card-title"> {{ draft.prompt }} </p>
-              <p class="card-text"> {{ draft.text| safe | truncatechars:50 }} </p>
+              <p class="card-text"> {{ draft.text | truncatechars:50 }} </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal{{ draft.id }}">

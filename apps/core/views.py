@@ -272,18 +272,19 @@ def write(request):
         if form.is_valid():
             # Use the form to save
             print('form is valid, sending to db...')
-            newdraft = clean_text(form)
+            text = clean_text(form)
 
             try:
-                Draft = form.save(commit=False)
-                Draft.user = request.user
-                Draft.text = newdraft
-                Draft.created = datetime.datetime.now()
-                Draft.revised = datetime.datetime.now()
-                Draft.prompt = currentprompt
-                Draft.image = imgurl
-                Draft.full_clean()
-                Draft.save()
+
+                newdraft = Draft.objects.create(
+                    user=request.user,
+                    text=request.POST['text'],
+                    created=datetime.datetime.now(),
+                    revised=datetime.datetime.now(),
+                    prompt=currentprompt,
+                    image=imgurl,
+                )
+                newdraft.save()
                 messages.success(request, 'Draft saved!')
                 return redirect(request.META.get('dashboard', '/dashboard/'))
             except ValidationError as error:

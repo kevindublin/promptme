@@ -65,8 +65,8 @@ html {
 }
 
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
+.carousel-control-prev-icon2,
+.carousel-control-next-icon2 {
   background-image: none;
   bottom: 75%;
   height: 100px;
@@ -74,7 +74,7 @@ html {
 
 }
 
-.carousel-control-next-icon:after
+.carousel-control-next-icon2:after
 {
   color: black;
   content: '>';
@@ -82,7 +82,7 @@ html {
 
 }
 
-.carousel-control-prev-icon:after {
+.carousel-control-prev-icon2:after {
   color: black;
   content: '<';
   font-size: 30px;

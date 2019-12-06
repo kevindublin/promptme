@@ -1,4 +1,4 @@
-@media only screen and (max-width: 825px) {
+@media only screen and (max-width: 845px) {
 
     .card {
         width: 100vw;
@@ -6,6 +6,40 @@
 
 }
 
+@media (min-width: 800px) {
+  html {
+    font-size: 16px;
+  }
+}
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+html {
+  font-size: 14px;
+}
+
+body {
+  color: #5a5a5a;
+}
+
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 845px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+/* Main navbar & bottom dock
+-------------------------------------------------- */
 .navbar {
     background: linear-gradient(135deg, #f7f7f7 0%, #e9eff4 100%);
 }
@@ -29,6 +63,87 @@
 
 }
 
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
+
+#inside-carousel {
+  max-width: 1600px;
+  background-color: #324a5e;
+}
+
+/* Center align the text within the three columns below the carousel on home */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+/* responsive card for image on Prompt page
+-------------------------------------------------- */
 .prompt-card {
   height: 56.25%;
   min-height: 300px;
@@ -36,12 +151,23 @@
 }
 
 .container {
-    max-width: 1280px;
+    max-width: 1440px;
+}
+
+
+
+.pricing-header {
+  max-width: 700px;
+}
+
+.card-deck .card {
+  min-width: 220px;
 }
 
 .lead, .col-text {
 
    text-align: justify;
+   margin-top: 25px;
 }
 
 .lead-pricing {
@@ -119,4 +245,67 @@ ul {
 
 a:not([href]):not([tabindex]) {
   color: white;
+}
+
+/* Dashboard
+------------------------- */
+
+.jumbotron {
+  background-color: #fff;
+  margin-bottom: 0;
+padding-bottom: 3rem;
+  padding-top: 3rem;
+}
+@media (min-width: 850px) {
+  .jumbotron {
+    padding-bottom: 6rem;
+    padding-top: 6rem;
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 850px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+footer {
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.modal-dashboard{
+    /* 80% of window height */
+    height: 90%;
+}
+
+.modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 120px);
+    overflow-y: scroll;
 }

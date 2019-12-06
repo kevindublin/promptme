@@ -1,15 +1,4 @@
-.jumbotron {
-  background-color: #fff;
-  margin-bottom: 0;
-padding-bottom: 3rem;
-  padding-top: 3rem;
-}
-@media (min-width: 800px) {
-  .jumbotron {
-    padding-bottom: 6rem;
-    padding-top: 6rem;
-  }
-}
+
 
 .jumbotron p:last-child {
   margin-bottom: 0;
@@ -32,7 +21,7 @@ padding-bottom: 3rem;
         user-select: none;
       }
 
-      @media (min-width: 800px) {
+      @media (min-width: 850px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }

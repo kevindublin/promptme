@@ -22,7 +22,7 @@ def get_blanklist():
 		'squint', 'dazed', 'maw', 'shrapnel', 'sunshine', 'moss', 'boulder', 'deep', 'mesh', 'sunshade', 'bridge',
 		'kindling', 'crashed', 'sizzle', 'muffle', 'vibrate', 'solstice', 'thud', 'fluttery', 'beetle', 'puce',
 		'empty', 'shrunken', 'pitter-patter', 'soggy', 'snarl', 'blade', 'vein', 'ambrosial', 'blurt', 'skeleton',
-		'jiggle', 'luminous', 'moon-spark', 'melt']
+		'jiggle', 'luminous', 'moon-spark', 'melt', 'dusk', 'hum', 'crust', 'cloudy']
 	return blanklist
 
 

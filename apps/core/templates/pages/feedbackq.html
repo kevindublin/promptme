@@ -14,7 +14,7 @@
         <div class="card draft-card">
             <h5 class="card-header">{{ queued_draft.prompt }}</h5>
             <div class="card-body">
-            <p class="q-draft"> {{ queued_draft.text | safe }}</p>
+            <p class="q-draft"> {{ queued_draft.text | striptags }}</p>
             </div>
         </div>
     </div>

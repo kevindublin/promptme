@@ -58,10 +58,15 @@ html {
   max-width: 60%;
 }
 
-.card-box {
+.card-boxq {
 
     padding: 5px;
     text-align: center;
+}
+
+.qbody {
+  padding-left: 50px;
+  width: 70%;
 }
 
 
@@ -74,8 +79,7 @@ html {
 
 }
 
-.carousel-control-next-icon2:after
-{
+.carousel-control-next-icon2:after {
   color: black;
   content: '>';
   font-size: 30px;
@@ -103,6 +107,7 @@ html {
 
 .mceNoEditor {
 	width: 70%;
+
 }
 
 .carousel-indicators li {

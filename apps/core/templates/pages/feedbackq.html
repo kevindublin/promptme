@@ -14,7 +14,7 @@
         <div class="card draft-card">
             <h5 class="card-header">{{ queued_draft.prompt }}</h5>
             <div class="card-body">
-            <p class="q-draft"> {{ queued_draft.text | striptags }}</p>
+            <p class="q-draft"> {{ queued_draft.text | safe | striptags }}</p>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
                                 <div class="card-box">
                                     {{ field.errors }}
                                     <h6 class="card-title text-left">{{ field.label_tag }}</h6>
-                                    <span class="text-left">{{ field }}</span>
+                                    <span class="text-left qbody">{{ field }}</span>
                                     {% if field.help_text %}
                                     <p class="help">{{ field.help_text|safe }}</p>
                                     {% endif %}

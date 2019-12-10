@@ -57,9 +57,9 @@ def logout_view(request):
 
 @login_required
 def view_all_users(request):
-    all_users = User.objects.all()
     # Exclude 'deleted' users
-    active_users = User.objects.exclude(is_active=False)
+    active_users = User.objects.order_by('-last_login').exclude(is_active=False)
+
     # Create pages for pagination
     paginator = Paginator(active_users, 7)
     currentpage = request.GET.get('page', 1)

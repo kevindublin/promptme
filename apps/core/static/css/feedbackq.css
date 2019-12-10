@@ -22,13 +22,13 @@ html {
 	align-items: center;
   display: flex;
 	flex-wrap: wrap;
-	max-width: 1920px;
+	max-width: 1440px;
 }
 
 .the-wrapper div {
   flex: 1;
   justify-content: stretch;
-  max-width: 1920px;
+  max-width: 1440px;
 
 }
 

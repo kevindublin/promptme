@@ -146,7 +146,8 @@ def edit_profile(request):
         form = UserEditForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            messages.success(request, 'Profile updated.')
+            return redirect(request.META.get('HTTP_REFERER', 'view_all_users'))
     else:
         form = UserEditForm(instance=request.user)
 

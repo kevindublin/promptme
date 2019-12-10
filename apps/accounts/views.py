@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from django.core.paginator import Paginator
 from apps.core.models import Draft
 from apps.core.forms import WriteBox
 
@@ -57,10 +58,22 @@ def logout_view(request):
 @login_required
 def view_all_users(request):
     all_users = User.objects.all()
+    # Exclude 'deleted' users
     active_users = User.objects.exclude(is_active=False)
+    # Create pages for pagination
+    paginator = Paginator(active_users, 7)
+    currentpage = request.GET.get('page', 1)
+
+    try:
+        users = paginator.page(currentpage)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
 
     context = {
-        'users': active_users,
+        'users': users,
     }
     return render(request, 'accounts/view_all_users.html', context)
 

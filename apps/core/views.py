@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import ValidationError
+from django.core.paginator import Paginator
 from .forms import WriteBox, FeedbackBox, ContactForm
 from .models import Draft, Feedback
 from django.core.mail import send_mail
@@ -38,7 +39,18 @@ def dashboard(request):
     allfeedback = Feedback.objects.order_by('-added')
     userfeedback = allfeedback.filter(draft__user=request.user)
 
-    context = {'user_drafts': userdrafts, 'user_feedback': userfeedback}
+    # Create pages for pagination
+    paginator = Paginator(userdrafts, 6)
+    currentpage = request.GET.get('page', 1)
+
+    try:
+        drafts = paginator.page(currentpage)
+    except PageNotAnInteger:
+        drafts = paginator.page(1)
+    except EmptyPage:
+        drafts = paginator.page(paginator.num_pages)
+
+    context = {'user_drafts': drafts, 'user_feedback': userfeedback}
 
     return render(request, 'pages/dashboard.html', context)
 

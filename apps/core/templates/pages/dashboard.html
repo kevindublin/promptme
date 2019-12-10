@@ -77,6 +77,29 @@
         {% endfor %}
       </div>
     </div>
+    {% if user_drafts.has_other_pages %}
+    <nav aria-label="page navigation">
+      <ul class="pagination justify-content-center">
+        {% if user_drafts.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ user_drafts.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span class="page-link">&laquo;</span></li>
+        {% endif %}
+        {% for i in user_drafts.paginator.page_range %}
+          {% if user_drafts.number == i %}
+            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if user_drafts.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ user_drafts.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span class="page-link">&raquo;</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
   </div>
 
 </main>

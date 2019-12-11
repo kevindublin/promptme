@@ -7,7 +7,7 @@ verb = ['wilt','crumble','throb','pulse','crumple','slope','lean','huddle','tilt
 'woosh','bark','growl','grumble','grunt','snarl','yelp','yap','bay','howl','thunder','bawl','roar','hum','purr','crash','clang','whomp','bray','chortle','chirp',
 'dribble','squirt','murmur','blurt','chatter','twaddle','click','clink','jingle','jiggle','waft','whisper','hiss','warble','tremble','whimper','guttural','rasp',
 'ripple','swelter','cast','spill','hush','clatter','whir','achoo','ahem','boom','bang','bump','buzz','fizz','drip','honk','knock','moan','plop','poof',
-'quack','rustle','sizzle','tick','tock','whimper','zoom','zip','quake','erupt','freeze','freezes','break','showers']
+'quack','rustle','sizzle','tick','tock','whimper','zoom','zip','quake','erupt','freeze','freezes','break','shower']
 
 noun = ['breeze','gravel','summer','concrete','liquor','banana','beak','whiskey','willow','blade','grass','limb','oak','branch','tracks','pine','slough','footprint',
 'leaf','cinnamon','smoke','lavender','vanilla','cherry','gasoline','seashell','cigarette','marrow','skin','bulb','fungus','pollen','berry','cobweb','booger','butter',

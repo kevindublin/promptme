@@ -309,3 +309,9 @@ footer p {
     max-height: calc(100% - 120px);
     overflow-y: scroll;
 }
+
+/* Profile Page */
+
+.add-user-prompt {
+  width: 50%;
+}

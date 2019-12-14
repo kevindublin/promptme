@@ -10,7 +10,7 @@ class SubmitPrompt(forms.ModelForm):
         ('False', 'Private')
     )
 
-    text = forms.CharField(widget=forms.TextInput(attrs={"class": "mceNoEditor"}), label='')
+    text = forms.CharField(widget=forms.TextInput(attrs={"class": "mceNoEditor add-user-prompt"}), label='')
     public = forms.BooleanField(widget=forms.Select(choices=PUBLIC_OPTION), label='Would you like to share your prompt?', required=False)
 
     class Meta:

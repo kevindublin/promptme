@@ -40,7 +40,7 @@ html {
     max-width: 800px;
 }
 
-.survery-card, .draft-card {
+.survey-card, .draft-card {
  	  height: 100%;
   	margin: 10px;
     min-width: 220px;
@@ -58,40 +58,33 @@ html {
   max-width: 60%;
 }
 
-.card-boxq {
-
-    padding: 5px;
-    text-align: center;
-}
-
 .qbody {
-  padding-left: 50px;
+  padding-left: 30px;
   width: 70%;
 }
 
 
 .carousel-control-prev-icon2,
 .carousel-control-next-icon2 {
-  background-image: none;
-  bottom: 75%;
-  height: 100px;
-  width: 100px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: transparent no-repeat center center;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 90%;
 
 }
 
-.carousel-control-next-icon2:after {
-  color: black;
-  content: '>';
-  font-size: 30px;
-
+.carousel-control-prev-icon2 {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='000000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
 }
 
-.carousel-control-prev-icon2:after {
-  color: black;
-  content: '<';
-  font-size: 30px;
 
+.carousel-control-next-icon2 {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='000000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
 }
+
 
 .form-btn {
 	float: right;
@@ -105,9 +98,11 @@ html {
 	max-height: 400px;
 }
 
-.mceNoEditor {
-	width: 70%;
-
+.qbox {
+  position: relative;
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 77%;
 }
 
 .carousel-indicators li {

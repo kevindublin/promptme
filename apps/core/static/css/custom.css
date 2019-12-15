@@ -212,7 +212,7 @@ ul {
 .feedback-view {
     padding-left: 75px;
     padding-right: 75px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .lead-in {
@@ -312,7 +312,8 @@ footer p {
 .modal-body {
     /* 100% = dialog height, 120px = header + footer */
     max-height: calc(100% - 120px);
-    overflow-y: scroll;
+    overflow-y: auto;
+    padding: 5%;
 }
 
 /* Profile Page */

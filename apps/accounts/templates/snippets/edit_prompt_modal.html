@@ -12,7 +12,7 @@
         <!-- Form for editing prompt -->
         <form action="/account/update-prompt/{{ prompt.id }}/" method="POST">
             {% csrf_token %}
-            <textarea name="text" rows="2" cols="100" class="mceNoEditor"> {{ prompt.text }}</textarea>
+            <textarea name="text" rows="2" class="mceNoEditor add-user-prompt"> {{ prompt.text }}</textarea>
             <button class="btn btn-primary form-btn">Save changes</button>
         </form>
 

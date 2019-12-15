@@ -48,7 +48,6 @@ THIRD_PARTY_APPS = [
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 ANYMAIL = {
-    # (exact settings here depend on your ESP...)
     "MAILGUN_API_KEY": config('KEY'),
     "MAILGUN_SENDER_DOMAIN": config('SENDER')
     }

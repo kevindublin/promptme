@@ -319,5 +319,6 @@ footer p {
 /* Profile Page */
 
 .add-user-prompt {
-  width: 50%;
+  width: 60%;
+  font-size: 1rem;
 }

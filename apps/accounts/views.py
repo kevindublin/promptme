@@ -7,12 +7,10 @@ from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from apps.core.models import Draft
 from apps.core.forms import WriteBox
-
-
 from apps.accounts.forms import UserEditForm, SignupForm, SubmitPrompt
 from apps.accounts.models import User, UserPrompt
-
-import datetime
+import datetime, requests
+from decouple import config
 
 
 def log_in(request):
@@ -247,6 +245,13 @@ def write_userprompt(request, prompt_id):
     currentuserprompt = UserPrompt.objects.get(id=prompt_id)
     currentuserprompt = currentuserprompt.text
 
+    # use Unsplash API to get random photo
+
+    apiurl = config('UNSPLASH_API')
+    response = requests.get(apiurl)
+    results = response.json()
+    imgurl = results[0]['urls']['full'] + "&w=1440"
+
     if request.method == 'POST':
         form = WriteBox(request.POST)
 
@@ -265,7 +270,7 @@ def write_userprompt(request, prompt_id):
                 created=datetime.datetime.now(),
                 revised=datetime.datetime.now(),
                 prompt=currentuserprompt,
-                image='https://picsum.photos/seed/trial/1280/720',
+                image=imgurl,
                 in_queue=False,
                 received_feedback=False,
                 feedback_amount=0

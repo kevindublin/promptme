@@ -8,8 +8,7 @@ from .models import Draft, Feedback
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
 from decouple import config
-import datetime
-import random
+import datetime, random, requests
 import utils
 
 
@@ -333,6 +332,9 @@ def newprompt():
 
 def newimage():
     global imgurl
+
+    # Delete now that moving over to unsplash API
+    '''
     i = random.randint(0, len(fulldict)-1)
     randword = fulldict[i]
 
@@ -342,6 +344,13 @@ def newimage():
 
     print(i, fulldict[i])
     imgurl = 'https://picsum.photos/seed/' + randword + '/1280/720'
+    '''
+
+    apiurl = config('UNSPLASH_API')
+    response = requests.get(apiurl)
+    results = response.json()
+    imgurl = results[0]['urls']['full'] + "&w=1440"
+
     return imgurl
 
 

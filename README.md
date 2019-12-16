@@ -5,9 +5,9 @@
 
 ## Known Issues:
 
-- Home page slider and contents break styling on maximum Retina and widescreen displays
-- Mobile view of Feedback Queue has uneven rows
-- Bottom dock in mobile view is off-centere
+- ~~Home page slider and contents break styling on maximum Retina and widescreen displays~~
+- ~~Mobile view of Feedback Queue has uneven rows~~
+- ~~Bottom dock in mobile view is off-centere~~
 - ~~Add password reset functionality~~
 - ~~Private prompts will show up in collab feed if there are no other user prompts created~~
 - Unlimited voting, will eventually change to each user getting a certain amount based on their tier

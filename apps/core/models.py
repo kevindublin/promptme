@@ -15,7 +15,7 @@ class Draft(models.Model):
     revised = models.DateTimeField(auto_now=True)
 
     prompt = models.CharField(max_length=300)
-    image = models.CharField(max_length=175)
+    image = models.CharField(max_length=200)
     in_queue = models.BooleanField(default=False)
     received_feedback = models.BooleanField(default=False)
     feedback_amount = models.IntegerField(default=0)

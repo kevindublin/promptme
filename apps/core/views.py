@@ -252,17 +252,6 @@ def prompt(request):
     return render(request, 'pages/prompt.html', context)
 
 
-def clean_text(form):
-    text = str(form)
-    text = text.replace('<tr><th></th><td><textarea name="text" cols="40" rows="10" required id="id_text">', "")
-    text = text.replace('</textarea></td></tr>', '')
-    text = text.replace('&lt;p&gt;', '')
-    text = text.replace('&lt;/p&gt;', '<br />')
-    text = text.replace('<span style="font-weight: 400;">', '')
-    text = text.replace('</span>', '')
-    text = strip_tags(text)
-    return text
-
 @login_required
 def write(request):
 
@@ -282,7 +271,6 @@ def write(request):
         if form.is_valid():
             # Use the form to save
             print('form is valid, sending to db...')
-            text = clean_text(form)
 
             try:
 

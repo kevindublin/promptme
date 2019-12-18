@@ -312,9 +312,7 @@ def edit(request):
 
 def newprompt():
     global currentprompt
-    i = random.randint(0, len(allprompts)-1)
-    currentprompt = allprompts[i]
-    print(i, allprompts[i])
+    currentprompt = random.choice(allprompts)
     return currentprompt
 
 

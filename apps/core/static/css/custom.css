@@ -1,7 +1,7 @@
 @media only screen and (max-width: 845px) {
 
     .card {
-        width: 100vw;
+        width: 100%;
     }
 
 }
@@ -165,9 +165,13 @@ body {
   padding: 2%;
 }
 
-.card-deck .card {
+.card-deck, .card {
   min-width: 275px;
   overflow: auto;
+}
+
+.dash-row {
+  min-width: 275px;
 }
 
 .pricing-deck,

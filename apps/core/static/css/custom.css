@@ -167,7 +167,6 @@ body {
 
 .card-deck, .card {
   min-width: 275px;
-  overflow: auto;
 }
 
 .dash-row {

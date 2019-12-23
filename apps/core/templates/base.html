@@ -92,10 +92,10 @@
             <ul class="navbar-nav ml-auto">
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://forms.gle/YEBbFq7HRek9ugjQ7">Give Feedback</a>
+                        <a class="nav-link" href="{% url 'view_all_users' %}">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view_all_users' %}">Users</a>
+                        <a class="nav-link" target="_blank" href="https://forms.gle/YEBbFq7HRek9ugjQ7">Give Feedback</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}" >Sign Out</a>

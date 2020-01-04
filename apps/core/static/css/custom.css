@@ -340,3 +340,7 @@ footer p {
 .write-box {
   overflow: auto;
 }
+
+#mail-list {
+  min-width: 325px;
+}

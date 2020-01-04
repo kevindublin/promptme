@@ -45,7 +45,12 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.twitter',
+    'google_analytics',
 ]
+
+GOOGLE_ANALYTICS = {
+    'google_analytics_id': config('GOOGLE_TRACK'),
+}
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 ANYMAIL = {

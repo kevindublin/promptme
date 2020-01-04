@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^djga/', include('google_analytics.urls')),
+    url(r'^tracking/', include('tracking.urls')),
 
 ] + static(  # Add in uploaded media files
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

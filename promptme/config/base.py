@@ -34,9 +34,6 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'bootstrap4',
-    'tinymce',
-    'anymail',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -45,7 +42,11 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.twitter',
+    'anymail',
+    'bootstrap4',
     'google_analytics',
+    'tinymce',
+    'tracking'
 ]
 
 GOOGLE_ANALYTICS = {
@@ -103,6 +104,10 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+TRACK_SUPERUSERS = False
+TRACK_PAGEVIEWS = True
+TRACK_REFERER = True
+
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -119,6 +124,7 @@ INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'tracking.middleware.VisitorTrackingMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

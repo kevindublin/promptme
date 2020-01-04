@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1f0f192225b28fd44a60e7245f34fd9a822007ad3658b142afa47760302059f5"
+            "sha256": "33b48b9669be9225420445a155309b8f46bd9eb8207852de1cbc1ee7317884d5"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -23,7 +23,6 @@
         },
         "anyjson": {
             "hashes": [
-                "sha256:24d8c12d66cc21c8ab21a7971b7f67968b39a7774598b7a22f9aa01e55d650b8",
                 "sha256:37812d863c9ad3e35c0734c42e0bf0320ce8c3bed82cd20ad54cb34d158157ba"
             ],
             "version": "==0.3.3"
@@ -155,6 +154,13 @@
             ],
             "index": "pypi",
             "version": "==2.8.0"
+        },
+        "django-tracking2": {
+            "hashes": [
+                "sha256:ef5ecc008a10fee2500a3cb39c45cc50de8c47a7c70ee33b23df4f2666adce6b"
+            ],
+            "index": "pypi",
+            "version": "==0.5.0"
         },
         "gunicorn": {
             "hashes": [

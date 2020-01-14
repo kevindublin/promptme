@@ -24,7 +24,7 @@ class Draft(models.Model):
         ordering = ['revised']
 
     def __str__(self):
-        return 'Feedback {} by {}'.format(self.text, self.prompt)
+        return 'Draft {} by {}'.format(self.text, self.user)
 
 
 class Feedback(models.Model):
@@ -70,4 +70,4 @@ class Feedback(models.Model):
         ordering = ['-added']
 
     def __str__(self):
-        return 'Feedback {} by {}'.format(self.summary, self.comments)
+        return 'Feedback {} by {}'.format(self.comments, self.reader)

@@ -18,6 +18,22 @@ class SubmitPrompt(forms.ModelForm):
         fields = ['text', 'public']
 
 
+class MembershipForm(forms.ModelForm):
+
+    MEMBERSHIP_LEVELS = (
+        ('Member', 'Member'),
+        ('Plus', 'Plus'),
+        ('Premium', 'Premium'),
+        ('Professional', 'Professional'),
+        ('Instructor', 'Instructor')
+    )
+
+    membership = forms.ChoiceField(choices=MEMBERSHIP_LEVELS,widget=forms.RadioSelect, label='What level of membership would you like?')
+
+    class Meta:
+        model = User
+        fields = ['membership']
+
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User

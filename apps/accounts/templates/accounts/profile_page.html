@@ -19,7 +19,9 @@
               <p>{{ currentuser.membership }}</p>
             <a class="btn btn-danger" role="button" data-toggle="modal" data-target="#modalDelAcct{{ currentuser.id }}">Delete Account</a>
             {% include "snippets/del_account_modal.html" %}
-
+            <!-- testing membership levels form, decide later
+            <a class="btn btn-success" role="button" data-toggle="modal" data-target="#modalUpAcct{{ currentuser.id }}">Upgrade Account</a>
+            {% include "snippets/upgrade_account_modal.html" %} -->      
         {% endif %}
     </div>
 

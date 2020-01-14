@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div class="modal fade" id="modalUpAcct{{ currentuser.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class='modal-title'>Account Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Current membership: {{ currentuser.membership }}
+        <!-- Form for writing based on the userprompt -->
+        <form action="/account/update-membership/{{ currentuser.id }}/" method="POST">
+            {% csrf_token %}
+            {{ membership_form }}
+            <button class="btn btn-primary form-btn">Update Account</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

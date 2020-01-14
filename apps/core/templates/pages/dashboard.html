@@ -32,7 +32,7 @@
             <div class="card-body">
               <p class="card-title"> {{ draft.prompt }} </p>
               <p class="card-text"> {{ draft.text | striptags | truncatechars:50 }} </p>
-              <div class="d-flex justify-content-between flex-grow-1 align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal{{ draft.id }}">
                       <i class="material-icons">launch</i>

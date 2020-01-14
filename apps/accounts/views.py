@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from apps.core.models import Draft
 from apps.core.forms import WriteBox
-from apps.accounts.forms import UserEditForm, SignupForm, SubmitPrompt
+from apps.accounts.forms import UserEditForm, SignupForm, SubmitPrompt, MembershipForm
 from apps.accounts.models import User, UserPrompt
 import datetime, requests
 from decouple import config
@@ -81,6 +81,7 @@ def view_profile(request, username):
     currentuser = User.objects.get(username=username)
     alluserprompts = UserPrompt.objects.order_by('-upvotes')
     currentuserprompts = alluserprompts.filter(user=currentuser)
+    membershipForm = MembershipForm()
 
     if request.user == currentuser:
         is_viewing_self = True
@@ -134,6 +135,7 @@ def view_profile(request, username):
         'is_viewing_self': is_viewing_self,
         'form': form,
         'currentuserprompts': currentuserprompts,
+        'membership_form': membershipForm,
     }
     return render(request, 'accounts/profile_page.html', context)
 
@@ -145,7 +147,7 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated.')
-            return redirect(request.META.get('HTTP_REFERER', 'view_all_users'))
+            return redirect(request.META.get('view_profile', '/account/users/'))
     else:
         form = UserEditForm(instance=request.user)
 
@@ -176,12 +178,24 @@ def delete_account(request, currentuser_id):
 
 
 @login_required
+def update_membership(request, currentuser_id):
+    form = MembershipForm(request.POST, instance=request.user)
+    if form.is_valid:
+        form.save()
+        messages.success(request, 'Your membership has been updated.')
+        return redirect('dashboard')
+    else:
+        messages.warning(request, 'There was an error updating your membership.')
+        return redirect('dashboard')
+
+
+@login_required
 def delete_prompt(request, prompt_id):
     prompt = UserPrompt.objects.get(id=prompt_id)
     prompt.delete()
     messages.warning(request, 'Prompt deleted')
 
-    return redirect(request.META.get('HTTP_REFERER', 'dashboard'))
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
@@ -200,7 +214,7 @@ def public_toggle(request, prompt_id):
     prompt.save()
 
     # Redirect to wherever they came from
-    return redirect(request.META.get('HTTP_REFERER', 'dashboard'))
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required

@@ -7,6 +7,8 @@ from .forms import WriteBox, FeedbackBox, ContactForm
 from .models import Draft, Feedback
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
+import pygal
+from pygal.style import BlueStyle
 from decouple import config
 import datetime, random, requests
 import utils

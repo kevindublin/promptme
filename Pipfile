@@ -18,6 +18,7 @@ django-anymail = {extras = ["mailgun"],version = "*"}
 python-decouple = "*"
 django-google-analytics-app = "*"
 django-tracking2 = "*"
+pygal = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

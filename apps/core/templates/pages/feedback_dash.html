@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Prompt Me - Feedback Dashboard
+{% endblock title %}
+
+{% block content %}
+
+<main role="main">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Feedback</h1>
+      <p class="lead text-muted">Viewing feedback for {{ Draft.prompt }}</p>
+      <p>
+        <a href="{% url 'dashboard' %}" class="btn btn-primary my-2">Draft Feed</a>
+        <a href="{% url 'feedbackq' %}" class="btn btn-secondary my-2">Read Others</a>
+      </p>
+    </div>
+  </section>
+  

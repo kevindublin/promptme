@@ -21,7 +21,8 @@ function randInt() {
 let time_in_minutes = 6;
 let current_time = Date.parse(new Date());
 let deadline = new Date(current_time + time_in_minutes*60*1000);
-let dripBank = document.getElementById("drips");
+let dripBank = document.getElementById("wordDrip");
+let dripWords = document.getElementById("drips");
 
 wordOne = nouns[rand];
 wordTwo = adjectives[rand];
@@ -54,24 +55,25 @@ function run_clock(id,endtime){
 		}
 
 		if(t.minutes==5 && t.seconds==0){
-      element.classList.add('animated', 'fadeInDownBig', 'slow');
-      dripBank.textContent += "| " + wordOne;
+			element.classList.add('animated', 'fadeInDownBig', 'slow');
+			dripWords.textContent += "| " + wordOne;
     }
 
 		if(t.minutes==4 && t.seconds==0){
-      dripBank.textContent += " | " + wordTwo;
+			element.classList.add('animated', 'fadeInDownBig', 'slow');
+			dripWords.textContent += " | " + wordTwo;
     }
 
 		if(t.minutes==3 && t.seconds==0){
-      dripBank.textContent += " | " + wordThree;
+      dripWords.textContent += " | " + wordThree;
     }
 
 		if(t.minutes==2 && t.seconds==0){
-      dripBank.textContent += " | " + wordFour;
+      dripWords.textContent += " | " + wordFour;
     }
 
 		if(t.minutes==1 && t.seconds==0){
-      dripBank.textContent += " | " + wordFive + " |";
+      dripWords.textContent += " | " + wordFive + " |";
     }
 
 	}

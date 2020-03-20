@@ -8,11 +8,10 @@ from .models import Draft, Feedback
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
 import pygal
-from pygal.style import BlueStyle
+from pygal.style import LightenStyle, BlueStyle, DarkenStyle
 from decouple import config
 import datetime, random, requests
 import utils
-
 
 fulldict = utils.get_dict()
 blanklist = utils.get_blanklist()
@@ -36,17 +35,16 @@ def feedback_dashboard(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draftfeedback = Feedback.objects.filter(draft__id=draft_id)
 
-
     attributes = ['progression',
         'aural_quality',
-        'pov_clear',
-        'style_distinct',
+        'clear_pov',
+        'distinct_style',
         'metaphors',
-        'setting_specific',
-        'noun_specific',
-        'verb_specific',
-        'adjective_specific',
-        'worldview']
+        'specific_setting',
+        'specific_nouns',
+        'specific_verbs',
+        'specific_adjectives',
+        'clear_worldview']
     draftstrengths = []
     draftweaknesses = []
     somewhats = []
@@ -70,21 +68,59 @@ def feedback_dashboard(request, draft_id):
 
     strengthcount = 'strength_{}'
     weaknesscount = 'weakness_{}'
-    data = {
+    chartData = {
         'maxStrength': maxstrength,
         'maxWeakness': maxweakness
         }
 
     for attribute in attributes:
-        data.update({
-            strengthcount.format(attribute): draftstrengths.count(attribute),
-            weaknesscount.format(attribute): draftweaknesses.count(attribute)
+        chartData.update({
+            strengthcount.format(attribute): round(draftstrengths.count(attribute) / maxstrength, 3) * 100,
+            weaknesscount.format(attribute): round(draftweaknesses.count(attribute) / maxweakness, 3) * 100
             })
 
-    print('data \n',data)
+    print('data \n',chartData)
+    chart_style = DarkenStyle('#007bff')
+    chart_style.background = '#f8f9fa'
+    chart_style.plot_background = '#f8f9fa'
+
+    fontsizes = ['legend_font_size',
+        'title_font_size',
+        'tooltip_font_size',
+        'value_label_font_size',
+        'value_font_size',
+        'major_label_font_size',
+        'label_font_size']
+
+    for label in fontsizes:
+        setattr(chart_style, label, 30)
+
+    strength_chart = pygal.Pie(inner_radius=.5, style=chart_style)
+    strength_chart.title = 'Current Strengths'
+    for (name, value) in chartData.items():
+        if name.startswith('strength') and value > 0:
+            strength_chart.add(
+                name.lstrip('strength').replace('_', ' ').title(),
+                value
+                )
+    strength_chart = strength_chart.render_data_uri()
+
+    focus_chart = pygal.Pie(inner_radius=.5, style=chart_style)
+    focus_chart.title = 'Areas of Focus'
+    for (name, value) in chartData.items():
+        if name.startswith('weakness') and value > 0:
+            focus_chart.add(
+                name.lstrip('weakness').replace('_', ' ').title(),
+                value
+                )
+    focus_chart = focus_chart.render_data_uri()
+
 
     context = {
-        'draft_feedback': draftfeedback
+        'Draft': draft,
+        'draftFeedback': draftfeedback,
+        'strengthChart': strength_chart,
+        'focusChart': focus_chart,
     }
     return render(request, 'pages/feedback_dash.html', context)
 

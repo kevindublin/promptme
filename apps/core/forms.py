@@ -37,18 +37,27 @@ class FeedbackBox(forms.ModelForm):
     summary = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor qbox"}), label='Write a brief summary of the draft:')
     progression = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label='Is there a throughline from beginning to end?')
     aural_quality = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label='When read aloud, is it rhythmic?')
-    pov_clear = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label='Is the point of view/speaker clear?')
-    style_distinct = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label='Is the writing style distinct?')
+    clear_pov = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label='Is the point of view/speaker clear?')
+    distinct_style = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label='Is the writing style distinct?')
     metaphors = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Are there clear & distinct metaphors/analogies?")
-    setting_specific = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Is the setting clear & specific?")
-    noun_specific = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Are the nouns/characters or items specific?")
-    verb_specific = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Are the verbs/actions specific?")
-    adjective_specific = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Are the adjectives/descriptions specific?")
-    worldview = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Does it communicate a view of how the world works?")
+    specific_setting = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Is the setting clear & specific?")
+    specific_nouns = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Are the nouns/characters or items specific?")
+    specific_verbs = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Are the verbs/actions specific?")
+    specific_adjectives = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Are the adjectives/descriptions specific?")
+    clear_worldview = forms.ChoiceField(choices=SURVEY_OPTIONS, widget=forms.RadioSelect, label="Does it communicate a view of how the world works?")
     emi = forms.ChoiceField(choices=EMOTIONAL_IMPACT_INDEX, widget=forms.RadioSelect, label='How did the piece make you feel?')
     favorite_lines = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor qbox"}), label='What are your favorite lines?')
     comments = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor qbox"}), label='Additional comments:')
 
     class Meta:
         model = Feedback
-        fields = ['summary', 'progression', 'aural_quality', 'pov_clear', 'style_distinct', 'metaphors', 'setting_specific', 'noun_specific', 'verb_specific', 'adjective_specific', 'worldview', 'emi', 'favorite_lines', 'comments']
+        fields = ['summary', 'progression', 'aural_quality',
+            'clear_pov',
+            'distinct_style',
+            'metaphors',
+            'specific_setting',
+            'specific_nouns',
+            'specific_verbs',
+            'specific_adjectives',
+            'clear_worldview',
+            'emi', 'favorite_lines', 'comments']

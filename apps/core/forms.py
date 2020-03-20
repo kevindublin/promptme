@@ -30,7 +30,8 @@ class FeedbackBox(forms.ModelForm):
         ('3', 'Happy'),
         ('4', 'Sad'),
         ('5', 'Amused'),
-        ('6', 'Surprised')
+        ('6', 'Surprised'),
+        ('7', 'Moved')
     )
 
     summary = forms.CharField(widget=forms.Textarea(attrs={"class": "mceNoEditor qbox"}), label='Write a brief summary of the draft:')

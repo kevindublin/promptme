@@ -48,10 +48,10 @@
                   {% include "snippets/edit_draft_modal.html" %}
                   <!-- currently displays all feedback, will fix next -->
                   {% if draft.received_feedback == True %}
-                  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalthree{{ draft.id }}">
+                  <a type="button" class="btn btn-link" href="/feedback-dashboard/{{ draft.id }}/">
                       <i class="material-icons">comment</i>
-                  </button>
-                  {% include "snippets/view_feedback_modal.html" %}
+                  </a>
+                  <!--{% include "snippets/view_feedback_modal.html" %}
                   {% endif %}
                   <!--add conditional-->
                   {% if draft.in_queue == False %}

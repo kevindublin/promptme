@@ -40,7 +40,8 @@ class Feedback(models.Model):
         ('3', 'Happy'),
         ('4', 'Sad'),
         ('5', 'Amused'),
-        ('6', 'Surprised')
+        ('6', 'Surprised'),
+        ('7', 'Moved')
     )
     draft = models.ForeignKey('Draft', on_delete=models.CASCADE, related_name='allfeedback')
 

@@ -31,6 +31,63 @@ def home(request):
 
     return render(request, 'pages/home.html', context)
 
+@login_required
+def feedback_dashboard(request, draft_id):
+    draft = Draft.objects.get(id=draft_id)
+    draftfeedback = Feedback.objects.filter(draft__id=draft_id)
+
+
+    attributes = ['progression',
+        'aural_quality',
+        'pov_clear',
+        'style_distinct',
+        'metaphors',
+        'setting_specific',
+        'noun_specific',
+        'verb_specific',
+        'adjective_specific',
+        'worldview']
+    draftstrengths = []
+    draftweaknesses = []
+    somewhats = []
+    #iterate over each piece of feeddback
+    for feedback in draftfeedback:
+        #check each attribute
+        for item in attributes:
+            if getattr(feedback, item) == 'Y':
+                draftstrengths.append(item)
+            if getattr(feedback, item) == 'N':
+                draftweaknesses.append(item)
+            if getattr(feedback, item) == 'S':
+                somewhats.append(item)
+
+    print('draft strengths: \n {}'.format(draftstrengths))
+    print('draft areas to focus: \n {}'.format(draftweaknesses))
+    print('somewhats: \n {}'.format(somewhats))
+
+    maxstrength = len(draftstrengths)
+    maxweakness = len(draftweaknesses)
+
+    strengthcount = 'strength_{}'
+    weaknesscount = 'weakness_{}'
+    data = {
+        'maxStrength': maxstrength,
+        'maxWeakness': maxweakness
+        }
+
+    for attribute in attributes:
+        data.update({
+            strengthcount.format(attribute): draftstrengths.count(attribute),
+            weaknesscount.format(attribute): draftweaknesses.count(attribute)
+            })
+
+    print('data \n',data)
+
+    context = {
+        'draft_feedback': draftfeedback
+    }
+    return render(request, 'pages/feedback_dash.html', context)
+
 
 @login_required
 def dashboard(request):
@@ -115,6 +172,7 @@ def privacy(request):
 @login_required
 def feedbackq(request):
     global queueddrafts
+    global q
     # getting all drafts from db
     alldrafts = Draft.objects.order_by('revised')
     # making sure all drafts have been added to the queue
@@ -124,9 +182,11 @@ def feedbackq(request):
     # making sure that the current user hasn't already given feedback
     queueddrafts = queueddrafts.exclude(allfeedback__reader=request.user)
 
-    if len(queueddrafts) == 0 or q >= len(queueddrafts):
+    if len(queueddrafts) == 0:
         messages.warning(request, 'Sorry, there are currently no drafts in the queue.')
         return redirect(request.META.get('dashboard', '/dashboard/'))
+    if len(queueddrafts) <= q:
+        q = 0
 
     if request.method == 'POST':
         form = FeedbackBox(request.POST)
@@ -187,16 +247,17 @@ def queue_next(request):
     global q
     global qcalls
 
-    if len(queueddrafts) <= 1:
+    if len(queueddrafts) < 1:
         messages.warning(request, 'No more drafts in the queue.')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
-    if qcalls < 3:
+    if qcalls <= 3:
         qcalls = qcalls + 1
         if q < len(queueddrafts)-1:
             q = q + 1
         else:
             q = 0
+
         messages.success(request, 'Next in queue.')
         return redirect(request.META.get('HTTP_REFERER', '/'))
     else:

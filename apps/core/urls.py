@@ -5,6 +5,7 @@ from apps.core import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('feedback-dashboard/<draft_id>/', views.feedback_dashboard),
     path('about/', views.about, name='about'),
     path('privacy/', views.privacy, name='privacy'),
     path('feedbackq/', views.feedbackq, name='feedbackq'),

@@ -53,12 +53,31 @@
     <hr class="featurette-divider">
     <div class="row" id="commentSection">
       <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Summary</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <p class="card-text-right">-<a href="#" class="card-link">Reader</a></p>
+        <div id="summary-slider" class="carousel slide" data-ride="carousel" data-interval="false">
+          <div class="carousel-inner">
+            {% for feedback in Draft.allfeedback.all %}
+            <div class="carousel-item feedback-view {% if forloop.first %} active {% endif %}">
+
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Summary</h5>
+                  <p class="card-text">{{ feedback.summary }}</p>
+                  <p class="card-text-right">-<a href="#" class="card-link">{{ feedback.reader }}</a></p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
           </div>
+          {% if Draft.feedback_amount > 1 %}
+          <a class="carousel-control-prev" href="#summart-slider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon3" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#summary-slider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon3" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+          {% endif %}
         </div>
       </div>
       <div class="col-md-4 text-center">
@@ -66,12 +85,31 @@
         <p>EMI</p>
       </div>
       <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Summary</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <p class="card-text-right">-<a href="#" class="card-link">Reader</a></p>
+        <div id="comment-slider" class="carousel slide" data-ride="carousel" data-interval="false">
+          <div class="carousel-inner">
+            {% for feedback in Draft.allfeedback.all %}
+            <div class="carousel-item feedback-view {% if forloop.first %} active {% endif %}">
+
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Comments</h5>
+                  <p class="card-text">{{ feedback.comments }}</p>
+                  <p class="card-text-right">-<a href="#" class="card-link">{{ feedback.reader }}</a></p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
           </div>
+          {% if Draft.feedback_amount > 1 %}
+          <a class="carousel-control-prev" href="#comment-slider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon3" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#comment-slider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon3" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+          {% endif %}
         </div>
       </div>
     </div>

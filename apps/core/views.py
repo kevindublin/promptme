@@ -66,6 +66,10 @@ def feedback_dashboard(request, draft_id):
     maxstrength = len(draftstrengths)
     maxweakness = len(draftweaknesses)
 
+    if maxstrength < 1 or maxweakness < 1:
+        messages.warning(request, "You don't have enough feedback for results!")
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+
     strengthcount = 'strength_{}'
     weaknesscount = 'weakness_{}'
     chartData = {

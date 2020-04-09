@@ -59,10 +59,6 @@ def feedback_dashboard(request, draft_id):
             if getattr(feedback, item) == 'S':
                 somewhats.append(item)
 
-    print('draft strengths: \n {}'.format(draftstrengths))
-    print('draft areas to focus: \n {}'.format(draftweaknesses))
-    print('somewhats: \n {}'.format(somewhats))
-
     maxstrength = len(draftstrengths)
     maxweakness = len(draftweaknesses)
 
@@ -83,7 +79,6 @@ def feedback_dashboard(request, draft_id):
             weaknesscount.format(attribute): round(draftweaknesses.count(attribute) / maxweakness, 3) * 100
             })
 
-    print('data \n',chartData)
     chart_style = DarkenStyle('#007bff')
     chart_style.background = '#f8f9fa'
     chart_style.plot_background = '#f8f9fa'

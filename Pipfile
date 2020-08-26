@@ -10,14 +10,13 @@ gunicorn = "*"
 psycopg2-binary = "*"
 requests = "*"
 django-tinymce = "==2.8.0"
-Django = ">=2.2.10"
+Django = ">=2.2.13"
 whitenoise = "*"
 django-forgiving-collectstatic = "*"
 django-allauth = "*"
 django-anymail = {extras = ["mailgun"],version = "*"}
 python-decouple = "*"
 django-google-analytics-app = "*"
-django-tracking2 = "*"
 pygal = "*"
 
 [dev-packages]

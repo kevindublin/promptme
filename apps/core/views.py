@@ -185,7 +185,7 @@ def update_draft(request, draft_id):
     draft = Draft.objects.get(id=draft_id)
     draft.text = text
     draft.save()
-    messages.success(request, 'Draft upated')
+    messages.success(request, "Draft upated. Please support by <a href='https://forms.gle/MQiNFkHZYSfJMXC6A'>filling out this survey</a>")
     # Redirect to wherever they came from
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -293,10 +293,10 @@ def queue_next(request):
         else:
             q = 0
 
-        messages.success(request, 'Next in queue.')
+        messages.success(request, "Next in queue.")
         return redirect(request.META.get('HTTP_REFERER', '/'))
     else:
-        messages.warning(request, 'No more skips available!')
+        messages.warning(request, "No more skips available! Please support by <a href='https://forms.gle/MQiNFkHZYSfJMXC6A'>filling out this survey</a>")
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -381,7 +381,7 @@ def write(request):
                     image=imgurl,
                 )
                 newdraft.save()
-                messages.success(request, 'Draft saved!')
+                messages.success(request, "Draft saved! Please support by <a href='https://forms.gle/MQiNFkHZYSfJMXC6A'>filling out this survey</a>")
                 return redirect(request.META.get('dashboard', '/dashboard/'))
             except ValidationError as error:
                 messages.warning(request, error.message_dict)

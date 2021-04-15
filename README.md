@@ -5,7 +5,7 @@
 
 ## Current Status:
 
-Planning to refactor the code for the micro-education writing web suite **Dailies**. Installing Django REST Framework in order to setup Prompt Me as an API with endpoints for prompts, images, drafts, etc to be consumed by a single page app built with React that will allow greater interactivity in the Feedback Queue such as favorite word highlighting, in the drafting process such as seeing the definitions of words in the drip bank, smoother animations for the words being served outside of animate.css, and more. Continuing work slowly, likely not picking up speed again until Summer 2020.
+Planning to refactor the code for the micro-education writing web suite **Dailies**. Installing Django REST Framework in order to setup Prompt Me as an API with endpoints for prompts, images, drafts, etc to be consumed by a single page app built with React that will allow greater interactivity in the Feedback Queue such as favorite word highlighting, in the drafting process such as seeing the definitions of words in the drip bank, smoother animations for the words being served outside of animate.css, and more like a new look that's not so Bootstrap heavy. Continuing work slowly, likely not picking up speed again until the end of Summer 2021.
 
 
 ## Known Issues:
@@ -33,9 +33,11 @@ Planning to refactor the code for the micro-education writing web suite **Dailie
 
 **Individual Features**
 - ~~Social Login~~
-- Feedback dashboard
+- ~~Feedback dashboard~~
+- Better Feedback dashboard
 - Context dictionary: hover over words to show the definition
-- Add pie charts for feedback results, analytics
+- Words read aloud as they drip in
+- ~~Add pie charts for feedback results, analytics~~
 - Third app with Full TinyMCE in-browser text editor to work on drafts
 - Export writing to Google Drive and Dropbox
 - Take photos of handwritten or printed text and OCR into editor as a draft for those who prefer to write by hand, uploadcare
@@ -55,8 +57,7 @@ Planning to refactor the code for the micro-education writing web suite **Dailie
 - Number of queue calls, prompts, & drafts written tied to membership tier
 
 **Writing Career Features**
-- Submission Tracker via Submittable API
-- Open calls for submissions
+- Submission Tracker
 - User posted Calls for submissions
 - Web scraper which pulls submission calls from all over the web and prompt me calls that API
 

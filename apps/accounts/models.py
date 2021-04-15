@@ -51,6 +51,9 @@ class UserPrompt(models.Model):
     class Meta:
         ordering = ['-upvotes']
 
+    def __str__(self):
+        return '{} by {}'.format(self.text, self.user)
+
 
 class Vote(models.Model):
     user = models.ForeignKey(User,

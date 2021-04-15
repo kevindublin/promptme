@@ -22,7 +22,7 @@ qcalls = 0
 
 
 def home(request):
-
+	
 
     context = {
         '': '',

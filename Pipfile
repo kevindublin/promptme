@@ -14,11 +14,15 @@ Django = ">=2.2.13"
 whitenoise = "*"
 django-forgiving-collectstatic = "*"
 django-allauth = "*"
-django-anymail = {extras = ["mailgun"],version = "*"}
 python-decouple = "*"
 django-google-analytics-app = "*"
 pygal = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
 pylint = "*"
+
+[packages.django-anymail]
+extras = [ "mailgun",]
+version = "*"

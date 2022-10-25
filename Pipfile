@@ -18,7 +18,7 @@ django-google-analytics-app = "*"
 pygal = "*"
 django-debug-toolbar = "*"
 django-ninja = "*"
-django = "==3.2.11"
+django = "==3.2.16"
 
 [dev-packages]
 django-debug-toolbar = "*"

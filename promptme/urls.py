@@ -18,11 +18,21 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from tinymce.urls import url
+from ninja import NinjaAPI
+
+api = NinjaAPI()
+
+@api.get("/add")
+def add(request, a: int, b: int):
+    return {"result": a + b}
+
+
 
 urlpatterns = [
     path('', include('apps.core.urls')),
     path('account/', include('apps.accounts.urls')),
     path('admin/', admin.site.urls),
+    path("api/", api.urls),
     path('accounts/', include('allauth.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^djga/', include('google_analytics.urls')),

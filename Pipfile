@@ -12,18 +12,21 @@ requests = "*"
 django-tinymce = "==3.4.0"
 whitenoise = "*"
 django-forgiving-collectstatic = "*"
-django-allauth = "*"
 python-decouple = "*"
 django-google-analytics-app = "*"
 pygal = "*"
 django-debug-toolbar = "*"
 django-ninja = "*"
 django = "==3.2.16"
+requests-oauthlib = "*"
+django-anymail = {extras = [ "mailgun",], version = "*"}
+python3-openid = "*"
+install = "*"
+django-allauth = {extras = ["socialaccount"], version = "*"}
 
 [dev-packages]
 django-debug-toolbar = "*"
 pylint = "*"
 
-[packages.django-anymail]
-extras = [ "mailgun",]
-version = "*"
+[requires]
+python_version = "3.8"

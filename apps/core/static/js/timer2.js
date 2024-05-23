@@ -5,6 +5,7 @@ let lightWords = ['beacon', 'candlelight', 'firelight', 'floodlight', 'fluoresce
 let compounds = ["barefoot", "bloodroot", "prairie smoke", "spider touch", "exile worry", "milk-heavy", "daylily", "dahlia-edge", "wild rose", "side road", "car tire", "road story", "daisy stem", "sideburns", "father's shirt", "mother's skirt", "shaving cream", "straight razor", "foam-covered", "young cheek", "hospital bed", "casket lid", "teacher's desk", "bathroom stall", "toilet tank", "final message", "first call", "ruthless mercy", "pool's edge", "lagoon beach", "beer foam", "massage thumbs", "ugly spectacle", "charming sting", "handmade magic", "love-soaked", "simple shrine", "salt flats", "natural mirror", "simple palace", "wet secret", "waterfall bottom", "hotspring chaos", "gueyser panic", "glacial surprise", "tropical solution", "mountain forest", "humble mountain", "modest temple", "profane temple", "ancient skyscraper", "edge of rainbows", "sacred lake", "holy forest", "imperfect canals", "exile's eye", "sloppy membrane", "feather cut", "tar-colored", "casket handle", "reluctant emissary", "lazy pulse", "molasses-tinged", "batter-colored", "winter formula", "spring ending", "autumn beginning", "summer bungle","unworthy offering", "bullet-comforted", "residual closure", "diseased death", "simple agony", "pickled gossip", "gossip heavy", "fresh decay", "banter-fueled", "sex funk", "hunter's moonlight", "harvest moon", "sweatshirt", "sun spark", "star spark", "solar-born", "stardeath", "starbirth", "foghorn", "moongloom", "coffin dark", "emberlit", "lamp glow", "lamp flicker", "sun patch", "light rain", "rainfall", "warm rain", "droplet", "heat haze", "snowfall", "snowbank", "snowdrift", "snowflake", "thunder storm", "paw print", "bird tracks", "ant trail", "dry rot", "bulb rot", "desert lake", "canyon brush", "pine cone", "petal edge", "hill slip", "valley call", "field holler", "desert weeds", "beach rot", "toe lint", "shoe lint", "silk sliced", "velvet angles", "sand fall", "wood rot", "morning beam", "sun glow", "dim bulb"];
 let i = randInt()
 let rand = randInt(i)
+let randtwo = Math.round(Math.random() * 100);
 const element =  document.querySelector('.drip-style')
 
 
@@ -25,9 +26,9 @@ let dripBank = document.getElementById("wordDrip");
 let dripWords = document.getElementById("drips");
 
 wordOne = nouns[rand];
-wordTwo = adjectives[rand];
+wordTwo = adjectives[randtwo];
 wordThree = verbs[rand];
-wordFour = lightWords[rand];
+wordFour = lightWords[randtwo];
 wordFive = compounds[rand];
 
 

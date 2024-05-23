@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from tinymce.urls import url
+from tinymce.urls import *
 from ninja import NinjaAPI
 
 api = NinjaAPI()
@@ -34,8 +34,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", api.urls),
     path('accounts/', include('allauth.urls')),
-    url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^djga/', include('google_analytics.urls')),
+    path('tinymce/', include('tinymce.urls')),
+    path(r'^djga/', include('google_analytics.urls')),
 
 ] + static(  # Add in uploaded media files
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
